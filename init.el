@@ -6,6 +6,10 @@
   )
 
 
+;; define default tab width
+(setq default-tab-width 2)
+
+
 ;; define custom variables by emacs menu
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -13,7 +17,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
- '(custom-enabled-themes (quote (monokai)))
+ '(custom-enabled-themes (quote (wombat)))
  '(custom-safe-themes (quote ("73fe242ddbaf2b985689e6ec12e29fab2ecd59f765453ad0e93bc502e6e478d6" default)))
  '(menu-bar-mode nil)
  '(show-paren-mode t)
@@ -32,7 +36,7 @@
 
 
 ;; load the ensime lisp code...
-(add-to-list 'load-path "/Users/rodrigolazoti/Programs/ensime_2.10.0-0.9.8.9/elisp/")
+(add-to-list 'load-path "~/Programs/ensime_2.10.0-0.9.8.9/elisp/")
 (require 'ensime)
 
 
@@ -57,24 +61,6 @@
 (global-set-key "\C-c\C-c" 'comment-or-uncomment-region-or-line)
 
 
-;; definitions for projectile
-;; (setq projectile-indexing-method 'git)
-;; (setq projectile-enable-caching t)
-;; (setq projectile-keymap-prefix (kbd "C-c C-p"))
-;; (projectile-global-mode t)
-;; (let ((ack_path "~/bin/ack"))
-;;   (if (file-exists-p ack_path)
-;;       (setq ack-and-a-half-executable ack_path)
-;;   )
-;; )
-
-;; definition for guide-key, it is used automatic
-(setq guide-key/guide-key-sequence
-      '("C-x r" "C-x 4"
-        (org-mode "C-c C-x")
-        (outline-minor-mode "C-c @")))
-
-
 ;; display the line number, total lines and column line
 (defvar my-mode-line-buffer-line-count nil)
 (make-variable-buffer-local 'my-mode-line-buffer-line-count)
@@ -83,12 +69,12 @@
               '("  " mode-line-modified
                 (list 'line-number-mode "  ")
                 (:eval (when line-number-mode
-                         (let ((str "L%l"))
+                         (let ((str "Line %l"))
                            (when (and (not (buffer-modified-p)) my-mode-line-buffer-line-count)
-                             (setq str (concat str "/" my-mode-line-buffer-line-count)))
+                             (setq str (concat str " of " my-mode-line-buffer-line-count)))
                            str)))
                 "  %p"
-                (list 'column-number-mode "  C%c")
+                (list 'column-number-mode "  Column %c")
                 "  " mode-line-buffer-identification
                 "  " mode-line-modes))
 
@@ -101,9 +87,8 @@
 (add-hook 'dired-after-readin-hook 'my-mode-line-count-lines)
 
 
-
 ;; define fiplr for git repositories
 (setq fiplr-root-markers '(".git"))
 (global-set-key (kbd "C-x f") 'fiplr-find-file)
-(setq fiplr-ignored-globs '((directories (".git" ".svn" ".ensime_lucene" "target"))
-                            (files ("*.jpg" "*.png" "*.zip" "*~"))))
+(setq fiplr-ignored-globs '((directories (".git" ".svn" ".ensime_lucene" "target" ".settings"))
+                            (files ("*.class" "*.Jpg" "*.png" "*.zip" "*~"))))
