@@ -5,6 +5,9 @@
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
   )
 
+;; define alt as meta key
+(setq x-alt-keysym 'meta)
+
 
 ;; define that backup files won't be generated
 (setq make-backup-files nil)
