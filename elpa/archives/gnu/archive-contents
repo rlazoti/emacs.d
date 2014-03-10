@@ -34,12 +34,12 @@
 			((:url . "http://elpa.gnu.org/packages/ascii-art-to-unicode.html")
 			 (:keywords quote nil))])
  (auctex .
-	 [(11 87 2)
+	 [(11 87 3)
 	  nil "Integrated environment for *TeX*" tar
 	  ((:keywords quote nil)
 	   (:url . "http://www.gnu.org/software/auctex/"))])
  (cl-lib .
-	 [(0 4)
+	 [(0 5)
 	  nil "Properly prefixed CL functions and macros" single
 	  ((:url . "http://elpa.gnu.org/packages/cl-lib.html")
 	   (:keywords quote nil))])
@@ -140,7 +140,7 @@
 	   ((:url . "http://elpa.gnu.org/packages/flylisp.html")
 	    (:keywords quote nil))])
  (ggtags .
-	 [(0 7 11)
+	 [(0 7 12)
 	  ((emacs
 	    (24)))
 	  "emacs frontend to GNU Global source code tagging system" single
@@ -148,7 +148,7 @@
 	   (:keywords quote
 		      ("tools" "convenience")))])
  (gnugo .
-	[(2 3 0)
+	[(2 3 1)
 	 nil "play GNU Go in a buffer" tar
 	 ((:keywords quote nil)
 	  (:url . "http://elpa.gnu.org/packages/gnugo.html"))])
@@ -255,7 +255,7 @@
 	    ((:url . "http://elpa.gnu.org/packages/omn-mode.html")
 	     (:keywords quote nil))])
  (org .
-      [(20140224)
+      [(20140310)
        nil "Outline-based notes management and organizer" tar nil])
  (quarter-plane .
 		[(0 1)

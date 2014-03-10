@@ -5,6 +5,7 @@
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
   )
 
+
 ;; define alt as meta key
 (setq x-alt-keysym 'meta)
 
@@ -48,8 +49,38 @@
  )
 
 
-;; define default mode for js extesion
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+;; define default mode for some extesion
+(add-to-list 'auto-mode-alist '("\\.js\\'"         . js2-mode))
+(add-to-list 'auto-mode-alist '(".*_EDITMSG\\'"    . log-entry-mode))
+(add-to-list 'auto-mode-alist '("/_"               . sh-mode))
+(add-to-list 'auto-mode-alist '("\\.sh$"           . sh-mode))
+(add-to-list 'auto-mode-alist '("\\.bashrc"        . sh-mode))
+(add-to-list 'auto-mode-alist '("\\.c$"            . c-mode))
+(add-to-list 'auto-mode-alist '("\\.h$"            . c-mode))
+(add-to-list 'auto-mode-alist '("\\.l$"            . c-mode))
+(add-to-list 'auto-mode-alist '("\\.y$"            . c-mode))
+(add-to-list 'auto-mode-alist '("\\.awk$"          . c-mode))
+(add-to-list 'auto-mode-alist '("\\.cc$"           . c-mode))
+(add-to-list 'auto-mode-alist '("\\.x$"            . c-mode))
+(add-to-list 'auto-mode-alist '("\\.txt$"          . text-mode))
+(add-to-list 'auto-mode-alist '("\\.text$"         . text-mode))
+(add-to-list 'auto-mode-alist '("\\.tex$"          . latex-mode))
+(add-to-list 'auto-mode-alist '("\\.sm$"           . latex-mode))
+(add-to-list 'auto-mode-alist '("\\.sty$"          . latex-mode))
+(add-to-list 'auto-mode-alist '("\\.bib$"          . bibtex-mode))
+(add-to-list 'auto-mode-alist '("\\.el$"           . emacs-lisp-mode))
+(add-to-list 'auto-mode-alist '("\\.tcl$"          . tcl-mode))
+(add-to-list 'auto-mode-alist '("\\.java$"         . java-mode))
+(add-to-list 'auto-mode-alist '("\\.html$"         . html-mode))
+(add-to-list 'auto-mode-alist '("[]>:/]Makefile"   . makefile-mode))
+(add-to-list 'auto-mode-alist '("[]>:/]\\..*emacs" . emacs-lisp-mode))
+(add-to-list 'auto-mode-alist '("\\.php?$"         . php-mode))
+(add-to-list 'auto-mode-alist '("\\.Xdefaults$"    . xrdb-mode))
+(add-to-list 'auto-mode-alist '("\\.Xenvironment$" . xrdb-mode))
+(add-to-list 'auto-mode-alist '("\\.Xresources$"   . xrdb-mode))
+(add-to-list 'auto-mode-alist '("*.\\.ad$"         . xrdb-mode))
+(add-to-list 'auto-mode-alist '("\\.tbl$"          . sql-mode))
+(add-to-list 'auto-mode-alist '("\\.sp$"           . sql-mode))
 
 
 ;; load the ensime lisp code...
