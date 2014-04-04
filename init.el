@@ -10,9 +10,10 @@
 (setq x-alt-keysym 'meta)
 
 
-;; define that backup files won't be generated
-(setq make-backup-files nil)
-
+;; enable highlighting matching delimiters
+(show-paren-mode 1)
+(highlight-symbol-mode 1)
+(setq highlight-symbol-idle-delay 0.75)
 
 ;; enable cua-mode
 (cua-mode t)
@@ -20,6 +21,10 @@
 (transient-mark-mode 1) ;; No region when it is not highlighted
 (setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
 (global-set-key (kbd "M-A") 'cua-set-rectangle-mark)
+
+
+;; open/close speedbar
+(global-set-key [f6] 'sr-speedbar-toggle)
 
 
 ;; define default tab width
@@ -47,6 +52,29 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
+;; sr-speedbar custom defs
+(setq make-backup-files nil)
+(setq sr-speedbar-auto-refresh nil)
+(setq sr-speedbar-max-width 72)
+(setq sr-speedbar-width-x 50)
+(setq sr-speedbar-width-console 50)
+(setq speedbar-obj-do-check nil)
+(setq speedbar-show-unknown-files t)
+(setq speedbar-use-images nil)
+(setq speedbar-vc-do-check nil)
+
+
+;; config for smartparens (ruby)
+;; get from http://crypt.codemancers.com/posts/2013-09-26-setting-up-emacs-as-development-environment-on-osx/
+(require 'smartparens-config)
+ (require 'smartparens-ruby)
+ (smartparens-global-mode)
+ (show-smartparens-global-mode t)
+ (sp-with-modes '(rhtml-mode)
+   (sp-local-pair "<" ">")
+   (sp-local-pair "<%" "%>"))
 
 
 ;; define default mode for some extesion
@@ -81,17 +109,18 @@
 (add-to-list 'auto-mode-alist '("*.\\.ad$"         . xrdb-mode))
 (add-to-list 'auto-mode-alist '("\\.tbl$"          . sql-mode))
 (add-to-list 'auto-mode-alist '("\\.sp$"           . sql-mode))
+(add-to-list 'auto-mode-alist '("\\.yml$"          . yaml-mode))
 
 
 ;; load the ensime lisp code...
-(add-to-list 'load-path "~/Programs/ensime_2.10.0-0.9.8.9/elisp/")
-(require 'ensime)
+;; (add-to-list 'load-path "~/Programs/ensime_2.10.0-0.9.8.9/elisp/")
+;; (require 'ensime)
 
 
 ;; This step causes the ensime-mode to be started whenever
 ;; scala-mode is started for a buffer. You may have to customize this step
 ;; if you're not using the standard scala mode.
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 
 ;; define a global key for (un)comment a region or a line
