@@ -27,6 +27,13 @@
 (global-set-key [f6] 'sr-speedbar-toggle)
 
 
+;;; I prefer cmd key for meta
+(setq mac-option-key-is-meta nil
+      mac-command-key-is-meta t
+      mac-command-modifier 'meta
+      mac-option-modifier 'none)
+
+
 ;; define default tab width
 (setq default-tab-width 2)
 
@@ -113,8 +120,8 @@
 
 
 ;; load the ensime lisp code...
-;; (add-to-list 'load-path "~/Programs/ensime_2.10.0-0.9.8.9/elisp/")
-;; (require 'ensime)
+(add-to-list 'load-path "/Users/rodrigolazoti/Programs/ensime_2.10.0-0.9.8.9/elisp/")
+(require 'ensime)
 
 
 ;; This step causes the ensime-mode to be started whenever
