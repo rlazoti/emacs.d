@@ -5,3 +5,6 @@
 (require 'emacs-theme)
 (require 'emacs-flymake)
 (require 'emacs-highlight-symbol)
+(require 'emacs-ruby)
+(require 'emacs-javascript)
+(require 'emacs-scala)
