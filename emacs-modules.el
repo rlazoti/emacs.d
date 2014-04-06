@@ -8,3 +8,4 @@
 (require 'emacs-ruby)
 (require 'emacs-javascript)
 (require 'emacs-scala)
+(require 'emacs-smartparens)

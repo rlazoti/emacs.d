@@ -1,10 +1,22 @@
 (show-paren-mode 1)                   ;; enable highlighing matching delimiters
 
 
+;; use shift + arrow keys to switch between visible buffers
+(require 'windmove)
+(global-set-key (kbd "C-c <left>")  'windmove-left)
+(global-set-key (kbd "C-c <right>") 'windmove-right)
+(global-set-key (kbd "C-c <up>")    'windmove-up)
+(global-set-key (kbd "C-c <down>")  'windmove-down)
+
+
+;; whitespace-mode config
+(require 'whitespace)
+(setq whitespace-line-column 120) ;; limit line length
+(setq whitespace-style '(face tabs empty trailing lines-tail))
+
+
 (setq-default indent-tabs-mode nil)   ;; don't use tabs to indent
 (setq-default tab-width 2)            ;; but maintain correct appearance
-(setq-default indent-tabs-mode nil)   ;; don't use tabs to indent
-(setq-default tab-width 8)            ;; but maintain correct appearance
 
 
 (cua-mode t)

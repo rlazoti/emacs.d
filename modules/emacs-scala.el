@@ -1,4 +1,4 @@
-(emacs-require-packages '(scala-mode2))
+(emacs-require-package 'scala-mode2)
 
 
 ;; Bind the 'newline-and-indent' command to RET (aka 'enter')
