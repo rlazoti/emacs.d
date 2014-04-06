@@ -5,16 +5,3 @@
 (require 'emacs-theme)
 (require 'emacs-flymake)
 (require 'emacs-highlight-symbol)
-
-;;(require 'prelude-helm) ;; Interface for narrowing and search
-;;(require 'emacs-c)
-;;(require 'emacs-clojure)
-;;(require 'prelude-css)
-;;(require 'prelude-emacs-lisp)
-;;(require 'prelude-js)
-;;(require 'prelude-lisp)
-;;(require 'prelude-ruby)
-;;(require 'prelude-scala)
-;;(require 'prelude-scss)
-;;(require 'prelude-web)
-;;(require 'prelude-xml)
