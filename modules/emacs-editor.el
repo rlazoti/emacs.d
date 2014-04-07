@@ -1,6 +1,10 @@
 (show-paren-mode 1)                   ;; enable highlighing matching delimiters
 
 
+; Use the system clipboard
+(setq x-select-enable-clipboard t)
+
+
 ;; use shift + arrow keys to switch between visible buffers
 (require 'windmove)
 (global-set-key (kbd "C-c <left>")  'windmove-left)
