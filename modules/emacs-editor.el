@@ -20,8 +20,8 @@
 (setq whitespace-style '(face tabs empty trailing lines-tail))
 
 
-(setq-default indent-tabs-mode nil)   ;; don't use tabs to indent
-(setq-default tab-width 2)            ;; but maintain correct appearance
+(setq indent-tabs-mode nil)   ;; don't use tabs to indent
+(setq tab-width 2)            ;; but maintain correct appearance
 
 
 (cua-mode t)
