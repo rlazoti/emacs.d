@@ -11,6 +11,10 @@
 (global-set-key (kbd "C--") 'text-scale-decrease)
 
 
+;; Go to line number
+(global-set-key (kbd "C-l") 'goto-line)
+
+
 ;; use shift + arrow keys to switch between visible buffers
 (require 'windmove)
 (global-set-key (kbd "C-c <left>")  'windmove-left)
