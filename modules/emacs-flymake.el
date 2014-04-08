@@ -3,7 +3,17 @@
     flymake-json
     flymake-ruby
     flymake-yaml
+    flymake-jshint
+    flymake-jslint
 ))
+
+
+(require 'flymake-jslint) ;; Not necessary if using ELPA package
+(add-hook 'js-mode-hook 'flymake-jslint-load)
+
+
+(require 'flymake-jshint)
+(add-hook 'js-mode-hook 'flymake-mode)
 
 
 (require 'flymake-css)

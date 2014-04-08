@@ -6,6 +6,11 @@
 (setq x-select-enable-clipboard t)
 
 
+;; Font size
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+
+
 ;; use shift + arrow keys to switch between visible buffers
 (require 'windmove)
 (global-set-key (kbd "C-c <left>")  'windmove-left)
