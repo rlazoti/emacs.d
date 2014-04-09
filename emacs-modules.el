@@ -14,3 +14,5 @@
 (require 'emacs-smartparens)
 (require 'emacs-yasnippet)
 (require 'emacs-web-mode)
+(require 'emacs-run-file)
+(require 'emacs-move-text)

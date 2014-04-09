@@ -36,9 +36,10 @@ Keybinding            | Description
 <kbd>C-c down</kbd>   | Switch the focus to visible buffer at the down side.
 <kdb>Meta-A</kdb>     | Start a vertical editing block.
 <kbd>C-x f</kbd>      | Find files in the current directory (fiplr).
-<kbd>C-x C-f</kbd>    | Find files in the current directory (helm).
-<kbd>C-c C-f</kbd>    | Find for a value in all files of a directory (helm).
 <kbd>F6</kbd>         | Open/Close a file explorer (sr-bspeedbar).
+<kbd>C-c r</kbd>      | Run the current file (ex. file.rb is going to run ruby interpreter).
+<kbd>Meta-up</kbd>    | Move the current line or region up.
+<kbd>Meta-down</kbd>  | Move the current line or region down.
 
 
 -Rodrigo Lazoti

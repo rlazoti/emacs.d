@@ -1,7 +1,6 @@
 (show-paren-mode 1)   ;; enable highlighing matching delimiters
-(menu-bar-mode -1)    ;; disable menu-bar
-(tool-bar-mode -1)    ;; disable tool-bar
-
+(if (functionp 'menu-bar-mode) (menu-bar-mode -1))
+(if (functionp 'tool-bar-mode) (tool-bar-mode -1))
 
 ; Use the system clipboard
 (setq x-select-enable-clipboard t)
