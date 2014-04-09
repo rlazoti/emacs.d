@@ -20,7 +20,6 @@ git clone https://github.com/rlazoti/emacs.d.git .emacs.d
 
 Just run <kbd>M-x package-list-packages RET U x</kbd>.
 
-
 ## Keymap
 
 ### Global
@@ -34,18 +33,17 @@ Keybinding            | Description
 <kbd>C-c up</kbd>     | Switch the focus to visible buffer at the up side.
 <kbd>C-c right</kbd>  | Switch the focus to visible buffer at the right side.
 <kbd>C-c down</kbd>   | Switch the focus to visible buffer at the down side.
-<kdb>Meta-A</kdb>     | Start a vertical editing block.
+<kdb>M-A</kdb>        | Start a vertical editing block.
 <kbd>C-x f</kbd>      | Find files in the current directory (fiplr).
 <kbd>F6</kbd>         | Open/Close a file explorer (sr-bspeedbar).
-<kbd>C-c r</kbd>      | Run the current file (ex. file.rb is going to run ruby interpreter).
-<kbd>Meta-up</kbd>    | Move the current line or region up.
-<kbd>Meta-down</kbd>  | Move the current line or region down.
-
+<kbd>C-c r</kbd>      | Run the current file(buffer) (ex: file.rb is going to run ruby interpreter).
+<kbd>M-up</kbd>       | Move the current line or region up.
+<kbd>M-down</kbd>     | Move the current line or region down.
+<kbd>C-i</kbd>        | Indent a line or a region.
 
 ### iTerm2 meta arrow keybindings
 
 profile key bindings under iTerm2 and add bindings for the following:
-
 
 ```
 M-up      : Esc-[1;4A
@@ -53,7 +51,6 @@ M-down    : Esc-[1;4B
 M-right   : Esc-[1;4C
 M-left    : Esc-[1;4D]]]]
 ```
-
 
 ## Author
 
