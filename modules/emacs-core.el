@@ -7,6 +7,17 @@
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 (setq scroll-step 1) ;; keyboard scroll one line at a time
+(setq confirm-nonexistent-file-or-buffer nil) ;; disable confirmation for creating a new buffer
+
+
+;; global key to create a new buffer
+(random t) ; seed it randomly
+(global-set-key (kbd "C-c n")
+  (lambda()
+    (interactive)
+    (switch-to-buffer (concatenate 'string "*new" (number-to-string (random 9999)) "*"))
+  )
+)
 
 
 (provide 'emacs-core)

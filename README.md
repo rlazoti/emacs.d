@@ -33,13 +33,14 @@ Keybinding            | Description
 <kbd>C-c up</kbd>     | Switch the focus to visible buffer at the up side.
 <kbd>C-c right</kbd>  | Switch the focus to visible buffer at the right side.
 <kbd>C-c down</kbd>   | Switch the focus to visible buffer at the down side.
-<kdb>M-A</kdb>        | Start a vertical editing block.
+<kdb>M-S-a</kdb>      | Start a vertical editing block.
 <kbd>C-x f</kbd>      | Find files in the current directory (fiplr).
 <kbd>F6</kbd>         | Open/Close a file explorer (sr-bspeedbar).
 <kbd>C-c r</kbd>      | Run the current file(buffer) (ex: file.rb is going to run ruby interpreter).
 <kbd>M-up</kbd>       | Move the current line or region up.
 <kbd>M-down</kbd>     | Move the current line or region down.
 <kbd>C-i</kbd>        | Indent a line or a region.
+<kbd>C-c n</kbd>      | Create a new buffer.
 
 ### iTerm2 meta arrow keybindings
 
