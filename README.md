@@ -21,9 +21,9 @@ git clone https://github.com/rlazoti/emacs.d.git .emacs.d
 Just run <kbd>M-x package-list-packages RET U x</kbd>.
 
 
-### Keymap
+## Keymap
 
-#### Global
+### Global
 
 Keybinding            | Description
 ----------------------|------------------------------------------------------------
@@ -41,5 +41,20 @@ Keybinding            | Description
 <kbd>Meta-up</kbd>    | Move the current line or region up.
 <kbd>Meta-down</kbd>  | Move the current line or region down.
 
+
+### iTerm2 meta arrow keybindings
+
+profile key bindings under iTerm2 and add bindings for the following:
+
+
+```
+M-up      : Esc-[1;4A
+M-down    : Esc-[1;4B
+M-right   : Esc-[1;4C
+M-left    : Esc-[1;4D]]]]
+```
+
+
+## Author
 
 -Rodrigo Lazoti
