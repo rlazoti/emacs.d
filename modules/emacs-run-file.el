@@ -21,7 +21,7 @@ If the file is emacs lisp, run the byte compiled version if exist."
             ("sh" . "bash")
             ("ml" . "ocaml")
             ("vbs" . "cscript")
-	    ("scala", "scala")
+	    ("scala" . "scala")
             )
           )
          (fName (buffer-file-name))

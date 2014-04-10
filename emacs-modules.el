@@ -16,3 +16,4 @@
 (require 'emacs-web-mode)
 (require 'emacs-run-file)
 (require 'emacs-move-text)
+(require 'emacs-ensime)
