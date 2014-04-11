@@ -35,7 +35,8 @@ Keybinding            | Description
 <kbd>C-c down</kbd>   | Switch the focus to visible buffer at the down side.
 <kdb>M-S-a</kdb>      | Start a vertical editing block.
 <kbd>C-x f</kbd>      | Find files in the current directory (fiplr).
-<kbd>F6</kbd>         | Open/Close a file explorer (sr-bspeedbar).
+<kbd>F5</kbd>         | Refresh the file explorer (sr-bspeedbar).
+<kbd>F6</kbd>         | Open/Close the file explorer (sr-bspeedbar).
 <kbd>C-c r</kbd>      | Run the current file(buffer) (ex: file.rb is going to run ruby interpreter).
 <kbd>M-up</kbd>       | Move the current line or region up.
 <kbd>M-down</kbd>     | Move the current line or region down.

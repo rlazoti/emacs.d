@@ -3,6 +3,7 @@
 
 ;; open/close speedbar global key
 (global-set-key [f6] 'sr-speedbar-toggle)
+(global-set-key [f5] 'speedbar-refresh)
 
 
 ;; sr-speedbar custom defs
