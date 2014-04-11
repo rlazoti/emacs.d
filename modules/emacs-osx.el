@@ -1,8 +1,8 @@
-(setq mac-option-modifier 'meta)
-(setq mac-option-key-is-meta t)
-(setq mac-command-key-is-meta nil)
-(setq mac-command-modifier nil)
-
+;;(setq mac-option-modifier 'meta)
+;;(setq mac-option-key-is-meta nil)
+;;(setq mac-command-key-is-meta nil)
+;;(setq mac-command-modifier 'metafont-mode)
+;;(setq ns-function-modifier 'control)
 
 ;;add-hook 'term-setup-hook
 ;; '(lambda ()
