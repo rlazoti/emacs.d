@@ -18,3 +18,4 @@
 (require 'emacs-run-file)
 (require 'emacs-move-text)
 (require 'emacs-ensime)
+(require 'emacs-rainbow-mode)
