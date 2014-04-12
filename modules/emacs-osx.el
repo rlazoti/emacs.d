@@ -1,3 +1,4 @@
+(set-default-font "Monaco 14")
 ;;(setq mac-option-modifier 'meta)
 ;;(setq mac-option-key-is-meta nil)
 ;;(setq mac-command-key-is-meta nil)
