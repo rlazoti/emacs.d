@@ -5,6 +5,7 @@
 (require 'emacs-sr-speedbar) ;; Project explorer like nerdtree
 (require 'emacs-theme)
 (require 'emacs-ag)
+(require 'emacs-wgrep)
 (require 'emacs-autocomplete)
 (require 'emacs-flyspell)
 (require 'emacs-flymake)
