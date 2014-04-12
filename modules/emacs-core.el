@@ -10,6 +10,10 @@
 (setq confirm-nonexistent-file-or-buffer nil) ;; disable confirmation for creating a new buffer
 
 
+;; turn off all alarms
+(setq ring-bell-function 'ignore)
+
+
 ;; global key to create a new buffer
 (random t) ; seed it randomly
 (global-set-key (kbd "C-c n")
