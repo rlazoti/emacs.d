@@ -4,6 +4,7 @@
 (require 'emacs-fiplr)       ;; Fiplr file search C-x f (find) C-c r (refresh)
 (require 'emacs-sr-speedbar) ;; Project explorer like nerdtree
 (require 'emacs-theme)
+(require 'emacs-ag)
 (require 'emacs-autocomplete)
 (require 'emacs-flyspell)
 (require 'emacs-flymake)

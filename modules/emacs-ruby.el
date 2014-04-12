@@ -26,7 +26,7 @@
 
 (eval-after-load 'ruby-mode
   '(progn
-     (defun prelude-ruby-mode-defaults ()
+     (defun emacs-ruby-mode-defaults ()
        (inf-ruby-minor-mode +1)
        (ruby-tools-mode +1)
        ;; CamelCase aware editing operations
