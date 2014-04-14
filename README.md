@@ -42,6 +42,8 @@ Keybinding            | Description
 <kbd>M-down</kbd>     | Move the current line or region down.
 <kbd>C-i</kbd>        | Indent a line or a region.
 <kbd>C-c n</kbd>      | Create a new buffer.
+<kbd>C-s</kbd>        | Current buffer incremental find.
+<kbd>C-S-s</kbd>      | Find for a term in all files of current directory.
 
 ### iTerm2 meta arrow keybindings
 
