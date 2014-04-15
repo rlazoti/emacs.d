@@ -2,8 +2,14 @@
 (if (functionp 'menu-bar-mode) (menu-bar-mode -1))
 (if (functionp 'tool-bar-mode) (tool-bar-mode -1))
 
+
 ; Use the system clipboard
 (setq x-select-enable-clipboard t)
+
+
+;; fix upcase-region and downcase-region, they're disabled by default
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
 
 
 ;; Font size

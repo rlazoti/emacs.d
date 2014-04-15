@@ -1,3 +1,9 @@
+(defun reload-config ()
+    "reload your config without exiting Emacs"
+    (interactive)
+    (load "~/.emacs.d/init.el"))
+
+
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 
