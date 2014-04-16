@@ -33,7 +33,7 @@ Keybinding            | Description
 <kbd>C-c up</kbd>     | Switch the focus to visible buffer at the up side.
 <kbd>C-c right</kbd>  | Switch the focus to visible buffer at the right side.
 <kbd>C-c down</kbd>   | Switch the focus to visible buffer at the down side.
-<kdb>M-S-a</kdb>      | Start a vertical editing block.
+<kbd>M-S-a</kbd>      | Start a vertical editing block.
 <kbd>C-x f</kbd>      | Find files in the current directory (fiplr).
 <kbd>F5</kbd>         | Refresh the file explorer (sr-bspeedbar).
 <kbd>F6</kbd>         | Open/Close the file explorer (sr-bspeedbar).
@@ -56,9 +56,9 @@ M-right   : Esc-[1;4C
 M-left    : Esc-[1;4D]]]]
 ```
 
-### Reload the configuration
+### Reload the config without exiting Emacs
 
-If you change any file you can reload all the configuration just typing:
+If you change any file you can reload all the configuration without exiting emacs just typing:
 
 <kbd>M-x reload-config RET</kbd>
 
