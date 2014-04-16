@@ -56,6 +56,12 @@ M-right   : Esc-[1;4C
 M-left    : Esc-[1;4D]]]]
 ```
 
+### Reload the configuration
+
+If you change any file you can reload all the configuration just typing:
+
+<kbd>M-x reload-config RET</kbd>
+
 ## Author
 
 -Rodrigo Lazoti
