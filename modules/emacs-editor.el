@@ -21,6 +21,10 @@
 (global-set-key (kbd "C-l") 'goto-line)
 
 
+;; Replace String
+(global-set-key (kbd "C-c C-r") 'replace-string)
+
+
 ;; use shift + arrow keys to switch between visible buffers
 (require 'windmove)
 (global-set-key (kbd "C-c <left>")  'windmove-left)

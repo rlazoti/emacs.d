@@ -44,6 +44,7 @@ Keybinding            | Description
 <kbd>C-c n</kbd>      | Create a new buffer.
 <kbd>C-s</kbd>        | Current buffer incremental find.
 <kbd>C-S-s</kbd>      | Find for a term in all files of current directory.
+<kbd>C-c C-r</kbd>    | Replace all occurrences of a string in the current buffer.
 
 ### iTerm2 meta arrow keybindings
 
