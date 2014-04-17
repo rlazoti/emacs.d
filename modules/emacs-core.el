@@ -4,6 +4,10 @@
     (load "~/.emacs.d/init.el"))
 
 
+;; open shell in the current buffer
+(global-set-key (kbd "<f9>") 'shell)
+
+
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 

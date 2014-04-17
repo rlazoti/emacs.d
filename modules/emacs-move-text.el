@@ -1,8 +1,8 @@
-(emacs-require-package 'move-text)
+(emacs-require-package 'drag-stuff)
 
 
-(require 'move-text)
-(global-set-key (kbd "M-<down>") 'move-text-down)
-(global-set-key (kbd "M-<up>") 'move-text-up)
+(require 'drag-stuff)
+(drag-stuff-mode t)
+
 
 (provide 'emacs-move-text)

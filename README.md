@@ -26,25 +26,26 @@ Just run <kbd>M-x package-list-packages RET U x</kbd>.
 
 Keybinding            | Description
 ----------------------|------------------------------------------------------------
-<kbd>C-l</kbd>        | Go to line number (`goto-line`).
 <kbd>C-+</kbd>        | Increase font size (`text-scale-increase`).
 <kbd>C--</kbd>        | Decrease font size (`text-scale-decrease`).
 <kbd>C-c left</kbd>   | Switch the focus to visible buffer at the left side.
 <kbd>C-c up</kbd>     | Switch the focus to visible buffer at the up side.
 <kbd>C-c right</kbd>  | Switch the focus to visible buffer at the right side.
 <kbd>C-c down</kbd>   | Switch the focus to visible buffer at the down side.
-<kbd>M-S-a</kbd>      | Start a vertical editing block.
-<kbd>C-x f</kbd>      | Find files in the current directory (fiplr).
-<kbd>F5</kbd>         | Refresh the file explorer (sr-bspeedbar).
-<kbd>F6</kbd>         | Open/Close the file explorer (sr-bspeedbar).
 <kbd>C-c r</kbd>      | Run the current file(buffer) (ex: file.rb is going to run ruby interpreter).
-<kbd>M-up</kbd>       | Move the current line or region up.
-<kbd>M-down</kbd>     | Move the current line or region down.
-<kbd>C-i</kbd>        | Indent a line or a region.
 <kbd>C-c n</kbd>      | Create a new buffer.
+<kbd>C-c C-r</kbd>    | Replace all occurrences of a string in the current buffer.
+<kbd>C-i</kbd>        | Indent a line or a region.
+<kbd>C-l</kbd>        | Go to line number (`goto-line`).
 <kbd>C-s</kbd>        | Current buffer incremental find.
 <kbd>C-S-s</kbd>      | Find for a term in all files of current directory.
-<kbd>C-c C-r</kbd>    | Replace all occurrences of a string in the current buffer.
+<kbd>C-x f</kbd>      | Find files in the current directory (fiplr).
+<kbd>M-up</kbd>       | Move the current line or region up.
+<kbd>M-down</kbd>     | Move the current line or region down.
+<kbd>M-S-a</kbd>      | Start a vertical editing block.
+<kbd>F5</kbd>         | Refresh the file explorer (sr-bspeedbar).
+<kbd>F6</kbd>         | Open/Close the file explorer (sr-bspeedbar).
+<kbd>F9</kbd>         | Open an interactive shell into current buffer (`shell`).
 
 ### iTerm2 meta arrow keybindings
 
