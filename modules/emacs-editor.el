@@ -22,7 +22,7 @@
 
 
 ;; Replace String
-(global-set-key (kbd "C-c C-r") 'replace-string)
+(global-set-key (kbd "C-c r") 'replace-string)
 
 
 ;; use shift + arrow keys to switch between visible buffers

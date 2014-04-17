@@ -45,7 +45,7 @@ If the file is emacs lisp, run the byte compiled version if exist."
         ) ) ))
 
 
-(global-set-key (kbd "C-c r") 'fn-run-current-file)
+(global-set-key (kbd "<f8>") 'fn-run-current-file)
 
 
 (provide 'emacs-run-file) 

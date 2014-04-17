@@ -32,9 +32,8 @@ Keybinding            | Description
 <kbd>C-c up</kbd>     | Switch the focus to visible buffer at the up side.
 <kbd>C-c right</kbd>  | Switch the focus to visible buffer at the right side.
 <kbd>C-c down</kbd>   | Switch the focus to visible buffer at the down side.
-<kbd>C-c r</kbd>      | Run the current file(buffer) (ex: file.rb is going to run ruby interpreter).
 <kbd>C-c n</kbd>      | Create a new buffer.
-<kbd>C-c C-r</kbd>    | Replace all occurrences of a string in the current buffer.
+<kbd>C-c r</kbd>      | Replace all occurrences of a string in the current buffer.
 <kbd>C-i</kbd>        | Indent a line or a region.
 <kbd>C-l</kbd>        | Go to line number (`goto-line`).
 <kbd>C-s</kbd>        | Current buffer incremental find.
@@ -45,6 +44,7 @@ Keybinding            | Description
 <kbd>M-S-a</kbd>      | Start a vertical editing block.
 <kbd>F5</kbd>         | Refresh the file explorer (sr-bspeedbar).
 <kbd>F6</kbd>         | Open/Close the file explorer (sr-bspeedbar).
+<kbd>F8</kbd>         | Run the current file(buffer) (ex: file.rb is going to run ruby interpreter).
 <kbd>F9</kbd>         | Open an interactive shell into current buffer (`shell`).
 
 ### iTerm2 meta arrow keybindings
