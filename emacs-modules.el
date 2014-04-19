@@ -1,9 +1,10 @@
 (require 'emacs-core) 
-(require 'emacs-editor)      ;; Default editor confs 
-(require 'emacs-ido)         ;; Super charges Emacs completion for C-x C-f and more
-(require 'emacs-fiplr)       ;; Fiplr file search C-x f (find) C-c r (refresh)
-(require 'emacs-sr-speedbar) ;; Project explorer like nerdtree
+(require 'emacs-editor)
+(require 'emacs-ido)
+(require 'emacs-fiplr)
+(require 'emacs-sr-speedbar)
 (require 'emacs-theme)
+(require 'emacs-multiple-cursors)
 (require 'emacs-ag)
 (require 'emacs-wgrep)
 (require 'emacs-autocomplete)
