@@ -4,7 +4,7 @@
 (require 'emacs-fiplr)
 (require 'emacs-sr-speedbar)
 (require 'emacs-theme)
-(require 'emacs-multiple-cursors)
+(require 'emacs-iedit)
 (require 'emacs-ag)
 (require 'emacs-wgrep)
 (require 'emacs-autocomplete)
