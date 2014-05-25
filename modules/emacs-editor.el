@@ -3,6 +3,10 @@
 (if (functionp 'tool-bar-mode) (tool-bar-mode -1))
 
 
+;; define accented chars
+(setq default-input-method "latin-1-prefix")
+(set-language-environment "Brazilian Portuguese")
+
 ; Use the system clipboard
 (setq x-select-enable-clipboard t)
 
