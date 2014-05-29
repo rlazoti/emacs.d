@@ -4,8 +4,25 @@
 
 
 ;; define accented chars
-(setq default-input-method "latin-1-prefix")
-(set-language-environment "Brazilian Portuguese")
+;; set up unicode
+;; keyboard / input method settings
+(setq locale-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(set-language-environment 'UTF-8) ; prefer utf-8 for language settings
+(set-default-coding-systems 'utf-8)
+(setq default-buffer-file-coding-system 'utf-8)
+(setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+(prefer-coding-system       'utf-8)
+(setq buffer-file-coding-system 'utf-8-unix)
+(setq default-file-name-coding-system 'utf-8-unix)
+(setq default-keyboard-coding-system 'utf-8-unix)
+(setq default-process-coding-system '(utf-8-unix . utf-8-unix))
+(setq default-sendmail-coding-system 'utf-8-unix)
+(setq default-terminal-coding-system 'utf-8-unix)
+(setq default-input-method 'portuguese-prefix)
+
 
 ; Use the system clipboard
 (setq x-select-enable-clipboard t)
