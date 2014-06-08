@@ -6,6 +6,12 @@
 (setq mac-command-modifier 'meta)
 
 
+;; hach to use option-click as mouse-2 click
+;; (require 'emacs-osx)
+(custom-set-variables
+ '(mac-emulate-three-button-mouse t))
+
+
 ;;add-hook 'term-setup-hook
 ;; '(lambda ()
 ;;    (define-key function-key-map "\e[1;9A" [M-up])

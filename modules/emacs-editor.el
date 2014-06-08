@@ -3,6 +3,10 @@
 (if (functionp 'tool-bar-mode) (tool-bar-mode -1))
 
 
+;; define aspell as default spelling checker
+(setq-default ispell-program-name "aspell")
+
+
 ;; define accented chars
 ;; set up unicode
 ;; keyboard / input method settings
