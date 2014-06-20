@@ -13,6 +13,7 @@
 (require 'emacs-highlight-symbol)
 (require 'emacs-ruby)
 (require 'emacs-javascript)
+(require 'emacs-java)
 (require 'emacs-scala)
 (require 'emacs-smartparens)
 (require 'emacs-yasnippet)
