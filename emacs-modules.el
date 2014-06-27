@@ -22,3 +22,4 @@
 (require 'emacs-move-text)
 (require 'emacs-ensime)
 (require 'emacs-rainbow-mode)
+(require 'emacs-multiple-cursors)
