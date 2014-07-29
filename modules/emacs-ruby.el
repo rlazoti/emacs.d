@@ -1,4 +1,4 @@
-(emacs-require-packages '(ruby-tools yari))
+(emacs-require-packages '(ruby-tools yari inf-ruby ruby-mode))
 
 
 ;; Rake files are ruby, too, as are gemspecs, rackup files, and gemfiles.
