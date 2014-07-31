@@ -26,6 +26,12 @@ Just run <kbd>M-x package-list-packages RET U x</kbd>.
 
 Keybinding            | Description
 ----------------------|------------------------------------------------------------
+<kbd>M-c</kbd>        | Capitalize a word (position your cursor before the word).
+<kbd>M-C</kbd>        | Capitalize a region (position your cursor after region).
+<kbd>M-l</kbd>        | Make a word lowercase (position your cursor before the word).
+<kbd>M-L</kbd>        | Make a region lowercase (position your cursor after region).
+<kbd>M-u</kbd>        | Make a word uppercase (position your cursor before the word).
+<kbd>M-U</kbd>        | Make a region uppercase (position your cursor after region).
 <kbd>C-+</kbd>        | Increase font size (`text-scale-increase`).
 <kbd>C--</kbd>        | Decrease font size (`text-scale-decrease`).
 <kbd>C-c left</kbd>   | Switch the focus to visible buffer at the left side.

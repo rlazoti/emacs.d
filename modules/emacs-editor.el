@@ -58,6 +58,15 @@
 (global-set-key (kbd "C-c <down>")  'windmove-down)
 
 
+;; capitalize or change case of words and regions
+(global-set-key (kbd "M-U") 'upcase-region)
+(global-set-key (kbd "M-L") 'downcase-region)
+(global-set-key (kbd "M-C") 'capitalize-region)
+(global-set-key (kbd "M-u") 'upcase-word)
+(global-set-key (kbd "M-l") 'downcase-word)
+(global-set-key (kbd "M-c") 'capitalize-word)
+
+
 ;; whitespace-mode config
 (require 'whitespace)
 (setq whitespace-line-column 120) ;; limit line length
