@@ -22,3 +22,4 @@
 (require 'emacs-ensime)
 (require 'emacs-rainbow-mode)
 (require 'emacs-multiple-cursors)
+(require 'emacs-zeal-at-point)
