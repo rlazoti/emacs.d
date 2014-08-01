@@ -24,3 +24,4 @@
 (require 'emacs-multiple-cursors)
 (require 'emacs-zeal-at-point)
 (require 'emacs-untabify)
+(require 'emacs-whitespace)
