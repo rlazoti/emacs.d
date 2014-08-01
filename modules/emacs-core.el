@@ -8,7 +8,7 @@
 (global-set-key (kbd "<f9>") 'shell)
 
 
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x b") 'ibuffer)
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 
 
