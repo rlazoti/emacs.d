@@ -122,4 +122,19 @@
 (add-hook 'dired-after-readin-hook 'my-mode-line-count-lines)
 
 
+;; Searching for marked (selected) text
+(defun search-selection (beg end)
+	"search for selected text"
+	(interactive "r")
+	(let (
+				(selection (buffer-substring-no-properties beg end))
+				)
+		(deactivate-mark)
+		(isearch-mode t nil nil nil)
+		(isearch-yank-string selection)
+		)
+	)
+(define-key global-map (kbd "C-c C-s") 'search-selection)
+
+
 (provide 'emacs-editor)

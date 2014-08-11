@@ -21,7 +21,7 @@ If the file is emacs lisp, run the byte compiled version if exist."
             ("sh" . "bash")
             ("ml" . "ocaml")
             ("vbs" . "cscript")
-	    ("scala" . "scala")
+            ("scala" . "scala")
             )
           )
          (fName (buffer-file-name))
@@ -48,4 +48,4 @@ If the file is emacs lisp, run the byte compiled version if exist."
 (global-set-key (kbd "<f8>") 'fn-run-current-file)
 
 
-(provide 'emacs-run-file) 
+(provide 'emacs-run-file)

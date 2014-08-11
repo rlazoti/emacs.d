@@ -43,6 +43,7 @@ Keybinding            | Description
 <kbd>C-i</kbd>        | Indent a line or a region.
 <kbd>C-l</kbd>        | Go to line number (`goto-line`).
 <kbd>C-s</kbd>        | Current buffer incremental find.
+<kbd>C-c C-s</kbd>    | Current buffer incremental find defined by marked (selected) text.
 <kbd>C-S-s</kbd>      | Find for a term in all files of current directory.
 <kbd>C-x f</kbd>      | Find files in the current directory (fiplr).
 <kbd>M-up</kbd>       | Move the current line or region up.
