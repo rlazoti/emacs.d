@@ -1,4 +1,4 @@
-(require 'emacs-core) 
+(require 'emacs-core)
 (require 'emacs-editor)
 (require 'emacs-ido)
 (require 'emacs-fiplr)
@@ -25,3 +25,4 @@
 (require 'emacs-zeal-at-point)
 (require 'emacs-untabify)
 (require 'emacs-whitespace)
+(require 'emacs-ace-jump)
