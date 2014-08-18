@@ -3,7 +3,7 @@
 
 (require 'unicode-whitespace)
 (unicode-whitespace-setup 'subdued-faces)
-(add-hook 'prog-mode-hook #'whitespace-mode)
+;; (add-hook 'prog-mode-hook #'whitespace-mode)
 
 
 (provide 'emacs-whitespace)
