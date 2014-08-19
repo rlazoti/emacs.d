@@ -1,9 +1,12 @@
 (require 'cl)
 (require 'package)
 
-
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+						 '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives
+						 '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+
 ;; set package-user-dir to be relative to Emacs install path
 (setq package-user-dir (expand-file-name "elpa" emacs-dir))
 (package-initialize)
@@ -67,10 +70,10 @@ removing unwanted packages."
   "When file with EXTENSION is opened triggers auto-install of PACKAGE.
 PACKAGE is installed only if not already present.  The file is opened in MODE."
   `(add-to-list 'auto-mode-alist
-                `(,extension . (lambda ()
-                                 (unless (package-installed-p ',package)
-                                   (package-install ',package))
-                                 (,mode)))))
+		`(,extension . (lambda ()
+				 (unless (package-installed-p ',package)
+				   (package-install ',package))
+				 (,mode)))))
 
 (defvar emacs-auto-install-alist
   '(("\\.clj\\'" clojure-mode clojure-mode)
@@ -117,8 +120,8 @@ PACKAGE is installed only if not already present.  The file is opened in MODE."
 (mapc
  (lambda (entry)
    (let ((extension (car entry))
-         (package (cadr entry))
-         (mode (cadr (cdr entry))))
+	 (package (cadr entry))
+	 (mode (cadr (cdr entry))))
      (unless (package-installed-p package)
        (emacs-auto-install extension package mode))))
  emacs-auto-install-alist)

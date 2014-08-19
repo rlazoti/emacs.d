@@ -1,4 +1,21 @@
-(show-paren-mode 1)   ;; enable highlighing matching delimiters
+;; enable highlighing matching delimiters
+(show-paren-mode t)
+
+
+;; Highlight tabulations
+(setq-default highlight-tabs t)
+
+
+;; Show trailing white spaces
+(setq-default show-trailing-whitespace t)
+
+
+;; Remove useless whitespace before saving a file
+(add-hook 'before-save-hook 'whitespace-cleanup)
+(add-hook 'before-save-hook (lambda() (delete-trailing-whitespace)))
+
+
+;; disable tool bar / menu bar
 (if (functionp 'menu-bar-mode) (menu-bar-mode -1))
 (if (functionp 'tool-bar-mode) (tool-bar-mode -1))
 

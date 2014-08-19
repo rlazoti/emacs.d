@@ -1,3 +1,11 @@
+(setq user-full-name "Rodrigo Lazoti")
+(setq user-mail-address "rodrigolazoti@gmail.com")
+
+
+;; Ask "y" or "n" instead of "yes" or "no". Yes, laziness is great.
+(fset 'yes-or-no-p 'y-or-n-p)
+
+
 (defun reload-config ()
     "reload your config without exiting Emacs"
     (interactive)

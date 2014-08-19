@@ -6,7 +6,7 @@
 (require 'emacs-theme)
 (require 'emacs-ag)
 (require 'emacs-wgrep)
-(require 'emacs-autocomplete)
+(require 'emacs-company-mode)
 (require 'emacs-flyspell)
 (require 'emacs-flymake)
 (require 'emacs-highlight-symbol)
