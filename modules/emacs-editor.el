@@ -10,11 +10,6 @@
 (setq-default show-trailing-whitespace t)
 
 
-;; Remove useless whitespace before saving a file
-(add-hook 'before-save-hook 'whitespace-cleanup)
-(add-hook 'before-save-hook (lambda() (delete-trailing-whitespace)))
-
-
 ;; disable tool bar / menu bar
 (if (functionp 'menu-bar-mode) (menu-bar-mode -1))
 (if (functionp 'tool-bar-mode) (tool-bar-mode -1))
@@ -118,17 +113,17 @@
 (make-variable-buffer-local 'my-mode-line-buffer-line-count)
 
 (setq-default mode-line-format
-              '("  " mode-line-modified
-                (list 'line-number-mode "  ")
-                (:eval (when line-number-mode
-                         (let ((str "Line %l"))
-                           (when (and (not (buffer-modified-p)) my-mode-line-buffer-line-count)
-                             (setq str (concat str " of " my-mode-line-buffer-line-count)))
-                           str)))
-                "  %p"
-                (list 'column-number-mode "  Column %c")
-                "  " mode-line-buffer-identification
-                "  " mode-line-modes))
+	'("  " mode-line-modified
+    (list 'line-number-mode "  ")
+    (:eval (when line-number-mode
+       (let ((str "Line %l"))
+	 (when (and (not (buffer-modified-p)) my-mode-line-buffer-line-count)
+	   (setq str (concat str " of " my-mode-line-buffer-line-count)))
+	 str)))
+    "  %p"
+    (list 'column-number-mode "  Column %c")
+    "  " mode-line-buffer-identification
+    "  " mode-line-modes))
 
 (defun my-mode-line-count-lines ()
   (setq my-mode-line-buffer-line-count (int-to-string (count-lines (point-min) (point-max)))))
@@ -141,16 +136,16 @@
 
 ;; Searching for marked (selected) text
 (defun search-selection (beg end)
-	"search for selected text"
-	(interactive "r")
-	(let (
-				(selection (buffer-substring-no-properties beg end))
-				)
-		(deactivate-mark)
-		(isearch-mode t nil nil nil)
-		(isearch-yank-string selection)
-		)
-	)
+  "search for selected text"
+  (interactive "r")
+  (let (
+  (selection (buffer-substring-no-properties beg end))
+  )
+    (deactivate-mark)
+    (isearch-mode t nil nil nil)
+    (isearch-yank-string selection)
+    )
+  )
 (define-key global-map (kbd "C-c C-s") 'search-selection)
 
 
