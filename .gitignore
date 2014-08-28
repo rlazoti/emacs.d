@@ -6,4 +6,5 @@ ac-comphist.dat
 .mc-lists.el
 srecode-map.el
 semanticdb/
-var/
+var
+tramp

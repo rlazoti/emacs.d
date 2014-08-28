@@ -25,3 +25,4 @@
 (require 'emacs-zeal-at-point)
 (require 'emacs-untabify)
 (require 'emacs-ace-jump)
+(require 'emacs-nerd-commenter)
