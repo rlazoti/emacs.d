@@ -86,7 +86,7 @@
 ;; whitespace-mode config
 (require 'whitespace)
 (setq whitespace-line-column 120) ;; limit line length
-(setq whitespace-style '(face tabs empty trailing lines-tail))
+(setq whitespace-style (quote (spaces tabs space-mark tab-mark newline-mark trailing lines-tail)))
 
 
 (setq indent-tabs-mode nil)   ;; don't use tabs to indent

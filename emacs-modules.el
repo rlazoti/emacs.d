@@ -26,3 +26,4 @@
 (require 'emacs-untabify)
 (require 'emacs-ace-jump)
 (require 'emacs-nerd-commenter)
+(require 'emacs-git-gutter-fringe)
