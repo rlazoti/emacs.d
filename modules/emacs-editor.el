@@ -58,6 +58,10 @@
 (global-set-key (kbd "C-l") 'goto-line)
 
 
+;; Align a region by a regex
+(global-set-key (kbd "C-c a") 'align-regexp)
+
+
 ;; Replace String
 (global-set-key (kbd "C-c r") 'replace-string)
 
@@ -89,8 +93,6 @@
 (setq tab-width 2)            ;; but maintain correct appearance
 
 
-(cua-mode t)
-(global-set-key (kbd "M-A") 'cua-set-rectangle-mark) ;; Global Key to start a vertical editing (MetaKey + Shift + a)
 (global-auto-revert-mode t)           ;; revert buffers automatically when underlying files are changed externally
 (global-hl-line-mode +1)              ;; highlight the current line
 

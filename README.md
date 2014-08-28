@@ -49,7 +49,6 @@ Keybinding            | Description
 <kbd>C-x f</kbd>      | Find files in the current directory (fiplr).
 <kbd>M-up</kbd>       | Move the current line or region up.
 <kbd>M-down</kbd>     | Move the current line or region down.
-<kbd>M-S-a</kbd>      | Start a vertical editing block.
 <kbd>F5</kbd>         | Refresh the file explorer (sr-bspeedbar).
 <kbd>F6</kbd>         | Open/Close the file explorer (sr-bspeedbar).
 <kbd>F8</kbd>         | Run the current file(buffer) (ex: file.rb is going to run ruby interpreter).
