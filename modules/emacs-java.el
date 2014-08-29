@@ -7,9 +7,14 @@
                                   global-semantic-mru-bookmark-mode))
 (semantic-mode 1)
 (require 'malabar-mode)
-;;(setq malabar-groovy-lib-dir "/path/to/malabar/lib")
 (add-to-list 'auto-mode-alist '("\\.java\\'" . malabar-mode))
 (setq-default tab-width 2)
 
+;; add emsime shortcuts ;)
+(define-key global-map (kbd "C-c C-r t") 'malabar-import-one-class)
+(define-key global-map (kbd "C-c C-r a") 'malabar-import-all)
+(define-key global-map (kbd "C-c C-v t") 'malabar-run-test)
+(define-key global-map (kbd "C-c C-v u") 'malabar-update-package)
+(define-key global-map (kbd "M-.") 'malabar-jump-to-thing)
 
 (provide 'emacs-java)
