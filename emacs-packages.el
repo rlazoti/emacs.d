@@ -2,9 +2,9 @@
 (require 'package)
 
 (add-to-list 'package-archives
-						 '("marmalade" . "http://marmalade-repo.org/packages/"))
+	     '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
-						 '("melpa" . "http://melpa.milkbox.net/packages/") t)
+	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 
 ;; set package-user-dir to be relative to Emacs install path

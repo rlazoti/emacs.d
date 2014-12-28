@@ -6,6 +6,11 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 
+;; Disable splash screen and scratch message
+(setq inhibit-splash-screen t
+      initial-scratch-message nil)
+
+
 (defun reload-config ()
     "reload your config without exiting Emacs"
     (interactive)
