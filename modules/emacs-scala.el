@@ -10,9 +10,11 @@
 
 (defun emacs-scala-mode-defaults ()
   (subword-mode +1))
+
 (setq emacs-scala-mode-hook 'emacs-scala-mode-defaults)
+
 (add-hook 'scala-mode-hook (lambda ()
-                             (run-hooks 'emacs-scala-mode-hook)))
+                             (run-hooks 'emacs-scala-mode-hook 'ensime-scala-mode-hook)))
 
 
 (provide 'emacs-scala)

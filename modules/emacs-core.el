@@ -26,18 +26,18 @@
 
 
 ;; scroll whitout moving the cursor
-(defun scroll-down-keep-cursor () 
-   ;; Scroll the text one line down while keeping the cursor 
-   (interactive) 
-   (scroll-down 1)) 
+(defun scroll-down-keep-cursor ()
+   ;; Scroll the text one line down while keeping the cursor
+   (interactive)
+   (scroll-down 1))
 
-(defun scroll-up-keep-cursor () 
-   ;; Scroll the text one line up while keeping the cursor 
-   (interactive) 
-   (scroll-up 1)) 
+(defun scroll-up-keep-cursor ()
+   ;; Scroll the text one line up while keeping the cursor
+   (interactive)
+   (scroll-up 1))
 
-(global-set-key (kbd "C-<down>") 'scroll-down-keep-cursor) 
-(global-set-key (kbd "C-<up>") 'scroll-up-keep-cursor) 
+(global-set-key (kbd "C-<down>") 'scroll-down-keep-cursor)
+(global-set-key (kbd "C-<up>") 'scroll-up-keep-cursor)
 
 
 ;; scroll one line at a time (less "jumpy" than defaults)

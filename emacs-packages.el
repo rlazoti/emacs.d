@@ -11,6 +11,9 @@
 (setq package-user-dir (expand-file-name "elpa" emacs-dir))
 (package-initialize)
 
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
 
 (defvar emacs-packages '(
   epl
