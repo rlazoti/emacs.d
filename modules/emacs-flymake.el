@@ -5,6 +5,7 @@
     flymake-yaml
     flymake-jshint
     flymake-jslint
+    flymake-cursor
 ))
 
 
@@ -31,5 +32,10 @@
 (require 'flymake-yaml)
 (add-hook 'yaml-mode-hook 'flymake-yaml-load)
 
+
+(require 'flymake-cursor)
+(custom-set-variables
+     '(help-at-pt-timer-delay 0.5)
+     '(help-at-pt-display-when-idle '(flymake-overlay)))
 
 (provide 'emacs-flymake)

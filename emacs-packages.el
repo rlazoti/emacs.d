@@ -2,14 +2,17 @@
 (require 'package)
 
 (add-to-list 'package-archives
-	     '("marmalade" . "http://marmalade-repo.org/packages/"))
+	     '("stable-melpa" . "http://stable.melpa.org/packages/") t)
 (add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
+	     '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives
+	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
 
 
 ;; set package-user-dir to be relative to Emacs install path
 (setq package-user-dir (expand-file-name "elpa" emacs-dir))
 (package-initialize)
+
 
 (when (not package-archive-contents)
   (package-refresh-contents))
