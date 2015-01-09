@@ -91,6 +91,8 @@
 
 (setq indent-tabs-mode nil)   ;; don't use tabs to indent
 (setq tab-width 2)            ;; but maintain correct appearance
+(setq-default tab-width 2)
+(setq-default indent-line-function 2)
 
 
 (global-auto-revert-mode t)           ;; revert buffers automatically when underlying files are changed externally
