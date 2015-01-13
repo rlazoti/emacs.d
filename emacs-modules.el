@@ -12,6 +12,7 @@
 (require 'emacs-ido)
 (require 'emacs-java)
 (require 'emacs-javascript)
+(require 'emacs-magit)
 (require 'emacs-move-text)
 (require 'emacs-multiple-cursors)
 (require 'emacs-nerd-commenter)
