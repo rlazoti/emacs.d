@@ -1,13 +1,8 @@
 (require 'cl)
 (require 'package)
 
-;;(add-to-list 'package-archives
-;;	     '("stable-melpa" . "http://stable.melpa.org/packages/") t)
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.org/packages/") t)
-(add-to-list 'package-archives
-	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
-
 
 ;; set package-user-dir to be relative to Emacs install path
 (setq package-user-dir (expand-file-name "elpa" emacs-dir))
