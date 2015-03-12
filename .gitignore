@@ -8,3 +8,5 @@ srecode-map.el
 semanticdb/
 var
 tramp
+ensime/
+npm-debug.log

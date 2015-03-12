@@ -1,4 +1,4 @@
-(emacs-require-package 'web-mode)
+(emacs-require-packages '(web-mode web-beautify))
 
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
@@ -21,5 +21,8 @@
 )
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
+
+(eval-after-load 'css-mode
+  '(define-key css-mode-map (kbd "C-c b") 'web-beautify-css))
 
 (provide 'emacs-web-mode)
