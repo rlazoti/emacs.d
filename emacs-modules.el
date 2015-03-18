@@ -19,6 +19,7 @@
 (require 'emacs-nerd-commenter)
 (require 'emacs-rainbow-mode)
 (require 'emacs-ruby)
+(require 'emacs-run-file)
 (require 'emacs-scala)
 (require 'emacs-smartparens)
 (require 'emacs-sr-speedbar)
