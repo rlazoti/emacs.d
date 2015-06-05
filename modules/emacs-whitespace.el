@@ -1,9 +1,14 @@
-(emacs-require-package 'unicode-whitespace)
+;;(emacs-require-package 'unicode-whitespace)
 
 
-(require 'unicode-whitespace)
-(unicode-whitespace-setup 'subdued-faces)
-;; (add-hook 'prog-mode-hook #'whitespace-mode)
+;;(require 'unicode-whitespace)
+;;(unicode-whitespace-setup 'subdued-faces)
+
+
+(require 'whitespace)
+(setq whitespace-line-column 120) ;; limit line length
+(setq whitespace-style '(face lines-tail))
+(add-hook 'prog-mode-hook 'whitespace-mode)
 
 
 (provide 'emacs-whitespace)
