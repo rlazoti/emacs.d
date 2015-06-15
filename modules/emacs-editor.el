@@ -137,20 +137,18 @@
 (add-hook 'after-revert-hook 'my-mode-line-count-lines)
 (add-hook 'dired-after-readin-hook 'my-mode-line-count-lines)
 
-
-;; Searching for marked (selected) text
-(defun search-selection (beg end)
-  "search for selected text"
-  (interactive "r")
-  (let (
-  (selection (buffer-substring-no-properties beg end))
-  )
-    (deactivate-mark)
-    (isearch-mode t nil nil nil)
-    (isearch-yank-string selection)
-    )
-  )
-(define-key global-map (kbd "C-c C-s") 'search-selection)
+;; do a search using the selected text
+(defadvice isearch-mode (around isearch-mode-default-string (forward &optional regexp op-fun recursive-edit word-p) activate)
+  (if (and transient-mark-mode mark-active (not (eq (mark) (point))))
+      (progn
+        (isearch-update-ring (buffer-substring-no-properties (mark) (point)))
+        (deactivate-mark)
+        ad-do-it
+        (if (not forward)
+            (isearch-repeat-backward)
+          (goto-char (mark))
+          (isearch-repeat-forward)))
+    ad-do-it))
 
 
 (provide 'emacs-editor)
