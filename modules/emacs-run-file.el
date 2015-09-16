@@ -32,7 +32,7 @@ If the file is emacs lisp, run the byte compiled version if exist."
 
     (when (buffer-modified-p)
       (when (y-or-n-p "Buffer modified. Do you want to save first?")
-          (save-buffer) ) )
+				(save-buffer) ) )
 
     (if (string-equal fSuffix "el") ; special case for emacs lisp
         (load (file-name-sans-extension fName))
@@ -44,8 +44,6 @@ If the file is emacs lisp, run the byte compiled version if exist."
         (message "No recognized program file suffix for this file.")
         ) ) ))
 
-
 (global-set-key (kbd "<f8>") 'fn-run-current-file)
-
 
 (provide 'emacs-run-file)

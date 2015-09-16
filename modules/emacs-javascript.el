@@ -11,15 +11,12 @@
       js2-basic-offset 2
       js2-highlight-level 3)
 
-
 (setq ac-js2-evaluate-calls t)
-
 
 (add-hook 'js2-mode-hook 'flymake-mode)
 (add-hook 'js2-mode-hook 'company-mode)
 (add-hook 'js2-mode-hook 'ac-js2-mode)
 (add-hook 'js2-mode-hook '(lambda ()
                             (local-set-key (kbd "RET") 'newline-and-indent)))
-
 
 (provide 'emacs-javascript)

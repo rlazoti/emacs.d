@@ -7,8 +7,6 @@
 (set-face-foreground 'git-gutter-fr:added    "green")
 (set-face-foreground 'git-gutter-fr:deleted  "red")
 
-
 (add-hook 'prog-mode-hook #'git-gutter-mode)
-
 
 (provide 'emacs-git-gutter-fringe)

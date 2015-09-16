@@ -30,11 +30,9 @@
   (interactive)
   (and (delete-trailing-whitespacep) (delete-trailing-whitespace)))
 
-
 ;; define which modes will use untabify automatically
 (add-hook 'ruby-mode-hook 'progmodes-hooks)
 (add-hook 'js2-mode-hook 'progmodes-hooks)
 (add-hook 'scala-mode-hook 'progmodes-hooks)
-
 
 (provide 'emacs-untabify)
