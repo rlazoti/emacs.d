@@ -4,6 +4,9 @@
 ;; Ask "y" or "n" instead of "yes" or "no". Yes, laziness is great.
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; Disable scrollbar
+(scroll-bar-mode 0)
+
 ;; Disable splash screen and scratch message
 (setq inhibit-splash-screen t
       initial-scratch-message nil)
