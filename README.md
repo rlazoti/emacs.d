@@ -11,7 +11,7 @@ My Emacs conf based on Emacs Prelude.
 
 ## How it looks like
 
-![how it looks like](sceenshot.png)
+![how it looks like](https://raw.githubusercontent.com/rlazoti/emacs.d/master/screenshot.png)
 
 
 ## Intalation
