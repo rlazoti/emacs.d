@@ -3,11 +3,18 @@ My Emacs Conf
 
 My Emacs conf based on Emacs Prelude.
 
+
 ## Requirements
 
 * It requires Emacs 24 or higher.
 
-##Intalation
+
+## How it looks like
+
+![how it looks like](sceenshot.png)
+
+
+## Intalation
 
 To install, clone this repo to `~/.emacs.d`, i.e. ensure that the
 `init.el` contained in this repo ends up at `~/.emacs.d/init.el`:
@@ -16,9 +23,11 @@ To install, clone this repo to `~/.emacs.d`, i.e. ensure that the
 git clone https://github.com/rlazoti/emacs.d.git .emacs.d
 ```
 
+
 #### Update all bundled packages
 
 Just run <kbd>M-x package-list-packages RET U x</kbd>.
+
 
 ## Keymap
 
@@ -54,6 +63,7 @@ Keybinding            | Description
 <kbd>F8</kbd>         | Run the current file(buffer) (ex: file.rb is going to run ruby interpreter).
 <kbd>F9</kbd>         | Open an interactive shell into current buffer (`shell`).
 
+
 ### iTerm2 meta arrow keybindings
 
 profile key bindings under iTerm2 and add bindings for the following:
@@ -65,11 +75,13 @@ M-right   : Esc-[1;4C
 M-left    : Esc-[1;4D]]]]
 ```
 
+
 ### Reload the config without exiting Emacs
 
 If you change any file you can reload all the configuration without exiting emacs just typing:
 
 <kbd>M-x reload-config RET</kbd>
+
 
 ## Author
 
