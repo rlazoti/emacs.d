@@ -14,13 +14,13 @@ My Emacs conf based on Emacs Prelude.
 ![how it looks like](https://raw.githubusercontent.com/rlazoti/emacs.d/master/screenshot.png)
 
 
-## Intalation
+## How to install
 
 To install, clone this repo to `~/.emacs.d`, i.e. ensure that the
 `init.el` contained in this repo ends up at `~/.emacs.d/init.el`:
 
 ```bash
-git clone https://github.com/rlazoti/emacs.d.git .emacs.d
+git clone https://github.com/rlazoti/emacs.d.git ~/.emacs.d
 ```
 
 
