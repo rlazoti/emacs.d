@@ -1,4 +1,4 @@
-(emacs-require-packages '(js2-mode grunt json-mode ac-js2))
+(emacs-require-packages '(js2-mode grunt json-mode))
 
 (require 'grunt)
 
@@ -15,7 +15,6 @@
 
 (add-hook 'js2-mode-hook 'flymake-mode)
 (add-hook 'js2-mode-hook 'company-mode)
-(add-hook 'js2-mode-hook 'ac-js2-mode)
 (add-hook 'js2-mode-hook '(lambda ()
                             (local-set-key (kbd "RET") 'newline-and-indent)))
 

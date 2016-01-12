@@ -34,7 +34,7 @@
 (setq default-terminal-coding-system 'utf-8-unix)
 (setq default-input-method 'portuguese-prefix)
 
-																				; Use the system clipboard
+;; Use the system clipboard
 (setq x-select-enable-clipboard t)
 
 ;; fix upcase-region and downcase-region, they're disabled by default

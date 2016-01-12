@@ -1,4 +1,6 @@
-(emacs-require-package 'scala-mode2)
+(emacs-require-packages '(scala-mode2 ensime))
+
+(require 'ensime)
 
 ;; Bind the 'newline-and-indent' command to RET (aka 'enter')
 (add-hook 'scala-mode-hook '(lambda ()
@@ -10,8 +12,8 @@
   (subword-mode +1))
 
 (setq emacs-scala-mode-hook 'emacs-scala-mode-defaults)
-
-(add-hook 'scala-mode-hook (lambda ()
-                             (run-hooks 'emacs-scala-mode-hook 'ensime-scala-mode-hook)))
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+(add-hook 'scala-mode-hook #'yas-minor-mode)
+(define-key company-active-map [tab] nil)
 
 (provide 'emacs-scala)
