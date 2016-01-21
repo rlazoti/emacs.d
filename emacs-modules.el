@@ -23,6 +23,7 @@
 (require 'emacs-scala)
 (require 'emacs-smartparens)
 (require 'emacs-sr-speedbar)
+(require 'emacs-sublimity)
 (require 'emacs-theme)
 (require 'emacs-untabify)
 (require 'emacs-web-mode)
