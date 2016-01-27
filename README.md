@@ -44,6 +44,7 @@ Keybinding            | Description
 <kbd>M-;</kbd>        | Comment/uncomment selected lines or the current line.
 <kbd>C-+</kbd>        | Increase font size (`text-scale-increase`).
 <kbd>C--</kbd>        | Decrease font size (`text-scale-decrease`).
+<kbd>C-c a</kbd>      | Align vertically a region by a regex.
 <kbd>C-c left</kbd>   | Switch the focus to visible buffer at the left side.
 <kbd>C-c up</kbd>     | Switch the focus to visible buffer at the up side.
 <kbd>C-c right</kbd>  | Switch the focus to visible buffer at the right side.
@@ -56,6 +57,7 @@ Keybinding            | Description
 <kbd>C-c C-s</kbd>    | Current buffer incremental find defined by marked (selected) text.
 <kbd>C-S-s</kbd>      | Find for a term in all files of current directory.
 <kbd>C-x f</kbd>      | Find files in the current directory (fiplr).
+<kbd>C-S-r</kbd>      | Edit a grep buffer and apply changes to all files (AKA Find all files and replace).
 <kbd>M-up</kbd>       | Move the current line or region up.
 <kbd>M-down</kbd>     | Move the current line or region down.
 <kbd>F5</kbd>         | Refresh the file explorer (sr-bspeedbar).
