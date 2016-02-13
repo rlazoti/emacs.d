@@ -1,13 +1,18 @@
 (require 'cl)
 (require 'package)
 
-(add-to-list 'package-archives
-						 '("melpa" . "http://melpa.org/packages/") t)
-(add-to-list 'package-archives
-						 '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(setq package-archives '(("ELPA" . "http://tromey.com/elpa/")
+												 ("gnu" . "http://elpa.gnu.org/packages/")
+												 ("melpa" . "http://melpa.org/packages/")
+												 ("melpa-stable" . "http://stable.melpa.org/packages/")
+												 ("marmalade" . "http://marmalade-repo.org/packages/")
+												 ))
+
+;; always install the stable cider's version
+(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
 
 ;; set package-user-dir to be relative to Emacs install path
-(setq package-user-dir (expand-file-name "elpa" emacs-dir))
+(setq package-user-dir (expand-file-name "packages" emacs-dir))
 (package-initialize)
 
 
