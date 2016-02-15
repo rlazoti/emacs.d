@@ -1,8 +1,9 @@
 (emacs-require-package 'emacs-eclim)
 
 (require 'eclim)
-(global-eclim-mode)
 (require 'eclimd)
+
+(global-eclim-mode)
 
 ;; Eclipse installation
 (custom-set-variables
@@ -22,15 +23,15 @@
 (global-company-mode t)
 
 ;; Eclim key bindings
-(global-set-key (kbd "C-c C-f") 'eclim-java-find-declaration)
-(global-set-key (kbd "C-c C-g") 'eclim-java-find-references)
-(global-set-key (kbd "C-c C-r") 'eclim-java-refactor-rename-symbol-at-point)
-(global-set-key (kbd "C-c C-d") 'eclim-java-show-documentation-for-current-element)
-(global-set-key (kbd "C-c C-v") 'eclim-java-hierarchy)
-(global-set-key (kbd "C-c C-o") 'eclim-java-import-organize)
-(global-set-key (kbd "C-c C-e") 'eclim-problems-correct)
-(global-set-key (kbd "C-c m") 'eclim-maven-run)
-
-
+(eval-after-load 'eclim-mode
+	'(progn
+		 (define-key eclim-mode-map (kbd "C-c C-f") 'eclim-java-find-declaration)
+		 (define-key eclim-mode-map (kbd "C-c C-g") 'eclim-java-find-references)
+		 (define-key eclim-mode-map (kbd "C-c C-r") 'eclim-java-refactor-rename-symbol-at-point)
+		 (define-key eclim-mode-map (kbd "C-c C-d") 'eclim-java-show-documentation-for-current-element)
+		 (define-key eclim-mode-map (kbd "C-c C-v") 'eclim-java-hierarchy)
+		 (define-key eclim-mode-map (kbd "C-c C-o") 'eclim-java-import-organize)
+		 (define-key eclim-mode-map (kbd "C-c C-e") 'eclim-problems-correct)
+		 (define-key eclim-mode-map (kbd "C-c m") 'eclim-maven-run)))
 
 (provide 'emacs-eclim)
