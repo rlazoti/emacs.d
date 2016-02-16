@@ -2,9 +2,9 @@
 (require 'package)
 
 (setq package-archives '(("elpa" . "http://elpa.gnu.org/packages/")
-												 ("melpa" . "http://melpa.org/packages/")
-												 ("melpa-stable" . "http://stable.melpa.org/packages/")
-												 ("marmalade" . "http://marmalade-repo.org/packages/")))
+                         ("melpa" . "http://melpa.org/packages/")
+                         ("melpa-stable" . "http://stable.melpa.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")))
 
 ;; always install the stable cider's version
 (add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
