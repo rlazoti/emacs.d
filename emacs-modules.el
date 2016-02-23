@@ -1,6 +1,5 @@
 (require 'emacs-ace-jump)
 (require 'emacs-ag)
-(require 'emacs-beacon)
 (require 'emacs-buffer-move)
 (require 'emacs-clojure)
 (require 'emacs-company-mode)
