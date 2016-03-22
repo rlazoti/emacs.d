@@ -6,6 +6,7 @@
 (require 'emacs-core)
 (require 'emacs-eclim)
 (require 'emacs-editor)
+(require 'emacs-elisp)
 (require 'emacs-fiplr)
 (require 'emacs-flymake)
 (require 'emacs-flyspell)
