@@ -1,5 +1,8 @@
 (emacs-require-packages '(ruby-tools yari inf-ruby ruby-mode rbenv rvm))
 
+(require 'rvm)
+(require 'rbenv)
+
 ;; Rake files are ruby, too, as are gemspecs, rackup files, and gemfiles.
 (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Rakefile\\'" . ruby-mode))
@@ -15,14 +18,6 @@
 (add-to-list 'auto-mode-alist '("Podfile\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.podspec\\'" . ruby-mode))
 
-;; load rvm with default ruby version
-(require 'rvm)
-(rvm-use-default)
-
-;; load rbenv with global ruby version
-(require 'rbenv)
-(global-rbenv-mode)
-
 ;; We never want to edit Rubinius bytecode
 (add-to-list 'completion-ignored-extensions ".rbc")
 
@@ -33,8 +28,9 @@
      (defun emacs-ruby-mode-defaults ()
        (inf-ruby-minor-mode +1)
        (ruby-tools-mode +1)
-       ;; CamelCase aware editing operations
-       (subword-mode +1))
+			 (subword-mode +1) ; CamelCase aware editing operations
+			 (rvm-use-default) ; load rvm with default ruby version
+			 (global-rbenv-mode)) ; load rbenv with global ruby version
 
      (setq emacs-ruby-mode-hook 'emacs-ruby-mode-defaults)
 

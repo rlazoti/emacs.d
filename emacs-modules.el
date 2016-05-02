@@ -18,6 +18,7 @@
 (require 'emacs-move-text)
 (require 'emacs-multiple-cursors)
 (require 'emacs-nerd-commenter)
+(require 'emacs-pig)
 (require 'emacs-rainbow-mode)
 (require 'emacs-ruby)
 (require 'emacs-run-file)

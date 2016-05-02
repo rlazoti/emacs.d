@@ -13,19 +13,15 @@
 (setq package-user-dir (expand-file-name "packages" emacs-dir))
 (package-initialize)
 
-
 (when (not package-archive-contents)
   (package-refresh-contents))
-
 
 (defvar emacs-packages '(epl)
   "A list of packages to ensure are installed at launch.")
 
-
 (defun emacs-packages-installed-p ()
   "Check if all packages in `emacs-packages' are installed."
   (every #'package-installed-p emacs-packages))
-
 
 (defun emacs-require-package (package)
   "Install PACKAGE unless already installed."
@@ -34,15 +30,12 @@
   (unless (package-installed-p package)
     (package-install package)))
 
-
 (defun emacs-require-packages (packages)
   "Ensure PACKAGES are installed.
 Missing packages are installed automatically."
   (mapc #'emacs-require-package packages))
 
-
 (define-obsolete-function-alias 'emacs-ensure-module-deps 'emacs-require-packages)
-
 
 (defun emacs-install-packages ()
   "Install all packages listed in `emacs-packages'."
@@ -54,10 +47,8 @@ Missing packages are installed automatically."
     ;; install the missing packages
     (emacs-require-packages emacs-packages)))
 
-
 ;; run package installation
 (emacs-install-packages)
-
 
 (defun emacs-list-foreign-packages ()
   "Browse third-party packages not bundled with Emacs.
@@ -68,6 +59,5 @@ removing unwanted packages."
   (interactive)
   (package-show-package-list
    (set-difference package-activated-list emacs-packages)))
-
 
 (provide 'emacs-packages)
