@@ -5,7 +5,10 @@
 (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
 	(add-hook hook 'turn-on-elisp-slime-nav-mode))
 
-;(slime-setup '(slime-fancy slime-company))
+(add-hook 'slime-mode-hook '(lambda ()
+  (local-set-key (kbd "C-c C-b") ' slime-repl-clear-buffer)))
+
+
 (setq slime-contribs '(slime-fancy slime-company))
 (setq inferior-lisp-program "/usr/local/bin/sbcl")
 

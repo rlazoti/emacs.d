@@ -30,6 +30,7 @@
 (require 'emacs-untabify)
 (require 'emacs-web-mode)
 (require 'emacs-wgrep)
+(require 'emacs-which-key)
 (require 'emacs-whitespace)
 (require 'emacs-yasnippet)
 (require 'emacs-zeal-at-point)
