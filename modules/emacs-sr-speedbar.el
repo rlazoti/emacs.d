@@ -6,7 +6,7 @@
 
 ;; sr-speedbar custom defs
 (setq make-backup-files nil)
-(setq sr-speedbar-auto-refresh t)
+(setq sr-speedbar-auto-refresh nil)
 (setq sr-speedbar-max-width 72)
 (setq sr-speedbar-width-x 50)
 (setq sr-speedbar-width-console 50)
