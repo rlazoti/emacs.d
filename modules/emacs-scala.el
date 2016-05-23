@@ -1,9 +1,25 @@
-(emacs-require-packages '(scala-mode2 ensime))
-
-(require 'ensime)
+(emacs-require-packages '(scala-mode ensime))
 
 (add-hook 'scala-mode-hook '(lambda ()
+  (require 'ensime)
   (require 'whitespace)
+
+	(show-paren-mode)
+	(smartparens-mode)
+	(yas-minor-mode)
+	(company-mode)
+	(ensime-mode)
+	(subword-mode +1)
+
+	(make-local-variable 'company-backends)
+	(projectile-visit-project-tags-table)
+	(setq company-backends
+				'(ensime-company (company-keywords company-dabbrev-code company-etags company-yasnippet)))
+
+	;; For complex scala files
+	(setq max-lisp-eval-depth 50000)
+	(setq max-specpdl-size 5000)
+	(setq scala-indent:use-javadoc-style t)
 
 	;; Bind the 'newline-and-indent' command to RET (aka 'enter')
 	(local-set-key (kbd "RET") 'newline-and-indent)
@@ -30,12 +46,5 @@
 	;; highlight is: face, tabs, trailing
 	(whitespace-mode)
 ))
-
-(defun emacs-scala-mode-defaults ()
-  (subword-mode +1))
-
-(setq emacs-scala-mode-hook 'emacs-scala-mode-defaults)
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
-(add-hook 'scala-mode-hook #'yas-minor-mode)
 
 (provide 'emacs-scala)
