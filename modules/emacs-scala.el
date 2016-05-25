@@ -1,5 +1,21 @@
 (emacs-require-packages '(scala-mode ensime))
 
+(make-local-variable 'company-backends)
+(setq company-backends
+			'(ensime-company (company-keywords company-dabbrev-code company-etags company-yasnippet)))
+
+;; show graphical bubbles for tooltips
+(setq ensime-graphical-tooltips t)
+
+;; ENSIME will try to create a config file automatically,
+;; and update it when the project definition changes.
+(setq ensime-auto-generate-config t)
+
+;; For complex scala files
+(setq max-lisp-eval-depth 50000)
+(setq max-specpdl-size 5000)
+(setq scala-indent:use-javadoc-style t)
+
 (add-hook 'scala-mode-hook '(lambda ()
   (require 'ensime)
   (require 'whitespace)
@@ -10,16 +26,6 @@
 	(company-mode)
 	(ensime-mode)
 	(subword-mode +1)
-
-	(make-local-variable 'company-backends)
-	(projectile-visit-project-tags-table)
-	(setq company-backends
-				'(ensime-company (company-keywords company-dabbrev-code company-etags company-yasnippet)))
-
-	;; For complex scala files
-	(setq max-lisp-eval-depth 50000)
-	(setq max-specpdl-size 5000)
-	(setq scala-indent:use-javadoc-style t)
 
 	;; Bind the 'newline-and-indent' command to RET (aka 'enter')
 	(local-set-key (kbd "RET") 'newline-and-indent)
