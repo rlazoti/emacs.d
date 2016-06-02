@@ -12,7 +12,6 @@
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
   (setq web-mode-code-indent-offset 2)
-  (set-face-attribute 'web-mode-css-rule-face nil :foreground "Pink3")
   (local-set-key (kbd "RET") 'newline-and-indent))
 
 (add-hook 'web-mode-hook 'my-web-mode-hook)
