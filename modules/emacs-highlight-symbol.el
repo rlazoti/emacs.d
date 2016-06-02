@@ -3,7 +3,7 @@
 (require 'highlight-symbol)
 
 (setq highlight-symbol-idle-delay 0.50)
-(setq highlight-symbol-disable '())
+(setq highlight-symbol-disable '(help-mode))
 (add-hook 'after-change-major-mode-hook
           (lambda ()
             (if (null (memql major-mode highlight-symbol-disable))

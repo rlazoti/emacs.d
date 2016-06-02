@@ -13,7 +13,7 @@
 (require 'emacs-highlight-symbol)
 (require 'emacs-ido)
 (require 'emacs-javascript)
-(require 'emacs-magit)
+(require 'emacs-linum)
 (require 'emacs-markdown)
 (require 'emacs-move-text)
 (require 'emacs-multiple-cursors)

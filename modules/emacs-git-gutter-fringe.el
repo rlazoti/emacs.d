@@ -4,8 +4,9 @@
 
 (setq git-gutter-fr:side 'left-fringe)
 (set-face-foreground 'git-gutter-fr:modified "blue")
-(set-face-foreground 'git-gutter-fr:added    "green")
-(set-face-foreground 'git-gutter-fr:deleted  "red")
+(set-face-foreground 'git-gutter-fr:added "green")
+(set-face-foreground 'git-gutter-fr:deleted "red")
+(set-face-attribute 'fringe nil :background "gray7")
 
 (add-hook 'prog-mode-hook #'git-gutter-mode)
 

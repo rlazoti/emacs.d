@@ -1,5 +1,5 @@
-(when (version< emacs-version "24.1")
-  (error "It requires at least GNU Emacs 24.1, but you're running %s" emacs-version))
+(when (version< emacs-version "24.5")
+  (error "It requires at least GNU Emacs 24.5, but you're running %s" emacs-version))
 
 (setq load-prefer-newer t)   ;; Always load newest byte code
 (setq make-backup-files nil) ;; Preventing the Creation of Backup Files

@@ -32,7 +32,7 @@
 
 (defun emacs-require-packages (packages)
   "Ensure PACKAGES are installed.
-Missing packages are installed automatically."
+   Missing packages are installed automatically."
   (mapc #'emacs-require-package packages))
 
 (define-obsolete-function-alias 'emacs-ensure-module-deps 'emacs-require-packages)
@@ -49,15 +49,5 @@ Missing packages are installed automatically."
 
 ;; run package installation
 (emacs-install-packages)
-
-(defun emacs-list-foreign-packages ()
-  "Browse third-party packages not bundled with Emacs.
-
-Behaves similarly to `package-list-packages', but shows only the packages that
-are installed and are not in `emacs-packages'.  Useful for
-removing unwanted packages."
-  (interactive)
-  (package-show-package-list
-   (set-difference package-activated-list emacs-packages)))
 
 (provide 'emacs-packages)
