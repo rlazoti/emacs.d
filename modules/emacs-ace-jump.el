@@ -16,6 +16,7 @@
   "ace-jump-mode"
   "Ace jump back:-)"
   t)
+
 (eval-after-load "ace-jump-mode"
   '(ace-jump-mode-enable-mark-sync))
 
