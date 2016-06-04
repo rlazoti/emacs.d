@@ -1,6 +1,6 @@
 (defun customize-linum-mode ()
   (interactive)
-	(set-face-attribute 'linum nil :background "gray7"))
+  (set-face-attribute 'linum nil :background "gray7" :foreground "gray20"))
 
 (add-hook 'linum-mode-hook 'customize-linum-mode)
 
