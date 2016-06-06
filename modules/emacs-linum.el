@@ -13,18 +13,18 @@
 (eval-after-load 'linum
   '(progn
 
-     (defface linum-leading-zero
+     (defface linum-custom-face
        `((t :inherit 'linum :foreground "gray7" :background "gray7"))
-       "Face for displaying INVISIBLE leading zeroes for line numbers in display margin."
+       "Face for displaying INVISIBLE spaces for line numbers in display margin."
        :group 'linum)
 
      (defun linum-format-func (line)
        (let ((w (length (number-to-string (count-lines (point-min) (point-max))))))
          (concat
-          (propertize (number-to-string 0) 'face 'linum-leading-zero)
-          (propertize (make-string (- w (length (number-to-string line))) ?0) 'face 'linum-leading-zero)
+          (propertize "\u0020" 'face 'linum-custom-face)
+          (propertize (make-string (- w (length (number-to-string line))) ?0) 'face 'linum-custom-face)
           (propertize (number-to-string line) 'face 'linum)
-          (propertize (number-to-string 0) 'face 'linum-leading-zero))))
+          (propertize "\u0020" 'face 'linum-custom-face))))
 
      (setq linum-format 'linum-format-func)))
 
