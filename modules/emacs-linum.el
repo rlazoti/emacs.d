@@ -22,7 +22,7 @@
        (let ((w (length (number-to-string (count-lines (point-min) (point-max))))))
          (concat
           (propertize "\u0020" 'face 'linum-custom-face)
-          (propertize (make-string (- w (length (number-to-string line))) ?0) 'face 'linum-custom-face)
+          (propertize (make-string (- w (length (number-to-string line))) ?\u0020) 'face 'linum-custom-face)
           (propertize (number-to-string line) 'face 'linum)
           (propertize "\u0020" 'face 'linum-custom-face))))
 
