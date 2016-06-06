@@ -22,7 +22,7 @@
        (let ((w (length (number-to-string (count-lines (point-min) (point-max))))))
          (concat
           (propertize (number-to-string 0) 'face 'linum-leading-zero)
-					(propertize (make-string (- w (length (number-to-string line))) ?0) 'face 'linum-leading-zero)
+          (propertize (make-string (- w (length (number-to-string line))) ?0) 'face 'linum-leading-zero)
           (propertize (number-to-string line) 'face 'linum)
           (propertize (number-to-string 0) 'face 'linum-leading-zero))))
 
