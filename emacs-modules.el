@@ -4,6 +4,7 @@
 (require 'emacs-clojure)
 (require 'emacs-company-mode)
 (require 'emacs-core)
+(require 'emacs-dumb-jump)
 (require 'emacs-editor)
 (require 'emacs-elisp)
 (require 'emacs-fiplr)
