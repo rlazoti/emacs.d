@@ -1,8 +1,7 @@
-(add-to-list 'package-pinned-packages '(ensime . "melpa-stable") t)
-
 (emacs-require-packages '(scala-mode ensime))
 
 (make-local-variable 'company-backends)
+
 (setq company-backends
       '(ensime-company (company-keywords company-dabbrev-code company-etags company-yasnippet)))
 
