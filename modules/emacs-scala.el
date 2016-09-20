@@ -1,5 +1,8 @@
 (emacs-require-packages '(scala-mode ensime))
 
+;; disables the welcome message
+(mkdir (expand-file-name "ensime" user-emacs-directory) 'parents)
+
 (make-local-variable 'company-backends)
 
 (setq company-backends
