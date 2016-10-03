@@ -16,10 +16,10 @@
 
  '(company-tooltip-selection ((t (:background "steelblue" :foreground "white"))))
  '(company-tooltip-annotation-selection ((t (:background "steelblue" :foreground "white"))))
- 
+
  '(company-scrollbar-fg ((t (:background "darkred" :foreground "darkred"))))
  '(company-scrollbar-bg ((t (:background "lightgray" :foreground "lightgray"))))
- 
+
  '(company-preview ((t (:foreground "darkgray" :underline t))))
  '(company-preview-common ((t (:inherit company-preview))))
 

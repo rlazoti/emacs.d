@@ -77,6 +77,16 @@ M-right   : Esc-[1;4C
 M-left    : Esc-[1;4D]]]]
 ```
 
+### Post-Installation
+
+For JS mode, you'll need to install the following npm packages:
+
+
+``` javascript
+npm install -g jslint
+npm install -g jslint
+```
+
 
 ### Reload the config without exiting Emacs
 
