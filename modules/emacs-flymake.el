@@ -8,10 +8,7 @@
                           flymake-cursor
                           ))
 
-(add-hook 'js-mode-hook 'flymake-jslint-load)
-(add-hook 'js-mode-hook 'flymake-mode)
 (add-hook 'css-mode-hook 'flymake-css-load)
-(add-hook 'json-mode 'flymake-json-load)
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
 (add-hook 'yaml-mode-hook 'flymake-yaml-load)
 
