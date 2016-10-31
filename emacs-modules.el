@@ -7,6 +7,7 @@
 (require 'emacs-dumb-jump)
 (require 'emacs-editor)
 (require 'emacs-elisp)
+(require 'emacs-expand-region)
 (require 'emacs-fiplr)
 (require 'emacs-flymake)
 (require 'emacs-flyspell)
