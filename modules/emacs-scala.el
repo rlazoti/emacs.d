@@ -1,4 +1,4 @@
-(emacs-require-packages '(scala-mode ensime))
+(emacs-require-packages '(scala-mode ensime play-routes-mode))
 
 ;; disables the welcome message
 (mkdir (expand-file-name "ensime" user-emacs-directory) 'parents)
