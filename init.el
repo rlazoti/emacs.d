@@ -1,8 +1,16 @@
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (when (version< emacs-version "24.5")
   (error "It requires at least GNU Emacs 24.5, but you're running %s" emacs-version))
 
 (setq load-prefer-newer t)   ;; Always load newest byte code
-(setq make-backup-files nil) ;; Preventing the Creation of Backup Files
+(setq make-backup-files nil) ;; Preventing the creation of Backup Files
+(setq create-lockfiles nil) ;; Preventing the creation of lockfiles
 
 (defvar emacs-dir (file-name-directory load-file-name)
   "The root dir of the Emacs configuration.")
