@@ -54,7 +54,7 @@
   ;; turn on highlight. To configure what is highlighted, customize
   ;; the *whitespace-style* variable. A sane set of things to
   ;; highlight is: face, tabs, trailing
-  (whitespace-mode)
+  ;;(whitespace-mode)
 ))
 
 (provide 'emacs-scala)

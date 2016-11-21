@@ -71,7 +71,7 @@
 
 ;; whitespace-mode config
 (require 'whitespace)
-(setq whitespace-line-column 120) ;; limit line length
+(setq whitespace-line-column 100) ;; limit line length
 (setq whitespace-style (quote (spaces tabs space-mark tab-mark newline-mark trailing lines-tail)))
 
 (setq indent-tabs-mode nil)   ;; don't use tabs to indent
@@ -95,17 +95,17 @@
 (make-variable-buffer-local 'my-mode-line-buffer-line-count)
 
 (setq-default mode-line-format
-							'("  " mode-line-modified
-								(list 'line-number-mode "  ")
-								(:eval (when line-number-mode
-												 (let ((str "Line %l"))
-													 (when (and (not (buffer-modified-p)) my-mode-line-buffer-line-count)
-														 (setq str (concat str " of " my-mode-line-buffer-line-count)))
-													 str)))
-								"  %p"
-								(list 'column-number-mode "  Column %c")
-								"  " mode-line-buffer-identification
-								"  " mode-line-modes))
+              '("  " mode-line-modified
+                (list 'line-number-mode "  ")
+                (:eval (when line-number-mode
+                         (let ((str "Line %l"))
+                           (when (and (not (buffer-modified-p)) my-mode-line-buffer-line-count)
+                             (setq str (concat str " of " my-mode-line-buffer-line-count)))
+                           str)))
+                "  %p"
+                (list 'column-number-mode "  Column %c")
+                "  " mode-line-buffer-identification
+                "  " mode-line-modes))
 
 (defun my-mode-line-count-lines ()
   (setq my-mode-line-buffer-line-count (int-to-string (count-lines (point-min) (point-max)))))
