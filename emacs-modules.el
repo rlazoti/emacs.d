@@ -1,4 +1,3 @@
-(require 'emacs-ace-jump)
 (require 'emacs-ag)
 (require 'emacs-buffer-move)
 (require 'emacs-clojure)
@@ -21,7 +20,6 @@
 (require 'emacs-multiple-cursors)
 (require 'emacs-neotree)
 (require 'emacs-nerd-commenter)
-(require 'emacs-pig)
 (require 'emacs-rainbow-mode)
 (require 'emacs-ruby)
 (require 'emacs-run-file)
