@@ -12,3 +12,5 @@ ensime/
 npm-debug.log
 packages/
 url/
+recentf
+docsets/

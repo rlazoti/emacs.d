@@ -36,6 +36,7 @@
 
 ;; Use the system clipboard
 (setq x-select-enable-clipboard t)
+(setq save-interprogram-paste-before-kill t)
 
 ;; fix upcase-region and downcase-region, they're disabled by default
 (put 'downcase-region 'disabled nil)

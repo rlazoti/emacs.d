@@ -7,6 +7,9 @@
 ;; Ask "y" or "n" before killing emacs
 (setq confirm-kill-emacs 'y-or-n-p)
 
+;; kill the current buffer without prompting
+(global-set-key (kbd "C-x k") 'kill-this-buffer)
+
 ;; Disable scrollbar
 (scroll-bar-mode 0)
 

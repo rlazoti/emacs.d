@@ -59,8 +59,8 @@
  '(help-at-pt-timer-delay 0.5)
  '(mac-emulate-three-button-mouse t)
  '(package-selected-packages
-   (quote
-    (zeal-at-point yari which-key wgrep-ag web-mode web-beautify sublimity smex smartparens slime-company rvm ruby-tools rbenv rainbow-mode play-routes-mode pig-mode neotree multiple-cursors markdown-mode json-mode js2-mode inf-ruby ido-ubiquitous highlight-symbol git-gutter-fringe flymake-yaml flymake-ruby flymake-json flymake-jslint flymake-jshint flymake-cursor flymake-css flx-ido fiplr expand-region evil-nerd-commenter ensime elisp-slime-nav dumb-jump drag-stuff company-web company-quickhelp common-lisp-snippets color-theme-sanityinc-tomorrow clojure-snippets cider buffer-move ag ace-jump-mode))))
+	 (quote
+		(zeal-at-point yari which-key wgrep-ag web-mode web-beautify sublimity smex smartparens slime-company rvm ruby-tools rbenv rainbow-mode play-routes-mode pig-mode neotree multiple-cursors markdown-mode json-mode js2-mode inf-ruby ido-ubiquitous highlight-symbol git-gutter-fringe flymake-yaml flymake-ruby flymake-json flymake-jslint flymake-jshint flymake-cursor flymake-css flx-ido fiplr expand-region evil-nerd-commenter ensime elisp-slime-nav dumb-jump drag-stuff company-web company-quickhelp common-lisp-snippets color-theme-sanityinc-tomorrow clojure-snippets cider buffer-move ag ace-jump-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -76,5 +76,9 @@
  '(company-tooltip-common ((((type x)) (:inherit company-tooltip :weight bold)) (t (:inherit company-tooltip))))
  '(company-tooltip-common-selection ((((type x)) (:inherit company-tooltip-selection :weight bold)) (t (:inherit company-tooltip-selection))))
  '(company-tooltip-selection ((t (:background "steelblue" :foreground "white"))))
+ '(neo-dir-link-face ((t (:foreground "deep sky blue" :slant normal :weight bold :height 120 :family "Monaco"))))
+ '(neo-file-link-face ((t (:foreground "White" :weight normal :height 120 :family "Monaco"))))
+ '(neo-header-face ((t (:foreground "deep sky blue" :slant normal :weight bold :height 120 :family "Monaco"))))
+ '(neo-root-dir-face ((t (:foreground "deep sky blue" :slant normal :weight bold :height 120 :family "Monaco"))))
  '(whitespace-space ((t (:bold t :foreground "gray20" :background nil))))
  '(whitespace-tab ((t (:foreground "gray20" :background nil)))))
