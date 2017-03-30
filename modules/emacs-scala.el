@@ -1,3 +1,5 @@
+(add-to-list 'package-pinned-packages '(ensime . "melpa-stable") t)
+
 (emacs-require-packages '(scala-mode ensime play-routes-mode))
 
 ;; disables the welcome message
