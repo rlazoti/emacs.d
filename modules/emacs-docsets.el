@@ -10,9 +10,9 @@
 (setq counsel-dash-browser-func 'browse-url)
 (setq counsel-dash-ignored-docsets nil)
 
-;; (defun counsel-dash-at-point ()
-;;   (interactive)
-;;   (counsel-dash (thing-at-point 'symbol)))
+(defun counsel-dash-at-point ()
+   (interactive)
+   (counsel-dash (thing-at-point 'symbol)))
 
 (add-hook 'emacs-lisp-mode-hook (lambda () (setq-local counsel-dash-docsets '("Emacs Lisp"))))
 (add-hook 'ruby-mode-hook (lambda () (setq-local counsel-dash-docsets '("Ruby"))))

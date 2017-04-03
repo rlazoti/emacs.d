@@ -97,6 +97,7 @@
 
 (setq-default mode-line-format
               '("  " mode-line-modified
+                (:propertize (vc-mode vc-mode) face (:weight normal))
                 (list 'line-number-mode "  ")
                 (:eval (when line-number-mode
                          (let ((str "Line %l"))
