@@ -1,4 +1,4 @@
-(set-default-font "Monaco 13")
+(set-default-font "Monaco 12")
 
 ;; use command as meta key
 (setq mac-option-modifier 'super)
