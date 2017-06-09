@@ -18,7 +18,7 @@
 (global-set-key (kbd "C-?") 'counsel-dash-at-point)
 
 (add-hook 'emacs-lisp-mode-hook (lambda () (setq-local counsel-dash-docsets '("Emacs Lisp"))))
-(add-hook 'ruby-mode-hook (lambda () (setq-local counsel-dash-docsets '("Ruby"))))
+(add-hook 'ruby-mode-hook (lambda () (setq-local counsel-dash-docsets '("Ruby" "Ruby Gems" "Ruby on Rails"))))
 (add-hook 'js2-mode-hook (lambda () (setq-local counsel-dash-docsets '("JavaScript" "Jquery" "EmberJS"))))
 (add-hook 'scala-mode-hook (lambda () (setq-local counsel-dash-docsets '("Scala" "Java"))))
 

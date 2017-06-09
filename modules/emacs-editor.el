@@ -1,3 +1,11 @@
+(emacs-require-package 'editorconfig)
+
+;; enable editorconfig as default
+(editorconfig-mode 1)
+
+(add-hook 'editorconfig-custom-hooks
+          (lambda (hash) (setq web-mode-block-padding 0)))
+
 ;; enable highlighing matching delimiters
 (show-paren-mode t)
 
