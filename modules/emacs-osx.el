@@ -4,6 +4,9 @@
 (setq mac-option-modifier 'super)
 (setq mac-command-modifier 'meta)
 
+;; macOS command ls doesn't support --dired option
+(setq dired-use-ls-dired nil)
+
 ;; hach to use option-click as mouse-2 click
 ;; (require 'emacs-osx)
 (custom-set-variables

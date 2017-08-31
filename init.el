@@ -1,8 +1,3 @@
-
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
 (package-initialize)
 
 (when (version< emacs-version "24.5")
@@ -26,6 +21,32 @@
 
 (defvar emacs-packages-file (expand-file-name "emacs-packages.el" emacs-dir)
   "The file contains a list of external packages that will be loaded.")
+
+;; Measure startup time
+(defun my-conf/time-subtract-millis (b a)
+  (* 1000.0 (float-time (time-subtract b a))))
+
+(defvar my-conf/require-times nil
+  "A list of (FEATURE . LOAD-DURATION).
+LOAD-DURATION is the time taken in milliseconds to load FEATURE.")
+
+(defadvice require (around my-conf/build-require-times (feature &optional filename noerror) activate)
+  "Note in `my-conf/require-times' the time taken to require each feature."
+  (let* ((already-loaded (memq feature features))
+         (require-start-time (and (not already-loaded) (current-time))))
+    (prog1
+        ad-do-it
+      (when (and (not already-loaded) (memq feature features))
+        (let ((time (my-conf/time-subtract-millis (current-time) require-start-time)))
+          (add-to-list 'my-conf/require-times
+                       (cons feature time)
+                       t))))))
+
+(defun my-conf/show-init-time ()
+  (message "[INFO] Init completed in %.2fms"
+           (my-conf/time-subtract-millis after-init-time before-init-time)))
+
+(add-hook 'after-init-hook 'my-conf/show-init-time)
 
 (unless (file-exists-p emacs-savefile-dir)
   (make-directory emacs-savefile-dir))
