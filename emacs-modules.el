@@ -29,6 +29,7 @@
 (require 'emacs-smartparens)
 (require 'emacs-sublimity)
 (require 'emacs-theme)
+(require 'emacs-undo-tree)
 (require 'emacs-untabify)
 (require 'emacs-web-mode)
 (require 'emacs-wgrep)

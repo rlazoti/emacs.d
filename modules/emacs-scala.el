@@ -1,6 +1,4 @@
-(add-to-list 'package-pinned-packages '(ensime . "melpa-stable") t)
-
-(emacs-require-packages '(scala-mode ensime play-routes-mode))
+(emacs-require-packages '(scala-mode sbt-mode ensime play-routes-mode))
 
 ;; disables the welcome message
 (mkdir (expand-file-name "ensime" user-emacs-directory) 'parents)
@@ -52,11 +50,6 @@
 
   ;; but company-mode / yasnippet conflict. Disable TAB in company-mode with
   (define-key company-active-map [tab] nil)
-
-  ;; turn on highlight. To configure what is highlighted, customize
-  ;; the *whitespace-style* variable. A sane set of things to
-  ;; highlight is: face, tabs, trailing
-  ;;(whitespace-mode)
 ))
 
 (provide 'emacs-scala)
