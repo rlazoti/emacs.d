@@ -18,6 +18,7 @@
 (require 'emacs-ivy)
 (require 'emacs-javascript)
 (require 'emacs-linum)
+(require 'emacs-magit)
 (require 'emacs-markdown)
 (require 'emacs-multiple-cursors)
 (require 'emacs-neotree)

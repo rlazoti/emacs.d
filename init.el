@@ -71,3 +71,35 @@ LOAD-DURATION is the time taken in milliseconds to load FEATURE.")
 ;; OSX specific settings
 (when (eq system-type 'darwin)
   (require 'emacs-osx))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(help-at-pt-display-when-idle (quote (flymake-overlay)) nil (help-at-pt))
+ '(help-at-pt-timer-delay 0.5)
+ '(mac-emulate-three-button-mouse t)
+ '(package-selected-packages
+	 (quote
+		(which-key wgrep-ag wgrep web-beautify web-mode undo-tree color-theme-sanityinc-tomorrow sublimity smartparens play-routes-mode ensime sbt-mode scala-mode rvm rbenv inf-ruby yari ruby-tools rainbow-mode evil-nerd-commenter neotree multiple-cursors markdown-mode magit json-mode js2-mode flx highlight-symbol git-gutter-fringe git-gutter fringe-helper flymake-cursor flymake-jslint flymake-jshint flymake-yaml flymake-ruby flymake-json flymake-css fiplr expand-region slime-company slime common-lisp-snippets elisp-slime-nav editorconfig dumb-jump drag-stuff counsel-dash company-web company-quickhelp company clojure-snippets cider clojure-mode buffer-move ag epl))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-preview ((t (:foreground "darkgray" :underline t))))
+ '(company-preview-common ((t (:inherit company-preview))))
+ '(company-scrollbar-bg ((t (:background "lightgray" :foreground "lightgray"))))
+ '(company-scrollbar-fg ((t (:background "darkred" :foreground "darkred"))))
+ '(company-tooltip ((t (:background "lightgray" :foreground "black"))))
+ '(company-tooltip-annotation ((t (:background "lightgray" :foreground "black"))))
+ '(company-tooltip-annotation-selection ((t (:background "steelblue" :foreground "white"))))
+ '(company-tooltip-common ((((type x)) (:inherit company-tooltip :weight bold)) (t (:inherit company-tooltip))))
+ '(company-tooltip-common-selection ((((type x)) (:inherit company-tooltip-selection :weight bold)) (t (:inherit company-tooltip-selection))))
+ '(company-tooltip-selection ((t (:background "steelblue" :foreground "white"))))
+ '(neo-dir-link-face ((t (:foreground "deep sky blue" :slant normal :weight bold :height 110 :family "Monaco"))))
+ '(neo-file-link-face ((t (:foreground "White" :weight normal :height 110 :family "Monaco"))))
+ '(neo-header-face ((t (:foreground "deep sky blue" :slant normal :weight bold :height 110 :family "Monaco"))))
+ '(neo-root-dir-face ((t (:foreground "deep sky blue" :slant normal :weight bold :height 110 :family "Monaco"))))
+ '(whitespace-space ((t (:bold t :foreground "gray20" :background nil))))
+ '(whitespace-tab ((t (:foreground "gray20" :background nil)))))
