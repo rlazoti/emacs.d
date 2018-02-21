@@ -13,6 +13,7 @@
 (require 'emacs-flymake)
 (require 'emacs-flyspell)
 (require 'emacs-git-gutter-fringe)
+(require 'emacs-git-timemachine)
 (require 'emacs-hideshow)
 (require 'emacs-highlight-symbol)
 (require 'emacs-ivy)
