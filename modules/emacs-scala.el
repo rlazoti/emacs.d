@@ -1,5 +1,8 @@
 (emacs-require-packages '(scala-mode sbt-mode ensime play-routes-mode))
 
+(setq ensime-startup-notification nil)
+(setq ensime-startup-snapshot-notification nil)
+
 ;; disables the welcome message
 (mkdir (expand-file-name "ensime" user-emacs-directory) 'parents)
 
