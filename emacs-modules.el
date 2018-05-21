@@ -3,6 +3,7 @@
 (require 'emacs-clojure)
 (require 'emacs-company-mode)
 (require 'emacs-core)
+(require 'emacs-dimmer)
 (require 'emacs-docsets)
 (require 'emacs-drag-stuff)
 (require 'emacs-dumb-jump)
