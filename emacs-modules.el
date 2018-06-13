@@ -4,6 +4,7 @@
 (require 'emacs-company-mode)
 (require 'emacs-core)
 (require 'emacs-dimmer)
+(require 'emacs-docker)
 (require 'emacs-docsets)
 (require 'emacs-drag-stuff)
 (require 'emacs-dumb-jump)
