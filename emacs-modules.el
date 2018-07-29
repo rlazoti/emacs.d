@@ -26,6 +26,7 @@
 (require 'emacs-multiple-cursors)
 (require 'emacs-neotree)
 (require 'emacs-nerd-commenter)
+(require 'emacs-python)
 (require 'emacs-rainbow-mode)
 (require 'emacs-ruby)
 (require 'emacs-run-file)
