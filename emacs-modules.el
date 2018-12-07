@@ -33,6 +33,7 @@
 (require 'emacs-scala)
 (require 'emacs-smartparens)
 (require 'emacs-sublimity)
+(require 'emacs-terraform)
 (require 'emacs-theme)
 (require 'emacs-undo-tree)
 (require 'emacs-untabify)
