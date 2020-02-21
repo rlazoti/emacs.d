@@ -7,7 +7,9 @@
                          ("marmalade" . "https://marmalade-repo.org/packages/")))
 
 ;; always install the stable version for the following packages
-(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
+(add-to-list 'package-pinned-packages '(magit . "melpa-stable") t)
+(add-to-list 'package-pinned-packages '(markdown-mode . "melpa-stable") t)
+(add-to-list 'package-pinned-packages '(go-mode . "melpa-stable") t)
 
 ;; set package-user-dir to be relative to Emacs install path
 (setq package-user-dir (expand-file-name "packages" emacs-dir))

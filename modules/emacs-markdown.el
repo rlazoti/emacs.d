@@ -1,5 +1,3 @@
-(add-to-list 'package-pinned-packages '(markdown-mode . "melpa-stable") t)
-
 (emacs-require-package 'markdown-mode)
 
 (autoload 'markdown-mode "markdown-mode"

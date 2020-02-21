@@ -1,4 +1,4 @@
-(set-default-font "Monaco 12")
+(set-default-font "JetBrains Mono:pixelsize=13:weight=normal:slant=normal:width=normal:spacing=102:scalable=true")
 
 ;; set keys for Apple keyboard, for emacs in OS X
 (setq mac-command-modifier 'super)

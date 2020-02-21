@@ -1,5 +1,3 @@
-(add-to-list 'package-pinned-packages '(magit . "melpa-stable") t)
-
 (emacs-require-package 'magit)
 
 ;; Protect against accident pushes to upstream
