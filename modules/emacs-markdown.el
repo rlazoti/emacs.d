@@ -9,5 +9,11 @@
    "Major mode for editing GitHub Flavored Markdown files" t)
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 
+(require 'markdown-mode)
+
+(eval-after-load 'markdown-mode
+  (progn
+    (define-key markdown-mode-map (kbd "C-c <right>") nil)))
+
 (provide 'emacs-markdown)
 
