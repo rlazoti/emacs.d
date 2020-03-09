@@ -78,6 +78,9 @@
 (global-set-key (kbd "M-l") 'downcase-word)
 (global-set-key (kbd "M-c") 'capitalize-word)
 
+;; disable right alt key so I can use PT-br accented chars
+(setq ns-right-alternate-modifier nil)
+
 ;; whitespace-mode config
 (require 'whitespace)
 (setq whitespace-line-column 100) ;; limit line length
