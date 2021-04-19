@@ -1,7 +1,10 @@
-(emacs-require-package 'drag-stuff)
-
-(drag-stuff-global-mode 1)
-(global-set-key (kbd "M-<up>") 'drag-stuff-up)
-(global-set-key (kbd "M-<down>") 'drag-stuff-down)
+(use-package drag-stuff
+  :ensure t
+	:init
+	(drag-stuff-global-mode 1)
+	:bind
+  (:map global-map
+        ("M-<up>"   . 'drag-stuff-up)
+        ("M-<down>" . 'drag-stuff-down)))
 
 (provide 'emacs-drag-stuff)

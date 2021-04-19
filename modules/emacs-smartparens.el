@@ -1,17 +1,6 @@
-(emacs-require-package 'smartparens)
-
-(require 'smartparens-config)
-(require 'smartparens-ruby)
-
-(smartparens-global-mode)
-(show-smartparens-global-mode t)
-
-(sp-pair "(" ")" :wrap "s-(")
-(sp-pair "[" "]" :wrap "s-[")
-(sp-pair "{" "}" :wrap "s-{")
-
-(sp-with-modes '(rhtml-mode)
-  (sp-local-pair "<" ">")
-  (sp-local-pair "<%" "%>"))
+(use-package smartparens
+  :ensure t
+	:init
+	(smartparens-global-mode 1))
 
 (provide 'emacs-smartparens)

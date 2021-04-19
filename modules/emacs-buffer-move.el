@@ -1,8 +1,10 @@
-(emacs-require-package 'buffer-move)
-
-(global-set-key (kbd "C-c C-c <up>")     'buf-move-up)
-(global-set-key (kbd "C-c C-c <down>")   'buf-move-down)
-(global-set-key (kbd "C-c C-c <left>")   'buf-move-left)
-(global-set-key (kbd "C-c C-c <right>")  'buf-move-right)
+(use-package buffer-move
+  :ensure t
+	:bind
+  (:map global-map
+        ("C-c C-c <up>"    . 'buf-move-up)
+        ("C-c C-c <down>"  . 'buf-move-down)
+        ("C-c C-c <left>"  . 'buf-move-left)
+        ("C-c C-c <right>" . 'buf-move-right)))
 
 (provide 'emacs-buffer-move)
