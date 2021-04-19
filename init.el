@@ -1,3 +1,7 @@
+;;; init.el --- Emacs Initialization and Configuration
+;;; Commentary:
+;;; Code:
+
 (setq gc-cons-threshold (* 512 1024 1024 1024)
       gc-cons-percentage 0.6)
 
@@ -59,18 +63,5 @@
 (when (eq system-type 'darwin)
   (require 'emacs-osx))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(epg-gpg-program "/usr/local/bin/gpg")
- '(mac-emulate-three-button-mouse t)
- '(package-selected-packages
-	 '(composite unicode-fonts fira-code-mode ligature dumb-jump dimmer company-quickhelp company which-key gnu-elpa-keyring-update undo-tree symbol-overlay smartparens multiple-cursors drag-stuff buffer-move ag doom-modeline ivy use-package)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(provide 'init)
+;;; init.el ends here

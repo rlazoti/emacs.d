@@ -1,6 +1,8 @@
 (use-package company
   :ensure t
-	:hook (after-init . global-company-mode))
+	:hook (after-init . global-company-mode)
+	:config
+	(setq company-tooltip-width-grow-only t))
 
 ;; (use-package company-quickhelp
 ;;   :ensure t

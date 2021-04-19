@@ -6,7 +6,7 @@ My Emacs conf based on Emacs Prelude.
 
 ## Requirements
 
-* It requires Emacs 24 or higher.
+* It requires Emacs 27 or higher.
 
 
 ## How it looks like
@@ -79,6 +79,13 @@ M-left    : Esc-[1;4D]]]]
 
 ### Post-Installation
 
+Install additional fonts:
+
+```
+M-x all-the-icons-install-fonts
+```
+
+
 For JS mode, you'll need to install the following npm packages:
 
 
@@ -86,13 +93,6 @@ For JS mode, you'll need to install the following npm packages:
 npm install -g jslint
 npm install -g jslint
 ```
-
-
-### Reload the config without exiting Emacs
-
-If you change any file you can reload all the configuration without exiting emacs just typing:
-
-<kbd>M-x reload-config RET</kbd>
 
 
 ## Author
