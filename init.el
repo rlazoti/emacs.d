@@ -65,3 +65,17 @@
 
 (provide 'init)
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(mac-emulate-three-button-mouse t)
+ '(package-selected-packages
+   '(highlight-indent-guides which-key use-package undo-tree symbol-overlay smartparens rainbow-mode neotree multiple-cursors gnu-elpa-keyring-update git-timemachine git-gutter-fringe flycheck fiplr exec-path-from-shell editorconfig dumb-jump drag-stuff doom-themes doom-modeline dimmer counsel company centaur-tabs buffer-move ag)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

@@ -1,3 +1,4 @@
+(require 'emacs-indent-guide)
 (require 'emacs-ag)
 (require 'emacs-buffer-move)
 (require 'emacs-company)
