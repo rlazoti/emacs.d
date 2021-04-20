@@ -1,6 +1,6 @@
 (use-package buffer-move
   :ensure t
-	:bind
+  :bind
   (:map global-map
         ("C-c C-c <up>"    . 'buf-move-up)
         ("C-c C-c <down>"  . 'buf-move-down)

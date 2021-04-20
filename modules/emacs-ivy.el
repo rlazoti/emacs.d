@@ -1,20 +1,20 @@
 (use-package counsel
   :ensure t
   :bind (:map global-map
-							("C-c s" . swiper)
-							("C-c S" . swiper-all)
-							:map ivy-minibuffer-map
-							("TAB" . ivy-alt-done)
-							("C-l" . ivy-alt-done)
-							("C-j" . ivy-next-line)
-							("C-k" . ivy-previous-line)
-							:map ivy-switch-buffer-map
-							("C-k" . ivy-previous-line)
-							("C-l" . ivy-done)
-							("C-d" . ivy-switch-buffer-kill)
-							:map ivy-reverse-i-search-map
-							("C-k" . ivy-previous-line)
-							("C-d" . ivy-reverse-i-search-kill))
+              ("C-c s" . swiper)
+              ("C-c S" . swiper-all)
+              :map ivy-minibuffer-map
+              ("TAB" . ivy-alt-done)
+              ("C-l" . ivy-alt-done)
+              ("C-j" . ivy-next-line)
+              ("C-k" . ivy-previous-line)
+              :map ivy-switch-buffer-map
+              ("C-k" . ivy-previous-line)
+              ("C-l" . ivy-done)
+              ("C-d" . ivy-switch-buffer-kill)
+              :map ivy-reverse-i-search-map
+              ("C-k" . ivy-previous-line)
+              ("C-d" . ivy-reverse-i-search-kill))
 
   :config
   ;; double check this
@@ -22,7 +22,7 @@
   (setq enable-recursive-minibuffers t)
   (setq ivy-initial-inputs-alist nil)
   (setq ivy-re-builders-alist
-	'((read-file-name-internal . ivy--regex-fuzzy)
+        '((read-file-name-internal . ivy--regex-fuzzy)
           (counsel-M-x . ivy--regex-fuzzy)
           (t . ivy--regex-plus)))
 

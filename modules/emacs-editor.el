@@ -9,12 +9,16 @@
 (add-hook 'editorconfig-custom-hooks
           (lambda (hash) (setq web-mode-block-padding 0)))
 
+(setq-default display-line-numbers-widen t)
+(setq-default display-line-numbers-width 3)
+(setq-default fringes-outside-margins t)
 (setq-default highlight-tabs t)
 (setq-default indent-line-function 2)
 (setq-default indicate-empty-lines t)
 (setq-default ispell-program-name "aspell")
 (setq-default show-trailing-whitespace t)
 (setq-default tab-width 2)
+(setq-default word-wrap t)
 
 (setq buffer-file-coding-system 'utf-8-unix)
 (setq column-number-mode t)
@@ -26,13 +30,14 @@
 (setq default-sendmail-coding-system 'utf-8-unix)
 (setq default-terminal-coding-system 'utf-8-unix)
 (setq indent-tabs-mode nil)
+(setq indicate-buffer-boundaries nil)
+(setq indicate-empty-lines nil)
 (setq locale-coding-system 'utf-8)
 (setq ns-right-alternate-modifier nil) ; disable right alt key so I can use PT-br accented chars
+(setq require-final-newline t)
 (setq save-interprogram-paste-before-kill t)
 (setq tab-always-indent 'complete)
 (setq tab-width 2)
-(setq whitespace-line-column 100)
-(setq whitespace-style (quote (spaces tabs space-mark tab-mark newline-mark trailing lines-tail)))
 (setq x-select-enable-clipboard t)
 (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 
@@ -70,12 +75,13 @@
 (global-set-key (kbd "M-l")         'downcase-word)
 (global-set-key (kbd "M-c")         'capitalize-word)
 
-(show-paren-mode t)
 (blink-cursor-mode t)
-(global-auto-revert-mode t)
-(global-hl-line-mode +1)
 (delete-selection-mode t)
+(fringe-mode '8)
+(global-auto-revert-mode t)
 (global-display-line-numbers-mode t)
+(global-hl-line-mode +1)
+(show-paren-mode t)
 
 ;; disable line numbers for some modes
 (dolist (mode '(org-mode-hook
