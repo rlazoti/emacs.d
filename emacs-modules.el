@@ -1,3 +1,4 @@
+;(require 'emacs-git-blamed)
 (require 'emacs-indent-guide)
 (require 'emacs-ag)
 (require 'emacs-buffer-move)
@@ -16,6 +17,7 @@
 (require 'emacs-git-timemachine)
 (require 'emacs-highlight-symbol)
 (require 'emacs-ivy)
+(require 'emacs-markdown)
 (require 'emacs-modeline)
 (require 'emacs-multiple-cursors)
 (require 'emacs-run-file)

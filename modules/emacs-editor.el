@@ -77,7 +77,7 @@
 
 (blink-cursor-mode t)
 (delete-selection-mode t)
-(fringe-mode '8)
+(fringe-mode '10)
 (global-auto-revert-mode t)
 (global-display-line-numbers-mode t)
 (global-hl-line-mode +1)
