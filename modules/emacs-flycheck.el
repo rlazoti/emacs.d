@@ -3,6 +3,8 @@
   :after exec-path-from-shell
   :init (global-flycheck-mode)
   :config
+  (setq flycheck-buffer-switch-check-intermediate-buffers t)
+  (setq flycheck-display-errors-delay 0.25)
   (setq-default flycheck-indication-mode 'right-fringe)
   (setq-default right-fringe-width 10)
 

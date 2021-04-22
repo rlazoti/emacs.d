@@ -1,6 +1,7 @@
 (use-package counsel
   :ensure t
   :bind (:map global-map
+              ("M-x" . counsel-M-x)
               ("C-c s" . swiper)
               ("C-c S" . swiper-all)
               :map ivy-minibuffer-map
@@ -29,24 +30,17 @@
   :init
   (ivy-mode 1))
 
-;; (emacs-require-packages '(counsel flx))
+(use-package all-the-icons-ivy-rich
+  :ensure t
+  :after ivy-rich
+  :init (all-the-icons-ivy-rich-mode 1)
+  :config
+  (setq all-the-icons-ivy-rich-icon-size 1.0)
+  )
 
-;; (global-set-key (kbd "C-c s") 'swiper)
-;; (global-set-key (kbd "C-c S") 'swiper-all)
-;; (global-set-key (kbd "C-c C-r") 'ivy-resume)
-;; (global-set-key (kbd "<f4>") 'ivy-resume)
-;; (global-set-key (kbd "M-x") 'counsel-M-x)
-;; (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-;; (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-;; (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-;; (global-set-key (kbd "<f1> l") 'counsel-find-library)
-;; (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-;; (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-;; (global-set-key (kbd "C-c g") 'counsel-git)
-;; (global-set-key (kbd "C-c j") 'counsel-git-grep)
-;; (global-set-key (kbd "C-c k") 'counsel-ag)
-;; (global-set-key (kbd "C-x l") 'counsel-locate)
-;; (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-;; (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+(use-package ivy-rich
+  :ensure t
+  :after counsel
+  :init (ivy-rich-mode 1))
 
 (provide 'emacs-ivy)

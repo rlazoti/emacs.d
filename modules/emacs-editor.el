@@ -14,7 +14,6 @@
 (setq-default fringes-outside-margins t)
 (setq-default highlight-tabs t)
 (setq-default indent-line-function 2)
-(setq-default indicate-empty-lines t)
 (setq-default ispell-program-name "aspell")
 (setq-default show-trailing-whitespace t)
 (setq-default tab-width 2)
@@ -22,7 +21,7 @@
 
 (setq buffer-file-coding-system 'utf-8-unix)
 (setq column-number-mode t)
-(setq default-buffer-file-coding-system 'utf-8)
+;(setq default-buffer-file-coding-system 'utf-8)
 (setq default-file-name-coding-system 'utf-8-unix)
 (setq default-input-method 'portuguese-prefix)
 (setq default-keyboard-coding-system 'utf-8-unix)
@@ -38,7 +37,7 @@
 (setq save-interprogram-paste-before-kill t)
 (setq tab-always-indent 'complete)
 (setq tab-width 2)
-(setq x-select-enable-clipboard t)
+(setq select-enable-clipboard t)
 (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 
 ;; store all backup and autosave files in the tmp dir

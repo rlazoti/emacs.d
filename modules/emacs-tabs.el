@@ -1,12 +1,13 @@
 (use-package centaur-tabs
   :demand
-	:config
+  :config
   (centaur-tabs-mode t)
 
-	:init
-	(setq centaur-tabs-style "wave")
-	(setq centaur-tabs-set-icons t)
-	(setq centaur-tabs-gray-out-icons 'buffer)
+  :init
+  (setq centaur-tabs-style "wave")
+  (setq centaur-tabs-set-icons t)
+  (setq centaur-tabs-gray-out-icons 'buffer)
+  (setq centaur-tabs-set-modified-marker t)
 
   :bind
   ("C-<prior>" . centaur-tabs-backward)
