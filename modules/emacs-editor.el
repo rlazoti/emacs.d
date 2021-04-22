@@ -4,7 +4,6 @@
   (editorconfig-mode 1))
 
 (require 'windmove)
-(require 'whitespace)
 
 (add-hook 'editorconfig-custom-hooks
           (lambda (hash) (setq web-mode-block-padding 0)))
@@ -15,13 +14,11 @@
 (setq-default highlight-tabs t)
 (setq-default indent-line-function 2)
 (setq-default ispell-program-name "aspell")
-(setq-default show-trailing-whitespace t)
 (setq-default tab-width 2)
 (setq-default word-wrap t)
 
 (setq buffer-file-coding-system 'utf-8-unix)
 (setq column-number-mode t)
-;(setq default-buffer-file-coding-system 'utf-8)
 (setq default-file-name-coding-system 'utf-8-unix)
 (setq default-input-method 'portuguese-prefix)
 (setq default-keyboard-coding-system 'utf-8-unix)

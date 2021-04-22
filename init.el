@@ -1,4 +1,4 @@
-1;;; init.el --- Emacs Initialization and Configuration
+;;; init.el --- Emacs Initialization and Configuration
 ;;; Commentary:
 ;;; Code:
 
@@ -72,7 +72,7 @@
  ;; If there is more than one, they won't work right.
  '(mac-emulate-three-button-mouse t)
  '(package-selected-packages
-   '(company-terraform terraform-mode yasnippet-snippets which-key use-package undo-tree symbol-overlay smartparens rainbow-mode quickrun nyan-mode neotree nav-flash multiple-cursors markdown-mode json-mode hl-todo highlight-indent-guides gnu-elpa-keyring-update git-timemachine git-gutter-fringe flycheck-pos-tip fiplr exec-path-from-shell editorconfig dumb-jump drag-stuff doom-themes doom-modeline dimmer counsel company-box centaur-tabs buffer-move all-the-icons-ivy-rich ag)))
+   '(hydra dashboard company-terraform terraform-mode yasnippet-snippets which-key use-package undo-tree symbol-overlay smartparens rainbow-mode quickrun nyan-mode neotree nav-flash multiple-cursors markdown-mode json-mode hl-todo highlight-indent-guides gnu-elpa-keyring-update git-timemachine git-gutter-fringe flycheck-pos-tip fiplr exec-path-from-shell editorconfig dumb-jump drag-stuff doom-themes doom-modeline dimmer counsel company-box centaur-tabs buffer-move all-the-icons-ivy-rich ag)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

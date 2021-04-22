@@ -14,6 +14,7 @@
 (require 'emacs-git-gutter-fringe)
 (require 'emacs-git-timemachine)
 (require 'emacs-highlight-symbol)
+(require 'emacs-hydra)
 (require 'emacs-indent-guide)
 (require 'emacs-ivy)
 (require 'emacs-json)
