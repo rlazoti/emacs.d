@@ -1,5 +1,5 @@
 (use-package yasnippet
-  :hook (text-mode prog-mode conf-mode snippet-mode))
+  :init (yas-global-mode 1))
 
 (use-package yasnippet-snippets
   :after yasnippet)

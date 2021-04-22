@@ -23,6 +23,7 @@
 (require 'emacs-run-file)
 (require 'emacs-smartparens)
 (require 'emacs-tabs)
+(require 'emacs-terraform)
 (require 'emacs-theme)
 (require 'emacs-todo)
 (require 'emacs-undo-tree)
