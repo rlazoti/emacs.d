@@ -2,6 +2,16 @@
   :defer 2
   :bind ("C-c f" . hydra-flycheck/body))
 
+(use-package major-mode-hydra
+  :ensure t
+  :after hydra
+  :bind
+  ("M-SPC" . major-mode-hydra))
+
+(major-mode-hydra-define json-mode nil
+  ("Pretty Print"
+   (("b" json-pretty-print-buffer "buffer"))))
+
 (defhydra hydra-flycheck (:color blue)
   "
   ^
