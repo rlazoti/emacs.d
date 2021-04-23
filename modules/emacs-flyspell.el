@@ -12,11 +12,13 @@
 
 (use-package flyspell
   :defer 1
+  :hook ((markdown-mode org-mode text-mode) . flyspell-mode)
+         (prog-mode . flyspell-prog-mode)
   :custom
   (flyspell-abbrev-p t)
   (flyspell-issue-message-flag nil)
   (flyspell-issue-welcome-flag nil)
-  (flyspell-mode 1))
+  (flyspell-default-dictionary "en_US"))
 
 (use-package flyspell-correct-ivy
   :after flyspell

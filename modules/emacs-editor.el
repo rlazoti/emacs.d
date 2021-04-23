@@ -3,11 +3,21 @@
   :config
   (editorconfig-mode 1))
 
+(use-package goto-line-preview
+  :ensure t
+  :config
+  (global-set-key [remap goto-line] 'goto-line-preview))
+
+(use-package string-inflection
+  :ensure t
+  :defer t)
+
 (require 'windmove)
 
 (add-hook 'editorconfig-custom-hooks
           (lambda (hash) (setq web-mode-block-padding 0)))
 
+(setq-default cursor-in-non-selected-windows t)
 (setq-default display-line-numbers-widen t)
 (setq-default display-line-numbers-width 3)
 (setq-default fringes-outside-margins t)
@@ -15,6 +25,8 @@
 (setq-default indent-line-function 2)
 (setq-default ispell-program-name "aspell")
 (setq-default tab-width 2)
+(setq-default vc-follow-symlinks t)
+(setq-default view-read-only t)
 (setq-default word-wrap t)
 
 (setq buffer-file-coding-system 'utf-8-unix)

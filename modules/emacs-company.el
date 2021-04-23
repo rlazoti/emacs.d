@@ -2,7 +2,12 @@
   :ensure t
   :hook (after-init . global-company-mode)
   :config
-  (setq company-tooltip-width-grow-only t))
+  (setq company-tooltip-width-grow-only t)
+  (setq company-begin-commands '(self-insert-command))
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 2)
+  (setq company-show-numbers t)
+  (setq company-tooltip-align-annotations 't))
 
 (use-package company-box
   :hook (company-mode . company-box-mode)

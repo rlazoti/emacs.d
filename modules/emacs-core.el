@@ -15,6 +15,8 @@
 (setq ring-bell-function 'ignore)                    ; turn off all alarms
 (setq scroll-step 1)                                 ; keyboard scroll one line at a time
 (setq visible-bell nil)                              ; Set up the visible bel
+(setq split-width-threshold 160)
+(setq split-height-threshold nil)
 
 (fset 'yes-or-no-p 'y-or-n-p) ; Ask "y" or "n" instead of "yes" or "no". Yes, laziness is great.
 
@@ -61,6 +63,15 @@
   (interactive)
   (switch-to-buffer (generate-new-buffer "Untitled")))
 
+(defvar *protected-buffers* '("*scratch*" "*Messages*")
+  "Buffers that cannot be killed.")
+
+(defun my/protected-buffers ()
+  "Protects some buffers from being killed."
+  (dolist (buffer *protected-buffers*)
+    (with-current-buffer buffer
+      (emacs-lock-mode 'kill))))
+
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit) ; Make ESC quit prompts
 (global-set-key (kbd "<f9>")      'eshell)
 (global-set-key (kbd "C-x k")     'kill-this-buffer)
@@ -70,5 +81,6 @@
 (global-set-key (kbd "C-c n")     'new-untitled-buffer-frame)
 
 (autoload 'ibuffer "ibuffer" "List buffers." t)
+(add-hook 'after-init-hook #'my/protected-buffers)
 
 (provide 'emacs-core)
