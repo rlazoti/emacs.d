@@ -15,6 +15,7 @@
 (setq ring-bell-function 'ignore)                    ; turn off all alarms
 (setq scroll-step 1)                                 ; keyboard scroll one line at a time
 (setq visible-bell nil)                              ; Set up the visible bel
+(setq echo-keystrokes 0.1)                           ; Show Keystrokes in Progress Instantly
 (setq split-width-threshold 160)
 (setq split-height-threshold nil)
 
