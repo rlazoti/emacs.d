@@ -8,8 +8,6 @@
   (if (file-exists-p abbrev-file-name)
       (quietly-read-abbrev-file)))
 
-
-
 (use-package flyspell
   :defer 1
   :hook ((markdown-mode org-mode text-mode) . flyspell-mode)

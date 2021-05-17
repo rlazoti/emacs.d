@@ -73,13 +73,32 @@
     (with-current-buffer buffer
       (emacs-lock-mode 'kill))))
 
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit) ; Make ESC quit prompts
+(defun visible-buffer-list (&optional buffer-list)
+  "Return a list of visible buffers"
+  (let ((buffers (delete-dups (mapcar #'window-buffer (window-list)))))
+    (if buffer-list
+        (cl-delete-if (lambda (b) (memq b buffer-list))
+                      buffers)
+      (cl-remove-if (lambda (bf) (with-current-buffer bf (derived-mode-p 'dired-mode)))
+                    buffers)
+      (delete-dups buffers)
+      )))
+
+(defun close-all-buffers ()
+  "Close all buffers"
+  (interactive)
+  (mapc 'kill-buffer (visible-buffer-list)))
+
+;(delq (current-buffer) (buffer-list))
+
+(global-set-key (kbd "<escape>")  'keyboard-escape-quit) ; Make ESC quit prompts
 (global-set-key (kbd "<f9>")      'eshell)
 (global-set-key (kbd "C-x k")     'kill-this-buffer)
 (global-set-key (kbd "C-x b")     'ibuffer)
 (global-set-key (kbd "C-<down>")  'scroll-down-keep-cursor)
 (global-set-key (kbd "C-<up>")    'scroll-up-keep-cursor)
 (global-set-key (kbd "C-c n")     'new-untitled-buffer-frame)
+(global-set-key (kbd "H-q")       'close-all-buffers)
 
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 (add-hook 'after-init-hook #'my/protected-buffers)
