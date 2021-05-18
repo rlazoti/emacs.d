@@ -8,9 +8,10 @@
   (setq ruby-insert-encoding-magic-comment nil))
 
 (use-package rubocop
-  :hook (ruby-mode . rubocop-mode)
-  :config
-  (require 'rubocop))
+  :hook (ruby-mode . rubocop-mode))
+
+(use-package rubocopfmt
+  :hook (ruby-mode . rubocopfmt-mode))
 
 (use-package inf-ruby
   :pin melpa-stable
@@ -31,33 +32,52 @@
 ;;         "e" #'bundle-exec
 ;;         "o" #'bundle-open))
 
-(use-package rbenv)
+(use-package yari
+  :ensure t
+  :init
+  (add-hook 'ruby-mode-hook
+            (lambda ()
+              (local-set-key [f5] 'yari))))
+
+(use-package company-inf-ruby
+  :after company inf-ruby
+  :config (add-to-list 'company-backends 'company-inf-ruby))
+
+(use-package ruby-electric
+  :hook (ruby-mode . ruby-eletric-mode))
+
+(use-package rbenv
+  :init
+  ;(setq rbenv-show-active-ruby-in-modeline nil)
+  (global-rbenv-mode))
 
 (use-package rspec-mode
   :mode ("/\\.rspec\\'" . text-mode)
   :init
-  (setq rspec-use-spring-when-possible nil)
-  :config
-  (set-popup-rule! "^\\*\\(rspec-\\)?compilation" :size 0.3 :ttl nil :select t)
-  (map! :localleader
-        :prefix "t"
-        :map (rspec-verifiable-mode-map rspec-dired-mode-map rspec-mode-map)
-        "a" #'rspec-verify-all
-        "r" #'rspec-rerun
-        :map (rspec-verifiable-mode-map rspec-mode-map)
-        "v" #'rspec-verify
-        "c" #'rspec-verify-continue
-        "l" #'rspec-run-last-failed
-        "T" #'rspec-toggle-spec-and-target
-        "t" #'rspec-toggle-spec-and-target-find-example
-        :map rspec-verifiable-mode-map
-        "f" #'rspec-verify-method
-        "m" #'rspec-verify-matching
-        :map rspec-mode-map
-        "s" #'rspec-verify-single
-        "e" #'rspec-toggle-example-pendingness
-        :map rspec-dired-mode-map
-        "v" #'rspec-dired-verify
-        "s" #'rspec-dired-verify-single))
+  (setq rspec-use-rvm nil)
+  (setq rspec-use-spring-when-possible nil))
+
+  ;:config
+  ;(set-popup-rule! "^\\*\\(rspec-\\)?compilation" :size 0.3 :ttl nil :select t)
+  ;; (map :localleader
+  ;;       :prefix "t"
+  ;;       :map (rspec-verifiable-mode-map rspec-dired-mode-map rspec-mode-map)
+  ;;       "a" #'rspec-verify-all
+  ;;       "r" #'rspec-rerun
+  ;;       :map (rspec-verifiable-mode-map rspec-mode-map)
+  ;;       "v" #'rspec-verify
+  ;;       "c" #'rspec-verify-continue
+  ;;       "l" #'rspec-run-last-failed
+  ;;       "T" #'rspec-toggle-spec-and-target
+  ;;       "t" #'rspec-toggle-spec-and-target-find-example
+  ;;       :map rspec-verifiable-mode-map
+  ;;       "f" #'rspec-verify-method
+  ;;       "m" #'rspec-verify-matching
+  ;;       :map rspec-mode-map
+  ;;       "s" #'rspec-verify-single
+  ;;       "e" #'rspec-toggle-example-pendingness
+  ;;       :map rspec-dired-mode-map
+  ;;       "v" #'rspec-dired-verify
+  ;;       "s" #'rspec-dired-verify-single))
 
 (provide 'emacs-ruby)

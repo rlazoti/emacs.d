@@ -1,3 +1,4 @@
+(require 'emacs-lsp)
 (require 'emacs-ag)
 (require 'emacs-buffer-move)
 (require 'emacs-company)
@@ -23,6 +24,7 @@
 (require 'emacs-markdown)
 (require 'emacs-modeline)
 (require 'emacs-multiple-cursors)
+(require 'emacs-popwin)
 (require 'emacs-ruby)
 (require 'emacs-run-file)
 (require 'emacs-sh-script)
