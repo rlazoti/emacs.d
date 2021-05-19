@@ -22,7 +22,7 @@
 
   :bind
   (:map global-map
-        ("<f5>" . neotree-refresh)
-        ("<f6>" . neotree-toggle)))
+        ([f5] . neotree-refresh)
+        ([f6] . neotree-toggle)))
 
 (provide 'emacs-file-explorer)

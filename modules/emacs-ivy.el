@@ -18,14 +18,8 @@
               ("C-d" . ivy-reverse-i-search-kill))
 
   :config
-  ;; double check this
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
-  (setq ivy-initial-inputs-alist nil)
-  (setq ivy-re-builders-alist
-        '((read-file-name-internal . ivy--regex-fuzzy)
-          (counsel-M-x . ivy--regex-fuzzy)
-          (t . ivy--regex-plus)))
 
   :init
   (ivy-mode 1))
@@ -41,6 +35,7 @@
 (use-package ivy-rich
   :ensure t
   :after counsel
-  :init (ivy-rich-mode 1))
+  :init (ivy-rich-mode 1)
+  :config (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line))
 
 (provide 'emacs-ivy)

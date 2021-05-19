@@ -73,7 +73,7 @@
  '(display-buffer-alist '(("\\*quickrun\\*" display-buffer-below-selected)))
  '(mac-emulate-three-button-mouse t)
  '(package-selected-packages
-	 '(popwin inf-ruby counsel-dash js2-mode docker-compose-mode dockerfile-mode docker goto-line-preview beacon company-web counsel-css web-mode yaml-mode major-mode-hydra hydra dashboard company-terraform terraform-mode yasnippet-snippets which-key use-package undo-tree symbol-overlay smartparens rainbow-mode quickrun nyan-mode neotree nav-flash multiple-cursors markdown-mode json-mode hl-todo highlight-indent-guides gnu-elpa-keyring-update git-timemachine git-gutter-fringe flycheck-pos-tip fiplr exec-path-from-shell editorconfig dumb-jump drag-stuff doom-themes doom-modeline dimmer counsel company-box centaur-tabs buffer-move all-the-icons-ivy-rich ag)))
+	 '(poke-line which-key undo-tree doom-themes centaur-tabs smartparens quickrun exec-path-from-shell multiple-cursors doom-modeline all-the-icons-ivy-rich counsel highlight-indent-guides symbol-overlay git-gutter-fringe git-gutter fringe-helper flycheck fiplr neotree string-inflection goto-line-preview editorconfig dumb-jump drag-stuff dimmer company-box company buffer-move ag use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
