@@ -4,17 +4,28 @@
   :interpreter "j?ruby\\(?:[0-9.]+\\)"
   :config
   (setq ruby-insert-encoding-magic-comment nil)
+  (use-package rbenv
+    :init
+    (global-rbenv-mode))
+
   (use-package yari
+    :after popwin
+    :config
+    (push '("\*yari.*" :position :bottom :stick t :regexp t) popwin:special-display-config)
     :bind ("s-i" . yari)))
 
 (use-package rubocop
+  :after ruby-mode
   :hook (ruby-mode . rubocop-mode))
 
 (use-package rubocopfmt
-  :hook (ruby-mode . rubocopfmt-mode))
+  :after ruby-mode
+  :hook (ruby-mode . rubocopfmt-mode)
+  :bind ("C-s-f" . rubocopfmt))
 
 (use-package inf-ruby
   :pin melpa-stable
+  :after ruby-mode
   :hook (ruby-mode . inf-ruby-minor-mode))
 
 (use-package bundler
@@ -30,10 +41,6 @@
   :hook (ruby-mode . ruby-eletric-mode))
 
 ;(use-package ruby-end)
-
-(use-package rbenv
-  :init
-  (global-rbenv-mode))
 
 (use-package rspec-mode
   :mode ("/\\.rspec\\'" . text-mode)
