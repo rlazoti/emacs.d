@@ -1,5 +1,4 @@
 (use-package ruby-mode
-  :after flycheck
   :mode "\\.\\(?:a?rb\\|aslsx\\)\\'"
   :mode "/\\(?:Brew\\|Fast\\)file\\'"
   :interpreter "j?ruby\\(?:[0-9.]+\\)"
@@ -7,7 +6,9 @@
   (setq ruby-insert-encoding-magic-comment nil)
   (use-package ruby-end)
   (use-package rbenv
-    :init (global-rbenv-mode))
+    :init
+    (setq rbenv-show-active-ruby-in-modeline nil)
+    (global-rbenv-mode))
 
   (use-package yari
     :bind ("s-i" . yari)))
@@ -33,10 +34,6 @@
 (use-package company-inf-ruby
   :after company inf-ruby
   :config (add-to-list 'company-backends 'company-inf-ruby))
-
-;; (use-package ruby-electric
-;;   :after ruby-mode
-;;   :hook (ruby-mode . ruby-eletric-mode))
 
 (use-package rspec-mode
   :mode ("/\\.rspec\\'" . text-mode)

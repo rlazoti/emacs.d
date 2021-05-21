@@ -5,7 +5,8 @@
   (nyan-mode t))
 
 (use-package doom-modeline
-  :hook (after-init . doom-modeline-mode)
+  :after flycheck
+  :init (doom-modeline-mode 1)
   :config
   (setq doom-modeline-major-mode-icon nil)
   (setq doom-modeline-height 14)
