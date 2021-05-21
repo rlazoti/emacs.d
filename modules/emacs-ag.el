@@ -1,5 +1,4 @@
 (use-package ag
-  :ensure t
   :bind
   (:map global-map
         ("C-S-s" . ag-project-regexp))

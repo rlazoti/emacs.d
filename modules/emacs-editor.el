@@ -1,15 +1,12 @@
 (use-package editorconfig
-  :ensure t
   :config
   (editorconfig-mode 1))
 
 (use-package goto-line-preview
-  :ensure t
   :config
   (global-set-key [remap goto-line] 'goto-line-preview))
 
 (use-package string-inflection
-  :ensure t
   :defer t)
 
 (require 'windmove)
@@ -67,21 +64,43 @@
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
-(global-set-key (kbd "C-+")         'text-scale-increase)
-(global-set-key (kbd "C--")         'text-scale-decrease)
-(global-set-key (kbd "C-l")         'goto-line)
-(global-set-key (kbd "C-c a")       'align-regexp)
-(global-set-key (kbd "C-c r")       'replace-string)
-(global-set-key (kbd "C-c <left>")  'windmove-left)
-(global-set-key (kbd "C-c <right>") 'windmove-right)
-(global-set-key (kbd "C-c <up>")    'windmove-up)
-(global-set-key (kbd "C-c <down>")  'windmove-down)
-(global-set-key (kbd "M-U")         'upcase-region)
-(global-set-key (kbd "M-L")         'downcase-region)
-(global-set-key (kbd "M-C")         'capitalize-region)
-(global-set-key (kbd "M-u")         'upcase-word)
-(global-set-key (kbd "M-l")         'downcase-word)
-(global-set-key (kbd "M-c")         'capitalize-word)
+(defun next-code-buffer ()
+  (interactive)
+  (let (( bread-crumb (buffer-name) ))
+    (next-buffer)
+    (while
+        (and
+         (string-match-p "^\*" (buffer-name))
+         (not ( equal bread-crumb (buffer-name) )) )
+      (next-buffer))))
+
+(defun previous-code-buffer ()
+  (interactive)
+  (let (( bread-crumb (buffer-name) ))
+    (previous-buffer)
+    (while
+        (and
+         (string-match-p "^\*" (buffer-name))
+         (not ( equal bread-crumb (buffer-name) )) )
+      (previous-buffer))))
+
+(global-set-key [remap next-buffer]     'next-code-buffer)
+(global-set-key [remap previous-buffer] 'previous-code-buffer)
+(global-set-key (kbd "C-+")             'text-scale-increase)
+(global-set-key (kbd "C--")             'text-scale-decrease)
+(global-set-key (kbd "C-l")             'goto-line)
+(global-set-key (kbd "C-c a")           'align-regexp)
+(global-set-key (kbd "C-c r")           'replace-string)
+(global-set-key (kbd "C-c <left>")      'windmove-left)
+(global-set-key (kbd "C-c <right>")     'windmove-right)
+(global-set-key (kbd "C-c <up>")        'windmove-up)
+(global-set-key (kbd "C-c <down>")      'windmove-down)
+(global-set-key (kbd "M-U")             'upcase-region)
+(global-set-key (kbd "M-L")             'downcase-region)
+(global-set-key (kbd "M-C")             'capitalize-region)
+(global-set-key (kbd "M-u")             'upcase-word)
+(global-set-key (kbd "M-l")             'downcase-word)
+(global-set-key (kbd "M-c")             'capitalize-word)
 
 (blink-cursor-mode t)
 (delete-selection-mode t)

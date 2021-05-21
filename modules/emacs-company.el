@@ -1,6 +1,6 @@
 (use-package company
-  :ensure t
   :hook (after-init . global-company-mode)
+
   :config
   (setq company-tooltip-width-grow-only t)
   (setq company-begin-commands '(self-insert-command))
@@ -52,7 +52,6 @@
 
 
 ;; (use-package company-quickhelp
-;;   :ensure t
 ;;    :after company
 ;;    :hook (after-init . company-quickhelp-mode))
 

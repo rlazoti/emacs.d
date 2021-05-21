@@ -1,6 +1,4 @@
 (use-package undo-tree
-  :ensure t
-
   :config
   (global-undo-tree-mode 1)
   (setq undo-tree-visualizer-diff 1)

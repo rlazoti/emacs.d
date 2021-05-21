@@ -1,5 +1,4 @@
-(use-package git-timemachine
-	:ensure t)
+(use-package git-timemachine)
 
 (provide 'emacs-git-timemachine)
 

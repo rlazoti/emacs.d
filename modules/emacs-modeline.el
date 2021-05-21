@@ -1,13 +1,10 @@
-(use-package all-the-icons
-  :ensure t)
+(use-package all-the-icons)
 
 (use-package nyan-mode
-  :ensure t
   :init
   (nyan-mode t))
 
 (use-package doom-modeline
-  :ensure t
   :hook (after-init . doom-modeline-mode)
   :config
   (setq doom-modeline-major-mode-icon nil)

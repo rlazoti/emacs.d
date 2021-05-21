@@ -1,5 +1,4 @@
 (use-package multiple-cursors
-  :ensure t
   :bind
   (:map global-map
         ("C-S-c C-S-c" . mc/edit-lines)

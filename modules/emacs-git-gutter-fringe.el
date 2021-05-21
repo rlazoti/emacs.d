@@ -2,7 +2,6 @@
 (use-package git-gutter)
 
 (use-package git-gutter-fringe
-  :ensure t
   :after (git-gutter fringe-helper)
   :hook (prog-mode . git-gutter-mode)
   :init

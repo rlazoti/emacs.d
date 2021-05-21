@@ -1,5 +1,4 @@
 (use-package neotree
-  :ensure t
   :defer t
   :config
   (setq neo-theme 'ascii)

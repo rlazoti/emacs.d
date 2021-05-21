@@ -1,17 +1,15 @@
 (use-package ruby-mode
+  :after flycheck
   :mode "\\.\\(?:a?rb\\|aslsx\\)\\'"
   :mode "/\\(?:Brew\\|Fast\\)file\\'"
   :interpreter "j?ruby\\(?:[0-9.]+\\)"
   :config
   (setq ruby-insert-encoding-magic-comment nil)
+  (use-package ruby-end)
   (use-package rbenv
-    :init
-    (global-rbenv-mode))
+    :init (global-rbenv-mode))
 
   (use-package yari
-    :after popwin
-    :config
-    (push '("\*yari.*" :position :bottom :stick t :regexp t) popwin:special-display-config)
     :bind ("s-i" . yari)))
 
 (use-package rubocop
@@ -24,8 +22,8 @@
   :bind ("C-s-f" . rubocopfmt))
 
 (use-package inf-ruby
-  :pin melpa-stable
   :after ruby-mode
+  :pin melpa-stable
   :hook (ruby-mode . inf-ruby-minor-mode))
 
 (use-package bundler
@@ -36,11 +34,9 @@
   :after company inf-ruby
   :config (add-to-list 'company-backends 'company-inf-ruby))
 
-(use-package ruby-electric
-  :after ruby-mode
-  :hook (ruby-mode . ruby-eletric-mode))
-
-;(use-package ruby-end)
+;; (use-package ruby-electric
+;;   :after ruby-mode
+;;   :hook (ruby-mode . ruby-eletric-mode))
 
 (use-package rspec-mode
   :mode ("/\\.rspec\\'" . text-mode)

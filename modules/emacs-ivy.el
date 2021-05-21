@@ -1,5 +1,4 @@
 (use-package counsel
-  :ensure t
   :bind (:map global-map
               ("M-x" . counsel-M-x)
               ("C-c s" . swiper)
@@ -25,7 +24,6 @@
   (ivy-mode 1))
 
 (use-package all-the-icons-ivy-rich
-  :ensure t
   :after ivy-rich
   :init (all-the-icons-ivy-rich-mode 1)
   :config
@@ -33,7 +31,6 @@
   )
 
 (use-package ivy-rich
-  :ensure t
   :after counsel
   :init (ivy-rich-mode 1)
   :config (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line))

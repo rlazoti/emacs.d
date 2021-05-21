@@ -3,7 +3,6 @@
   :bind ("C-c f" . hydra-flycheck/body))
 
 (use-package major-mode-hydra
-  :ensure t
   :after hydra
   :bind
   ("M-SPC" . major-mode-hydra)
