@@ -70,10 +70,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(display-buffer-alist '(("\\*quickrun\\*" display-buffer-below-selected)))
- '(mac-emulate-three-button-mouse t)
- '(package-selected-packages
-	 '(poke-line which-key undo-tree doom-themes centaur-tabs smartparens quickrun exec-path-from-shell multiple-cursors doom-modeline all-the-icons-ivy-rich counsel highlight-indent-guides symbol-overlay git-gutter-fringe git-gutter fringe-helper flycheck fiplr neotree string-inflection goto-line-preview editorconfig dumb-jump drag-stuff dimmer company-box company buffer-move ag use-package)))
+ '(mac-emulate-three-button-mouse t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

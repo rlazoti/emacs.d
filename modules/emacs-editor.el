@@ -90,6 +90,7 @@
 (global-display-line-numbers-mode t)
 (global-hl-line-mode +1)
 (show-paren-mode t)
+(size-indication-mode t)
 
 ;; disable line numbers for some modes
 (dolist (mode '(org-mode-hook
