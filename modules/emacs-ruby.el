@@ -13,6 +13,11 @@
   (use-package yari
     :bind ("s-i" . yari)))
 
+(use-package robe
+  :pin melpa-stable
+  :after ruby-mode
+  :hook (ruby-mode . robe-mode))
+
 (use-package rubocop
   :after ruby-mode
   :hook (ruby-mode . rubocop-mode))

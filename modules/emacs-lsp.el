@@ -1,6 +1,6 @@
 (use-package lsp-mode
   :init (setq lsp-keymap-prefix "C-c l")
-  :hook (((ruby-mode) . lsp)
+  :hook (((ruby-mode) . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration))
   :config
   (setq ;lsp-modeline-code-actions-enable nil

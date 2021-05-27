@@ -72,7 +72,8 @@
  ;; If there is more than one, they won't work right.
  '(mac-emulate-three-button-mouse t)
  '(package-selected-packages
-	 '(ruby-end yasnippet-snippets yari which-key web-mode use-package undo-tree symbol-overlay string-inflection smartparens scss-mode ruby-electric rubocopfmt rubocop rspec-mode rbenv quickrun popwin poke-line nyan-mode neotree multiple-cursors markdown-preview-mode major-mode-hydra lsp-ui lsp-ivy js2-mode hl-todo highlight-indent-guides goto-line-preview git-timemachine git-gutter-fringe flyspell-correct-ivy flycheck-posframe flycheck-pos-tip flycheck-popup-tip fiplr exec-path-from-shell emmet-mode editorconfig dumb-jump drag-stuff doom-themes doom-modeline dockerfile-mode docker-compose-mode docker dimmer counsel-css company-web company-terraform company-inf-ruby company-box centaur-tabs bundler buffer-move all-the-icons-ivy-rich ag)))
+	 '(robe yasnippet-snippets yari which-key web-mode use-package undo-tree symbol-overlay string-inflection smartparens scss-mode ruby-end ruby-electric rubocopfmt rubocop rspec-mode rbenv quickrun popwin poke-line nyan-mode neotree multiple-cursors markdown-preview-mode major-mode-hydra lsp-ui lsp-ivy js2-mode hl-todo highlight-indent-guides goto-line-preview gnu-elpa-keyring-update git-timemachine git-gutter-fringe flyspell-correct-ivy flycheck-posframe flycheck-pos-tip flycheck-popup-tip fiplr exec-path-from-shell emmet-mode editorconfig dumb-jump drag-stuff doom-themes doom-modeline dockerfile-mode docker-compose-mode docker dimmer counsel-css company-web company-terraform company-inf-ruby company-box centaur-tabs bundler buffer-move all-the-icons-ivy-rich ag)))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
