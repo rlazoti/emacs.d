@@ -1,8 +1,11 @@
 (use-package all-the-icons)
 
+(use-package minions
+  :init (minions-mode 1))
+
 (use-package nyan-mode
-  :init
-  (nyan-mode t))
+  :config (nyan-mode t)
+  :custom (nyan-animate-nyancat t))
 
 (use-package doom-modeline
   :after flycheck

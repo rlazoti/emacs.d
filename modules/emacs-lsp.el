@@ -1,14 +1,17 @@
 (use-package lsp-mode
   :init (setq lsp-keymap-prefix "C-c l")
   :hook (((ruby-mode) . lsp-deferred)
+         ((typescript-mode) . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration))
   :config
   (setq ;lsp-modeline-code-actions-enable nil
         ;lsp-modeline-diagnostics-enable nil
         lsp-headerline-breadcrumb-enable t
-        lsp-headerline-breadcrumb-segments '(symbols))
+        lsp-enable-links nil)
 
-  (with-eval-after-load 'lsp-mode (mapc #'lsp-flycheck-add-mode '(ruby-mode))))
+  (with-eval-after-load 'lsp-mode (mapc #'lsp-flycheck-add-mode '(ruby-mode typescript-mode))))
+
+;(use-package lsp-treemacs)
 
 (use-package lsp-ui
   :commands lsp-ui-mode

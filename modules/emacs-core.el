@@ -1,6 +1,7 @@
 (setq user-full-name "Rodrigo Lazoti")
 (setq user-mail-address "rodrigolazoti@gmail.com")
 
+;(setq debug-on-error 't)
 (setq confirm-kill-emacs 'y-or-n-p)                  ; Ask "y" or "n" before killing emacs
 (setq confirm-nonexistent-file-or-buffer nil)        ; disable confirmation for creating a new buffer
 (setq create-lockfiles nil)                          ; Preventing the creation of lockfiles
@@ -18,6 +19,8 @@
 (setq echo-keystrokes 0.1)                           ; Show Keystrokes in Progress Instantly
 (setq split-width-threshold 160)
 (setq split-height-threshold nil)
+
+(set 'ad-redefinition-action 'accept) ;ignore "...got redefined" message
 
 (fset 'yes-or-no-p 'y-or-n-p) ; Ask "y" or "n" instead of "yes" or "no". Yes, laziness is great.
 

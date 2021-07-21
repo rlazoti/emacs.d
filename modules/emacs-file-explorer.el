@@ -1,7 +1,8 @@
 (use-package neotree
   :defer t
-  :config
-  (setq neo-theme 'ascii)
+  :init
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+  ;(setq neo-theme 'ascii)
   (setq neo-window-position 'left)
   (setq neo-window-width 40)
   (setq neo-smart-open t)

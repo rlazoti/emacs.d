@@ -18,3 +18,5 @@ docsets/
 network-security.data
 .lsp*
 flycheck_*
+private-modules/*
+!private-modules/.gitkeep

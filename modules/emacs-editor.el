@@ -41,7 +41,7 @@
 (setq ns-right-alternate-modifier nil) ; disable right alt key so I can use PT-br accented chars
 (setq require-final-newline t)
 (setq save-interprogram-paste-before-kill t)
-(setq tab-always-indent 'complete)
+(setq tab-always-indent 'indent)
 (setq tab-width 2)
 (setq select-enable-clipboard t)
 (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))

@@ -33,6 +33,7 @@
 (require 'emacs-terraform)
 (require 'emacs-theme)
 (require 'emacs-todo)
+(require 'emacs-typescript)
 (require 'emacs-undo-tree)
 (require 'emacs-untabify)
 (require 'emacs-web)

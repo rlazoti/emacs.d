@@ -16,11 +16,17 @@
 (defvar emacs-modules-dir (expand-file-name "modules" emacs-dir)
   "The home of the Emacs modules.")
 
+(defvar emacs-private-modules-dir (expand-file-name "modules-private" emacs-dir)
+  "The home of the Emacs private modules.")
+
 (defvar emacs-savefile-dir (expand-file-name "savefile" emacs-dir)
   "This folder stores all the automatically generated save/history-files.")
 
 (defvar emacs-modules-file (expand-file-name "emacs-modules.el" emacs-dir)
   "This file contains a list of modules that will be loaded.")
+
+(defvar emacs-modules-private-file (expand-file-name "emacs-modules-private.el" emacs-dir)
+  "This file contains a list of private modules that will be loaded.")
 
 (require 'package)
 
@@ -54,29 +60,19 @@
 
 ;; add emacs's directories to Emacs's `load-path'
 (add-to-list 'load-path emacs-modules-dir)
-
-;; load the modules
-(when (file-exists-p emacs-modules-file)
-  (load emacs-modules-file))
+(add-to-list 'load-path emacs-private-modules-dir)
 
 ;; OSX specific settings
 (when (eq system-type 'darwin)
   (require 'emacs-osx))
 
+;; load the modules
+(when (file-exists-p emacs-modules-file)
+  (load emacs-modules-file))
+
+;; load private modules
+(when (file-exists-p emacs-modules-private-file)
+  (load emacs-modules-private-file))
+
 (provide 'init)
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(mac-emulate-three-button-mouse t)
- '(package-selected-packages
-	 '(robe yasnippet-snippets yari which-key web-mode use-package undo-tree symbol-overlay string-inflection smartparens scss-mode ruby-end ruby-electric rubocopfmt rubocop rspec-mode rbenv quickrun popwin poke-line nyan-mode neotree multiple-cursors markdown-preview-mode major-mode-hydra lsp-ui lsp-ivy js2-mode hl-todo highlight-indent-guides goto-line-preview gnu-elpa-keyring-update git-timemachine git-gutter-fringe flyspell-correct-ivy flycheck-posframe flycheck-pos-tip flycheck-popup-tip fiplr exec-path-from-shell emmet-mode editorconfig dumb-jump drag-stuff doom-themes doom-modeline dockerfile-mode docker-compose-mode docker dimmer counsel-css company-web company-terraform company-inf-ruby company-box centaur-tabs bundler buffer-move all-the-icons-ivy-rich ag)))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
