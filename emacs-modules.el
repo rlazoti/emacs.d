@@ -28,6 +28,7 @@
 (require 'emacs-ruby)
 (require 'emacs-run-file)
 (require 'emacs-sh-script)
+(require 'emacs-shadowenv)
 (require 'emacs-smartparens)
 (require 'emacs-tabs)
 (require 'emacs-terraform)

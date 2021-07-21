@@ -10,13 +10,21 @@
     (setq rbenv-show-active-ruby-in-modeline nil)
     (global-rbenv-mode))
 
+  (use-package chruby
+    :hook (ruby-mode . chruby-use-corresponding))
+
+  (use-package ruby-hash-syntax)
+
   (use-package yari
     :bind ("s-i" . yari)))
 
 (use-package robe
   :pin melpa-stable
   :after ruby-mode
-  :hook (ruby-mode . robe-mode))
+  :hook (ruby-mode . robe-mode)
+  :config
+  (eval-after-load 'company
+    '(push 'company-robe company-backends)))
 
 (use-package rubocop
   :after ruby-mode
@@ -45,5 +53,9 @@
   :init
   (setq rspec-use-rvm nil)
   (setq rspec-use-spring-when-possible nil))
+
+(use-package minitest
+  :ensure t
+  :hook (ruby-mode . minitest-mode))
 
 (provide 'emacs-ruby)

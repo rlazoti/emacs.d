@@ -1,10 +1,9 @@
 (use-package doom-themes
   :config
   (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t
-        doom-themes-neotree-file-icons t)
+        doom-themes-enable-italic t)
 
-  (load-theme 'doom-vibrant t)
+  (load-theme 'doom-dark+ t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
@@ -15,8 +14,8 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
-(use-package solaire-mode
-  :config
-  (solaire-global-mode +1))
+;; (use-package solaire-mode
+;;   :config
+;;   (solaire-global-mode +1))
 
 (provide 'emacs-theme)

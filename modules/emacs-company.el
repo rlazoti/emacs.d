@@ -8,7 +8,10 @@
   (setq company-idle-delay 0)
   (setq company-minimum-prefix-length 2)
   (setq company-show-numbers t)
-  (setq company-tooltip-align-annotations 't))
+  (setq company-selection-wrap-around t)
+  (setq company-tooltip-align-annotations 't)
+  (setq company-transformers '(company-sort-by-occurrence
+                               company-sort-by-backend-importance)))
 
 (use-package company-box
   :hook (company-mode . company-box-mode)
@@ -52,8 +55,8 @@
             (ElispFace     . ,(all-the-icons-material "format_paint"             :face 'all-the-icons-pink))))))
 
 
-;; (use-package company-quickhelp
-;;    :after company
-;;    :hook (after-init . company-quickhelp-mode))
+(use-package company-quickhelp
+   :after company
+   :hook (after-init . company-quickhelp-mode))
 
 (provide 'emacs-company)
