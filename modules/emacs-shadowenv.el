@@ -1,5 +1,7 @@
 (use-package shadowenv
-  :hook (after-init . shadowenv-global-mode)
+  :after ruby-mode typescript-mode
+  :hook ((ruby-mode . shadowenv-mode)
+         (typescript-mode . shadowenv-mode))
   :custom
   (shadowenv-lighter "S"))
 

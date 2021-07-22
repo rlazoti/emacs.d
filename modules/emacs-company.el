@@ -1,6 +1,5 @@
 (use-package company
   :hook (after-init . global-company-mode)
-;  :bind (:map global-map("C-<tab>" . company-complete))
   :bind ("C-<tab>" . company-complete)
   :config
   (setq company-tooltip-width-grow-only t)

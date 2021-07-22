@@ -58,4 +58,13 @@
   :ensure t
   :hook (ruby-mode . minitest-mode))
 
+(use-package projectile-rails
+  :init
+  (setq projectile-rails-vanilla-command "bin/rails"
+        projectile-rails-spring-command "bin/spring"
+        projectile-rails-zeus-command "bin/zeus")
+  :config
+  (projectile-rails-global-mode)
+  (define-key projectile-rails-mode-map (kbd "s-r") 'hydra-projectile-rails/body))
+
 (provide 'emacs-ruby)
