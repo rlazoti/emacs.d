@@ -9,6 +9,11 @@
 (use-package string-inflection
   :defer t)
 
+(use-package super-save
+  :ensure t
+  :config
+  (super-save-mode +1))
+
 (require 'windmove)
 
 (add-hook 'editorconfig-custom-hooks
@@ -116,6 +121,7 @@
                 term-mode-hook
                 shell-mode-hook
                 neotree-mode-hook
+                treemacs-mode-hook
                 eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 

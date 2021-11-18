@@ -21,3 +21,7 @@ flycheck_*
 modules-private/*
 !modules-private/.gitkeep
 emacs-modules-private.el
+.cache/
+eln-cache/
+projectile.cache
+projectile-bookmarks.eld

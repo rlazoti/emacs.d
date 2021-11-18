@@ -53,8 +53,8 @@
   ;(centaur-tabs-style "wave")
 
   :bind
-  ("C-<prior>" . centaur-tabs-backward)
-  ("C-<next>" . centaur-tabs-forward)
+  ;("C-<prior>" . centaur-tabs-backward)
+  ;("C-<next>" . centaur-tabs-forward)
   ("C-c t k" . centaur-tabs-kill-unmodified-buffers-in-current-group))
 
 (provide 'emacs-tabs)

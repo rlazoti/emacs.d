@@ -6,12 +6,13 @@
   :config
   (setq ;lsp-modeline-code-actions-enable nil
         ;lsp-modeline-diagnostics-enable nil
+        lsp-response-timeout 25
         lsp-headerline-breadcrumb-enable t
         lsp-enable-links nil)
+)
+;  (with-eval-after-load 'lsp-mode (mapc #'lsp-flycheck-add-mode '(ruby-mode typescript-mode))))
 
-  (with-eval-after-load 'lsp-mode (mapc #'lsp-flycheck-add-mode '(ruby-mode typescript-mode))))
-
-;(use-package lsp-treemacs)
+(use-package lsp-treemacs)
 
 (use-package lsp-ui
   :commands lsp-ui-mode

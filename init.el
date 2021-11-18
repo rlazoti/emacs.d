@@ -5,6 +5,10 @@
 (setq gc-cons-threshold (* 512 1024 1024 1024)
       gc-cons-percentage 0.6)
 
+(setq native-comp-async-report-warnings-errors 'silent)
+(setq package-native-compile t)
+(setq native-comp-deferred-compilation t)
+
 (add-hook 'emacs-startup-hook
           (lambda ()
             (setq gc-cons-threshold (* 128 1024 1024)
@@ -76,3 +80,17 @@
 
 (provide 'init)
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(mac-emulate-three-button-mouse t)
+ '(package-selected-packages
+	 '(lsp-treemacs treemacs treemacs-all-the-icons treemacs-icons-dired treemacs-magit treemacs-projectile ruby-hash-syntax chruby yasnippet-snippets yari which-key web-mode use-package undo-tree typescript-mode ts-comint symbol-overlay string-inflection solaire-mode smartparens scss-mode ruby-end rubocopfmt rubocop rspec-mode robe rbenv quickrun projectile popwin nyan-mode neotree multiple-cursors minions markdown-preview-mode major-mode-hydra magit lsp-ui lsp-ivy js2-mode hl-todo highlight-indent-guides graphql-mode goto-line-preview git-timemachine git-gutter-fringe flycheck-pos-tip fiplr exec-path-from-shell emmet-mode editorconfig dumb-jump drag-stuff doom-themes doom-modeline dockerfile-mode docker-compose-mode docker dimmer counsel-css company-web company-terraform company-inf-ruby company-box centaur-tabs bundler buffer-move async all-the-icons-ivy-rich ag)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(blamer-face ((t :foreground "#787BE5" :background nil :height 140 :italic t))))
