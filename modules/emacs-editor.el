@@ -115,6 +115,7 @@
 (global-hl-line-mode +1)
 (show-paren-mode t)
 (size-indication-mode t)
+;; (normal-erase-is-backspace-mode t)
 
 ;; disable line numbers for some modes
 (dolist (mode '(org-mode-hook
@@ -137,5 +138,13 @@
           (goto-char (mark))
           (isearch-repeat-forward)))
     ad-do-it))
+
+;; send formatted code to system clipboard
+;; it has an external dependency: brew install pygments
+(defun formatted-copy (lang &optional b e)
+  "Export region to RTF, and copy it to the clipboard."
+  (interactive "sLanguage: \nr")
+  (shell-command-on-region
+   b e (format "pygmentize -l %s -f rtf -O style=solarized-light | pbcopy" lang)))
 
 (provide 'emacs-editor)

@@ -67,30 +67,30 @@
   (interactive)
   (switch-to-buffer (generate-new-buffer "Untitled")))
 
-(defvar *protected-buffers* '("*scratch*" "*Messages*")
-  "Buffers that cannot be killed.")
+;; (defvar *protected-buffers* '("*scratch*" "*Messages*")
+;;   "Buffers that cannot be killed.")
 
-(defun my/protected-buffers ()
-  "Protects some buffers from being killed."
-  (dolist (buffer *protected-buffers*)
-    (with-current-buffer buffer
-      (emacs-lock-mode 'kill))))
+;; (defun my/protected-buffers ()
+;;   "Protects some buffers from being killed."
+;;   (dolist (buffer *protected-buffers*)
+;;     (with-current-buffer buffer
+;;       (emacs-lock-mode 'kill))))
 
-(defun visible-buffer-list (&optional buffer-list)
-  "Return a list of visible buffers"
-  (let ((buffers (delete-dups (mapcar #'window-buffer (window-list)))))
-    (if buffer-list
-        (cl-delete-if (lambda (b) (memq b buffer-list))
-                      buffers)
-      (cl-remove-if (lambda (bf) (with-current-buffer bf (derived-mode-p 'dired-mode)))
-                    buffers)
-      (delete-dups buffers)
-      )))
+;; (defun visible-buffer-list (&optional buffer-list)
+;;   "Return a list of visible buffers"
+;;   (let ((buffers (delete-dups (mapcar #'window-buffer (window-list)))))
+;;     (if buffer-list
+;;         (cl-delete-if (lambda (b) (memq b buffer-list))
+;;                       buffers)
+;;       (cl-remove-if (lambda (bf) (with-current-buffer bf (derived-mode-p 'dired-mode)))
+;;                     buffers)
+;;       (delete-dups buffers)
+;;       )))
 
-(defun close-all-buffers ()
-  "Close all buffers"
-  (interactive)
-  (mapc 'kill-buffer (visible-buffer-list)))
+;; (defun close-all-buffers ()
+;;   "Close all buffers"
+;;   (interactive)
+;;   (mapc 'kill-buffer (visible-buffer-list)))
 
 ;(delq (current-buffer) (buffer-list))
 
@@ -101,9 +101,9 @@
 (global-set-key (kbd "C-<down>")  'scroll-down-keep-cursor)
 (global-set-key (kbd "C-<up>")    'scroll-up-keep-cursor)
 (global-set-key (kbd "C-c n")     'new-untitled-buffer-frame)
-(global-set-key (kbd "H-q")       'close-all-buffers)
+;;(global-set-key (kbd "H-q")       'close-all-buffers)
 
 (autoload 'ibuffer "ibuffer" "List buffers." t)
-(add-hook 'after-init-hook #'my/protected-buffers)
+;;(add-hook 'after-init-hook #'my/protected-buffers)
 
 (provide 'emacs-core)
