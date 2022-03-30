@@ -14,6 +14,7 @@
 (require 'emacs-font)
 (require 'emacs-git-gutter-fringe)
 (require 'emacs-git-timemachine)
+(require 'emacs-golang)
 (require 'emacs-graphql)
 (require 'emacs-highlight-symbol)
 (require 'emacs-hydra)
@@ -44,8 +45,3 @@
 (require 'emacs-yaml)
 (require 'emacs-yasnippet)
 ;;(require 'emacs-flyspell)
-;;(require 'emacs-popup-switcher)
-;;(require 'emacs-popup-switcher)
-;;(require 'emacs-tabs)
-
-(require 'dev)

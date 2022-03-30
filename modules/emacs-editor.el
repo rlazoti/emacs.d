@@ -9,10 +9,10 @@
 (use-package string-inflection
   :defer t)
 
-(use-package super-save
-  :ensure t
-  :config
-  (super-save-mode +1))
+;; (use-package super-save
+;;   :ensure t
+;;   :config
+;;   (super-save-mode +1))
 
 (require 'windmove)
 
