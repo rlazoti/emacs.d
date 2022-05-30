@@ -13,4 +13,6 @@
 
 (use-package go-gen-test)
 
+(use-package gotest)
+
 (provide 'emacs-golang)
