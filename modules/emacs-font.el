@@ -1,5 +1,9 @@
 (set-face-attribute 'default nil :font "JetBrains Mono" :height 140)
 
+(when (equal system-type 'darwin)
+  (set-fontset-font t 'symbol (font-spec :family "Apple Symbols") nil 'prepend)
+  (set-fontset-font t 'symbol (font-spec :family "Apple Color Emoji") nil 'prepend))
+
 (let ((ligatures `((?-  . ,(regexp-opt '("-|" "-~" "---" "-<<" "-<" "--" "->" "->>" "-->")))
                    (?/  . ,(regexp-opt '("/**" "/*" "///" "/=" "/==" "/>" "//")))
                    (?*  . ,(regexp-opt '("*>" "***" "*/")))

@@ -4,6 +4,11 @@
       whitespace-style
       '(face spaces tabs tab-mark lines-tail trailing))
 
-(global-whitespace-mode t)
+(define-global-minor-mode my-global-whitespace-mode whitespace-mode
+  (lambda ()
+    (unless (derived-mode-p 'org-mode 'term-mode)
+      (whitespace-mode))))
+
+(my-global-whitespace-mode 1)
 
 (provide 'emacs-whitespace)

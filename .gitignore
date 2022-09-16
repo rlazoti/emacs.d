@@ -25,3 +25,7 @@ emacs-modules-private.el
 eln-cache/
 projectile.cache
 projectile-bookmarks.eld
+early-init.el
+org-roam.db
+bookmarks
+.org-id-locations
