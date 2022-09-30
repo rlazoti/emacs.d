@@ -1,8 +1,18 @@
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "DOING(i)" "WAITING(w@/!)" "REVIEW(r)" "|" "DONE(d!)" "CANCELLED(c@)")))
+
 (use-package org-roam
   :ensure t
   :custom
   (org-roam-directory "~/Documents/org-notes")
   (org-roam-completion-everywhere t)
+
+  (org-modern-todo-faces
+   '(("TODO" :background "moss" :foreground "white")
+     ("DOING" :background "blue" :foreground "white")
+     ("WAITING" :background "purple" :foreground "white")
+     ("REVIEW" :background "brown" :foreground "white")
+     ("CANCELLED" :background "red" :foreground "white")))
   :bind (("C-c x l" . org-roam-buffer-toggle)
          ("C-c x f" . org-roam-node-find)
          ("C-c x i" . org-roam-node-insert)
