@@ -1,8 +1,6 @@
 (use-package shadowenv
-  :after ruby-mode typescript-mode exec-path-from-shell
-  :hook ((ruby-mode . shadowenv-mode)
-         (typescript-mode . shadowenv-mode))
-  :custom
-  (shadowenv-lighter "S"))
+  :after exec-path-from-shell
+  :custom (shadowenv-lighter "S")
+  :hook (after-init . shadowenv-global-mode))
 
 (provide 'emacs-shadowenv)

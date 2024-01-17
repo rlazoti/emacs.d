@@ -4,13 +4,13 @@
          ((typescript-mode) . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration))
   :config
-  (setq ;lsp-modeline-code-actions-enable nil
-        ;lsp-modeline-diagnostics-enable nil
-        lsp-response-timeout 25
-        lsp-headerline-breadcrumb-enable t
-        lsp-enable-links nil)
-)
-;  (with-eval-after-load 'lsp-mode (mapc #'lsp-flycheck-add-mode '(ruby-mode typescript-mode))))
+  (setq
+   lsp-disabled-clients '(rubocop-ls ruby-lsp-ls)
+   lsp-response-timeout 25
+   lsp-headerline-breadcrumb-enable t
+   lsp-enable-links nil)
+  )
+                                       ;  (with-eval-after-load 'lsp-mode (mapc #'lsp-flycheck-add-mode '(ruby-mode typescript-mode))))
 
 (use-package lsp-treemacs)
 

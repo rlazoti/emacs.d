@@ -27,7 +27,6 @@
 (require 'emacs-modeline)
 (require 'emacs-multiple-cursors)
 (require 'emacs-org)
-(require 'emacs-org-search)
 (require 'emacs-popwin)
 (require 'emacs-projectile)
 (require 'emacs-ruby)
@@ -47,4 +46,3 @@
 (require 'emacs-whitespace)
 (require 'emacs-yaml)
 (require 'emacs-yasnippet)
-;;(require 'emacs-flyspell)

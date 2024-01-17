@@ -29,3 +29,4 @@ early-init.el
 org-roam.db
 bookmarks
 .org-id-locations
+projects

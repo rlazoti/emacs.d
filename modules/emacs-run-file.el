@@ -1,5 +1,4 @@
 (use-package exec-path-from-shell
-  :after popwin
   :init
   (setq exec-path-from-shell-arguments nil)
   :config

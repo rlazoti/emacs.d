@@ -1,4 +1,4 @@
-(set-face-attribute 'default nil :font "JetBrains Mono" :height 140)
+(set-face-attribute 'default nil :font "JetBrains Mono" :height 160)
 
 (when (equal system-type 'darwin)
   (set-fontset-font t 'symbol (font-spec :family "Apple Symbols") nil 'prepend)

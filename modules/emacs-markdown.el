@@ -42,4 +42,6 @@
             @media (max-width: 767px) { .markdown-body { padding: 15px; } }
           </style>")))
 
+(use-package mermaid-mode)
+
 (provide 'emacs-markdown)

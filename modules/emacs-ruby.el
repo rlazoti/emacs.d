@@ -86,6 +86,6 @@
         projectile-rails-zeus-command "bin/zeus")
   :config
   (projectile-rails-global-mode)
-  (define-key projectile-rails-mode-map (kbd "s-r") 'hydra-projectile-rails/body))
+  (define-key projectile-rails-mode-map (kbd "s-r") 'projectile-rails-command-map))
 
 (provide 'emacs-ruby)

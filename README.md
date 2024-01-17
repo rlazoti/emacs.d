@@ -92,8 +92,8 @@ For JS mode, you'll need to install the following npm packages:
 ``` javascript
 npm install -g jslint
 npm install -g jslint
+npm install -g @mermaid-js/mermaid-cli
 ```
-
 
 ## Author
 

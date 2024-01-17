@@ -8,6 +8,21 @@
 
 (use-package string-inflection
   :defer t)
+(global-unset-key (kbd "C-q"))
+(global-set-key (kbd "C-q C-u") 'my-string-inflection-cycle-auto)
+
+(defun my-string-inflection-cycle-auto ()
+  "Switching by major-mode."
+  (interactive)
+  (cond
+   ((eq major-mode 'emacs-lisp-mode)
+    (string-inflection-all-cycle))
+   ((eq major-mode 'python-mode)
+    (string-inflection-python-style-cycle))
+   ((eq major-mode 'java-mode)
+    (string-inflection-java-style-cycle))
+   (t
+    (string-inflection-ruby-style-cycle))))
 
 ;; (use-package super-save
 ;;   :ensure t
@@ -25,6 +40,7 @@
 (setq-default fringes-outside-margins t)
 (setq-default highlight-tabs t)
 (setq-default indent-line-function 2)
+(setq-default indent-tabs-mode nil)
 (setq-default ispell-program-name "aspell")
 (setq-default tab-width 2)
 (setq-default vc-follow-symlinks t)
@@ -39,7 +55,6 @@
 (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
 (setq default-sendmail-coding-system 'utf-8-unix)
 (setq default-terminal-coding-system 'utf-8-unix)
-(setq indent-tabs-mode nil)
 (setq indicate-buffer-boundaries nil)
 (setq indicate-empty-lines nil)
 (setq locale-coding-system 'utf-8)
@@ -50,6 +65,7 @@
 (setq tab-width 2)
 (setq select-enable-clipboard t)
 (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+(setq isearch-lazy-count t)
 
 ;; store all backup and autosave files in the tmp dir
 (setq backup-directory-alist
