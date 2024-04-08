@@ -43,8 +43,8 @@
 (add-hook 'org-mode-hook 'org-indent-mode)
 
 ;; Remap the change priority keys to use the UP or DOWN key
-(define-key org-mode-map (kbd "C-x <up>") 'org-priority-up)
-(define-key org-mode-map (kbd "C-x <down>") 'org-priority-down)
+;; (define-key org-mode-map (kbd "C-x <up>") 'org-priority-up)
+;; (define-key org-mode-map (kbd "C-x <down>") 'org-priority-down)
 
 ;; Shortcuts for storing links, viewing the agenda, and starting a capture
 (define-key global-map "\C-cl" 'org-store-link)
@@ -117,27 +117,5 @@
      ("WAITING" :background "purple" :foreground "white")
      ("REVIEW" :background "brown" :foreground "white")
      ("CANCELLED" :background "red" :foreground "white"))))
-
-;; (use-package org-modern-indent
-;;   :after org-modern
-;;   :straight (org-modern-indent :host github :repo "jdtsmith/org-modern-indent")
-;;   :hook
-;;   (org-indent-mode . org-modern-indent-mode))
-
-;; (use-package org-easy-img-insert
-;;   :config
-;;   (autoload 'org-easy-img-insert "org-easy-img-insert" "Launch org-easy-img-insert with  org-mode" t)
-;;   (add-hook 'org-mode-hook (lambda () (org-easy-img-insert 1))))
-
-
-;; (use-package org-superstar
-;;   :hook (org-mode . org-superstar-mode))
-
-;; (use-package org-fancy-priorities
-;;   :ensure t
-;;   :hook
-;;   (org-mode . org-fancy-priorities-mode)
-;;   :config
-;;   (setq org-fancy-priorities-list '("❗" "⬆" "⬇" "☕")))
 
 (provide 'emacs-org)

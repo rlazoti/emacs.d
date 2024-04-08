@@ -3,7 +3,8 @@
   :defer t
   :config
   (progn
-    (setq treemacs-deferred-git-apply-delay      0.5
+    (setq treemacs-collapse-dirs                 (if treemacs-python-executable 3 0)
+          treemacs-deferred-git-apply-delay      0.5
           treemacs-follow-after-init             nil
           treemacs-expand-after-init             t
           treemacs-indentation                   2
@@ -28,6 +29,14 @@
           treemacs-width                         40
           treemacs-width-is-initially-locked     nil
           treemacs-workspace-switch-cleanup      nil)
+
+   ; (defun my-treemacs-ignore-file-predicate (file _)
+   ;   (or (string= file ".gitignore")
+   ;       (string-suffix-p ".pyc" file)
+   ;       (string= file "__pycache__")
+   ;       (string-prefix-p ".git/" file)
+   ;       (string-prefix-p ".cache" file)))
+   ; (push #'my-treemacs-ignore-file-predicate treemacs-ignored-file-predicates))
 
     (pcase (cons (not (null (executable-find "git")))
                  (not (null treemacs-python-executable)))
