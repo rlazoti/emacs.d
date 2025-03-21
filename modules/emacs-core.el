@@ -65,11 +65,13 @@
 (defun new-untitled-buffer-frame ()
   "Open a new frame with a buffer named Untitled<N>."
   (interactive)
-  (switch-to-buffer (generate-new-buffer "Untitled")))
+  (let ((buffer (generate-new-buffer "untitled")))
+    (with-current-buffer buffer (prog-mode))
+    (switch-to-buffer buffer)))
 
 (global-set-key (kbd "<escape>")  'keyboard-escape-quit) ; Make ESC quit prompts
 (global-set-key (kbd "<f9>")      'eshell)
-(global-set-key (kbd "C-x k")     'kill-this-buffer)
+(global-set-key (kbd "C-x k")     'kill-current-buffer)
 (global-set-key (kbd "C-x b")     'ibuffer)
 (global-set-key (kbd "C-<down>")  'scroll-down-keep-cursor)
 (global-set-key (kbd "C-<up>")    'scroll-up-keep-cursor)

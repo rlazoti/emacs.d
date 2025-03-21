@@ -5,20 +5,29 @@
          (lsp-mode . lsp-enable-which-key-integration))
   :config
   (setq
-   lsp-disabled-clients '(rubocop-ls ruby-lsp-ls)
    lsp-response-timeout 25
    lsp-headerline-breadcrumb-enable t
    lsp-enable-links nil)
   )
-                                       ;  (with-eval-after-load 'lsp-mode (mapc #'lsp-flycheck-add-mode '(ruby-mode typescript-mode))))
 
-(use-package lsp-treemacs)
+(use-package lsp-treemacs
+  :config (lsp-treemacs-sync-mode 1))
 
 (use-package lsp-ui
   :commands lsp-ui-mode
-  :config (setq lsp-ui-doc-show-with-cursor nil))
+  :config
+  (setq
+   lsp-ui-doc-show-with-cursor nil
+   lsp-ui-sideline-enable t
+   lsp-ui-doc-enable t
+   ;; lsp-ui-peek-enable t
+   )
+  )
 
-(use-package lsp-ivy
-  :commands lsp-ivy-workspace-symbol)
+(use-package dap-mode
+  :after lsp-mode
+  :config (dap-auto-configure-mode)
+  :hook ((ruby-mode . (lambda () (require 'dap-ruby))))
+)
 
 (provide 'emacs-lsp)

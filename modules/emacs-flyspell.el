@@ -1,11 +1,11 @@
-(use-package abbrev
-  :defer 1
-  :custom
-  (abbrev-file-name (expand-file-name ".abbrev_defs" user-emacs-directory))
-  (abbrev-mode 1)
-  :config
-  (if (file-exists-p abbrev-file-name)
-      (quietly-read-abbrev-file)))
+;; (use-package abbrev
+;;   :defer 1
+;;   :custom
+;;   (abbrev-file-name (expand-file-name ".abbrev_defs" user-emacs-directory))
+;;   (abbrev-mode 1)
+;;   :config
+;;   (if (file-exists-p abbrev-file-name)
+;;       (quietly-read-abbrev-file)))
 
 (use-package flyspell
   :defer 1

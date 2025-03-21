@@ -30,3 +30,7 @@ org-roam.db
 bookmarks
 .org-id-locations
 projects
+rake.cache
+abbrev_defs
+.dap-breakpoints
+history

@@ -15,6 +15,6 @@
 (setq inhibit-splash-screen t)
 (setq initial-scratch-message nil)
 
-(global-set-key (kbd "C-x k") 'kill-this-buffer)
+(global-set-key (kbd "C-x k") 'kill-current-buffer)
 (fset 'yes-or-no-p 'y-or-n-p)
 (scroll-bar-mode 0)

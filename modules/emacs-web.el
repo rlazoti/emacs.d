@@ -16,6 +16,7 @@
   :config
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
+  (setq web-mode-enable-current-element-highlight t)
   (setq web-mode-code-indent-offset 2))
 
 (use-package emmet-mode

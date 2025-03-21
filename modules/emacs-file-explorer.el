@@ -28,6 +28,7 @@
           treemacs-space-between-root-nodes      t
           treemacs-width                         40
           treemacs-width-is-initially-locked     nil
+          treemacs-fringe-indicator-mode         'always
           treemacs-workspace-switch-cleanup      nil)
 
    ; (defun my-treemacs-ignore-file-predicate (file _)
@@ -46,7 +47,7 @@
        (treemacs-git-mode 'simple))))
   :bind
   (:map global-map
-        ([f6] . treemacs-display-current-project-exclusively)
+        ([f6] . treemacs-add-and-display-current-project-exclusively)
         ([f5] . treemacs-refresh)))
 ;        ("M-0"       . treemacs-select-window)
 ;        ("C-x t 1"   . treemacs-delete-other-windows)

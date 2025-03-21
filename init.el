@@ -5,6 +5,8 @@
 (setq gc-cons-threshold (* 512 1024 1024 1024)
       gc-cons-percentage 0.6)
 
+(setq read-process-output-max (* 1024 1024))
+
 (setq native-comp-async-report-warnings-errors 'silent)
 (setq package-native-compile t)
 (setq native-comp-deferred-compilation t)
@@ -39,7 +41,7 @@
                          ("melpa-stable" . "https://stable.melpa.org/packages/")
                          ("marmalade" . "https://marmalade-repo.org/packages/")))
 
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
 ;; Enable packages signature verification only if GPG is installed
 (setq package-check-signature (when (executable-find "gpg") 'allow-unsigned))
@@ -86,13 +88,22 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(mac-emulate-three-button-mouse t)
- '(package-selected-packages
-   '(org-modern emojify deadgrep lsp-treemacs treemacs treemacs-all-the-icons treemacs-magit treemacs-projectile ruby-hash-syntax chruby yasnippet-snippets yari which-key web-mode use-package undo-tree typescript-mode ts-comint symbol-overlay string-inflection solaire-mode smartparens scss-mode ruby-end rubocopfmt rubocop rspec-mode robe rbenv quickrun projectile popwin nyan-mode neotree multiple-cursors minions markdown-preview-mode major-mode-hydra magit lsp-ui lsp-ivy js2-mode hl-todo highlight-indent-guides graphql-mode goto-line-preview git-timemachine git-gutter-fringe flycheck-pos-tip fiplr exec-path-from-shell emmet-mode editorconfig dumb-jump drag-stuff doom-themes doom-modeline dockerfile-mode docker-compose-mode docker dimmer counsel-css company-web company-terraform company-inf-ruby company-box centaur-tabs bundler buffer-move async all-the-icons-ivy-rich ag))
- '(safe-local-variable-values '((lsp-enabled-clients . ruby-lsp)))
- '(warning-suppress-types '((comp) (use-package))))
+ '(package-selected-packages nil)
+ '(safe-local-variable-directories '("/Users/rodrigolazoti/src/github.com/Shopify/banking/"))
+ '(safe-local-variable-values
+   '((lsp-enabled-clients rubocop-ls)
+     (lsp-enabled-clients sorbet-ls ruby-lsp-ls)
+     (setf (lsp--client-priority (gethash server 'sorbet-ls)) 1)
+     (lsp-sorbet-as-add-on . t) (lsp-sorbet-use-bundler . t)
+     (lsp-enabled-clients sorbet-ls) (lsp-enabled-clients ruby-lsp-ls)
+     (lsp-enabled-clients '(ruby-ls))
+     (lsp-enabled-clients '(ruby-lsp-ls))
+     (lsp-disabled-clients . sorbet-ls)
+     (lsp-enabled-clients . ruby-lsp)))
+ '(warning-suppress-types '((emacs) (comp) (use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(blamer-face ((t :foreground "#787BE5" :background nil :height 140 :italic t))))
+ '(blamer-face ((t :foreground "#787BE5" :background unspecified :height 140 :italic t))))
