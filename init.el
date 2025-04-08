@@ -88,7 +88,30 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(mac-emulate-three-button-mouse t)
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(aidermacs all-the-icons-ivy-rich blamer browse-at-remote buffer-move
+               bundler centaur-tabs company-box company-inf-ruby
+               company-org-block company-quickhelp company-terraform
+               company-web consult counsel-css counsel-dash dap-mode
+               deadgrep dimmer docker docker-compose-mode
+               dockerfile-mode doom-modeline doom-themes drag-stuff
+               dumb-jump editorconfig emmet-mode exec-path-from-shell
+               flycheck-aspell flycheck-golangci-lint flycheck-pos-tip
+               flyspell-correct-ivy git-gutter-fringe git-link
+               git-timemachine go-gen-test go-mode gotest
+               goto-line-preview gptel graphql-mode helm
+               highlight-indent-guides hl-todo indent-bars js2-mode
+               json-mode lsp-ui magit-delta major-mode-hydra
+               marginalia markdown-preview-mode mermaid-mode minions
+               minitest multiple-cursors nyan-mode orderless
+               org-modern org-wild-notifier outline-indent plz popwin
+               projectile-rails quickrun rbenv robe rspec-mode rubocop
+               rubocopfmt ruby-end ruby-hash-syntax scss-mode
+               shadowenv smartparens string-inflection symbol-overlay
+               treemacs-all-the-icons treemacs-icons-dired
+               treemacs-magit treemacs-projectile ts-comint
+               typescript-mode undo-tree vertico vterm web-mode
+               which-key yari yasnippet-snippets))
  '(safe-local-variable-directories '("/Users/rodrigolazoti/src/github.com/Shopify/banking/"))
  '(safe-local-variable-values
    '((lsp-enabled-clients rubocop-ls)
