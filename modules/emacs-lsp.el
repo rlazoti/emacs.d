@@ -5,10 +5,7 @@
          (lsp-mode . lsp-enable-which-key-integration))
   :config
   (setq
-   lsp-response-timeout 25
-   lsp-headerline-breadcrumb-enable t
-   lsp-enable-links nil)
-  )
+   lsp-response-timeout 25))
 
 (use-package lsp-treemacs
   :config (lsp-treemacs-sync-mode 1))
@@ -20,7 +17,6 @@
    lsp-ui-doc-show-with-cursor nil
    lsp-ui-sideline-enable t
    lsp-ui-doc-enable t
-   ;; lsp-ui-peek-enable t
    )
   )
 

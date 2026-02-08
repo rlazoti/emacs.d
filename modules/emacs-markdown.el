@@ -3,7 +3,6 @@
   :init (setq markdown-command "multimarkdown")
   :hook
   (markdown-mode . (lambda ()
-                     (setq show-trailing-whitespace t)
                      (flyspell-prog-mode)
                      (superword-mode 1)))
   :bind (([remap markdown-move-up] . windmove-up)

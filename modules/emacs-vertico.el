@@ -1,8 +1,7 @@
 (use-package vertico
   :ensure t
   :init
-  (vertico-mode)
-  )
+  (vertico-mode))
 
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
 (use-package savehist
@@ -41,9 +40,21 @@
 (use-package orderless
   :ensure t
   :init
-  (setq completion-styles '(orderless basic)
+  ;; Set orderless as the default completion style with flex as fallback
+  (setq completion-styles '(orderless flex basic)
         completion-category-defaults nil
-        completion-category-overrides '((file (styles partial-completion)))))
+        ;; Allow orderless for all categories including files
+        completion-category-overrides nil)
+  :config
+  ;; Configure orderless for case-insensitive fuzzy matching
+  (setq completion-ignore-case t
+        read-file-name-completion-ignore-case t
+        read-buffer-completion-ignore-case t
+        ;; Configure orderless to include fuzzy matching
+        orderless-matching-styles '(orderless-flex
+                                     orderless-literal
+                                     orderless-regexp
+                                     orderless-initialism)))
 
 ;; Enable rich annotations using the Marginalia package
 (use-package marginalia
@@ -117,19 +128,16 @@
   ;; The :init configuration is always executed (Not lazy)
   :init
 
-  ;; Optionally configure the register formatting. This improves the register
-  ;; preview for `consult-register', `consult-register-load',
-  ;; `consult-register-store' and the Emacs built-ins.
-  (setq register-preview-delay 0.5
-        register-preview-function #'consult-register-format)
-
-  ;; Optionally tweak the register preview window.
-  ;; This adds thin lines, sorting and hides the mode line of the window.
+  ;; Tweak the register preview for `consult-register-load',
+  ;; `consult-register-store' and the built-in commands.  This improves the
+  ;; register formatting, adds thin separator lines, register sorting and hides
+  ;; the window mode line.
   (advice-add #'register-preview :override #'consult-register-window)
+  (setq register-preview-delay 0.5)
 
   ;; Use Consult to select xref locations with preview
-  ;; (setq xref-show-xrefs-function #'consult-xref
-  ;;       xref-show-definitions-function #'consult-xref)
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref)
 
   ;; Configure other variables and modes in the :config section,
   ;; after lazily loading the package.
@@ -142,14 +150,13 @@
   ;; (setq consult-preview-key (list (kbd "<S-down>") (kbd "<S-up>")))
   ;; For some commands and buffer sources it is useful to configure the
   ;; :preview-key on a per-command basis using the `consult-customize' macro.
+
   (consult-customize
-   consult-theme
-   :preview-key '(:debounce 0.2 any)
-   consult-ripgrep consult-git-grep consult-grep
+   consult-theme :preview-key '(:debounce 0.2 any)
+   consult-ripgrep consult-git-grep consult-grep consult-man
    consult-bookmark consult-recent-file consult-xref
-   consult--source-bookmark consult--source-recent-file
-   consult--source-project-recent-file  ;
-   :preview-key (kbd "M-["))
+   ;; :preview-key "M-["
+   :preview-key '(:debounce 0.4 any))
 
   ;; Optionally configure the narrowing key.
   ;; Both < and C-+ work reasonably well.

@@ -82,4 +82,7 @@
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 ;;(add-hook 'after-init-hook #'my/protected-buffers)
 
+;; suppress emacs warning 
+(add-to-list 'warning-suppress-types '(emacs))
+
 (provide 'emacs-core)

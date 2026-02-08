@@ -1,4 +1,10 @@
-(use-package vterm)
+(use-package vterm
+  :defer t
+  :config
+  ;; Kill buffer when process exits
+  (setq vterm-kill-buffer-on-exit t)
+  ;; Increase scrollback
+  (setq vterm-max-scrollback 10000))
 
 (defun emacs-setenv-vterm (var value)
   (let* ((prefix (s-concat var "="))
@@ -6,27 +12,32 @@
          (without (-remove-first (lambda (v) (s-starts-with? prefix v)) vterm-environment)))
     (setq vterm-environment (cons new-value without))))
 
-(defun emacs-aidermacs-before-run ()
-  (emacs-setenv-vterm "OPENAI_API_KEY" (emacs-openai-api-key)))
+;; Required dependencies for claude-code-ide
+(use-package websocket)
+(use-package transient)
+(use-package web-server)
 
-(use-package aidermacs
-  :bind (("C-c q" . aidermacs-transient-menu))
-  :init
-  (add-hook 'aidermacs-before-run-backend-hook #'emacs-aidermacs-before-run)
+(use-package claude-code-ide
+  :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
+  :bind ("C-c C-'" . claude-code-ide-menu)
   :config
-  (setq aidermacs-extra-args '("--config" "~/.aider/aider.conf.yml"))
-  (setq aidermacs-backend 'vterm)
-  (setq aidermacs-show-diff-after-change nil)
-  (setq aidermacs-vterm-multiline-newline-key "S-<return>"))
+  (require 'claude-code-ide-emacs-tools)
+  (setq claude-code-ide-enable-mcp-server t)
+  (setq claude-code-ide-cli-path "~/.bin/dcx")
+  (claude-code-ide-emacs-tools-setup)
+  ;; Disable line numbers in Claude buffers
+  (add-hook 'vterm-mode-hook
+            (lambda ()
+              (when (string-match-p "^\\*claude-code\\[" (buffer-name))
+                (display-line-numbers-mode -1)))))
 
-(use-package gptel
-  :bind (("C-c w" . gptel-menu))
-  :config
-  (setq gptel-api-key #'emacs-openai-api-key)
-  (setq gptel-log-level 'debug)
-  (setq gptel-use-curl t)
-  (setq gptel--openai-models nil)
-  (setq-default gptel-backend shopify-gptel
-                gptel-model   'anthropic:claude-3-7-sonnet-20250219))
+;; (use-package copilot
+;;   :vc (:url "https://github.com/copilot-emacs/copilot.el"
+;;             :rev :newest
+;;             :branch "main")
+;;   :bind (("C-`" . copilot-accept-completion))
+;;   :config
+;;   (add-hook 'prog-mode-hook 'copilot-mode)
+;;   (add-to-list 'copilot-major-mode-alist '("enh-ruby" . "ruby")))
 
 (provide 'emacs-ai)
