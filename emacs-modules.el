@@ -30,6 +30,7 @@
 (require 'emacs-outline-indent)
 (require 'emacs-popwin)
 (require 'emacs-projectile)
+(require 'emacs-python)
 (require 'emacs-ruby)
 (require 'emacs-run-file)
 (require 'emacs-search)
