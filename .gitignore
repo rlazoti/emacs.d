@@ -1,0 +1,47 @@
+# This repository is my Emacs configuration.
+#
+# early-init.el, init.el and .LICENSE are the base configuration and are
+# tracked.  Upstream's own .gitignore (a `*' allow-list) was replaced on
+# purpose: it hid every file of mine from git.  Nothing here is merged from
+# anywhere, so this file is never in a merge.
+
+# Generated state. pre-early-init.el points `user-emacs-directory' here, so
+# packages, caches, bookmarks, undo history and native compilation all land in
+# var/ and nothing else is written to the repository root.
+/var/
+
+# Settings written by M-x customize.
+/custom.el
+
+# The private layer: identity, machine paths, employer tooling.  The contents
+# are ignored, not the directory itself, because git cannot re-include a file
+# inside a directory it has already excluded: that is what keeps the .gitkeep.
+/modules-private/*
+!/modules-private/.gitkeep
+/modules-private.el
+
+# tree-sitter grammars (binary .so files, installed by M-x rl-treesit-install-missing)
+/tree-sitter/
+
+# Compiled Elisp.
+*.elc
+
+# Leftovers of the old config layout, if a file is ever copied back in.
+/savefile/
+/eln-cache/
+/packages/
+/elpa/
+/auto-save-list/
+/eshell/
+/url/
+/semanticdb/
+/tramp
+/recentf
+/saveplace
+/abbrev_defs
+/projectile.cache
+/projectile-bookmarks.eld
+/.mc-lists.el
+/network-security.data
+/eca/
+/org-persist/
