@@ -133,7 +133,10 @@
 ;;; The documentation popup lives in corfu-popupinfo.el, another file of the
 ;;; same package, so it gets its own form: setting `corfu-popupinfo-delay'
 ;;; before that file loads would be overwritten by its own `defcustom'.
+;;; `:ensure nil' because corfu-popupinfo is not a package: without it,
+;;; `use-package' tries to install a package that no archive has.
 (use-package corfu-popupinfo
+  :ensure nil
   :after corfu
   :custom
   (corfu-popupinfo-delay '(0.2 . 0.1))
