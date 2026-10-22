@@ -21,7 +21,16 @@
   :ensure nil
   :bind (("C-c l" . org-store-link)
          ("C-c c" . org-capture)
-         ("C-c g" . org-agenda))
+         ("C-c g" . org-agenda)
+         :map org-mode-map
+         ;; Org puts the structural shifts on C-c <arrow>, the same chords
+         ;; rl-keys.el uses for the windows; the mode map won and the cursor
+         ;; never moved.  S-<arrow> is the same four commands, so unbinding
+         ;; here costs nothing.
+         ("C-c <left>"  . nil) ; org-shiftleft  -> S-<left>
+         ("C-c <right>" . nil) ; org-shiftright -> S-<right>
+         ("C-c <up>"    . nil) ; org-shiftup    -> S-<up>
+         ("C-c <down>"  . nil)) ; org-shiftdown -> S-<down>
   :custom
   (org-todo-keywords
    '((sequence "TODO(t)" "DOING(i!)" "WAITING(w@/!)" "REVIEW(r!)"

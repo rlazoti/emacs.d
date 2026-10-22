@@ -188,6 +188,12 @@ default.
 
 Private modules add their own chords; `C-h f <command>` finds them.
 
+`C-c left/right/up/down` are the window chords, and `markdown-mode` and
+`org-mode` also bind them (subtree edits, structural shifts). A mode map beats
+the global map, so both are unbound in those two modes: the commands stay on
+`S-left/right/up/down` in Org and on `C-c C--`, `C-c C-=` and `C-c C-x u/d/l/r`
+in Markdown. Every other mode keeps its own `C-c <arrow>` bindings.
+
 
 What is not here, and why
 -------------------------

@@ -26,7 +26,9 @@
    ([remap previous-buffer] . rl-previous-code-buffer)
 
    ;; Windows.  The frame is usually split left/right, so these match the
-   ;; physical layout of the keys.
+   ;; physical layout of the keys.  markdown-mode and org-mode bind the same
+   ;; four chords and a mode map beats this one, so rl-markdown.el and
+   ;; rl-org.el unbind them there.
    ("C-c <left>"  . windmove-left)
    ("C-c <right>" . windmove-right)
    ("C-c <up>"    . windmove-up)
