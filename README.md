@@ -196,6 +196,7 @@ default.
 | `C-c l f`     | format buffer (Eglot)                           |
 | `C-c l a`     | code actions (Eglot)                            |
 | `C-c l j`     | find declaration (Eglot)                        |
+| `C-c l d`     | diagnostics reported by the server (Flymake)    |
 | `M-s v`       | search workspace symbols (consult-eglot)        |
 | `F5` / `F6`   | Treemacs refresh / show current project         |
 | `F7` / `F8`   | run region / run file (quickrun)                |
@@ -209,6 +210,26 @@ Private modules add their own chords; `C-h f <command>` finds them.
 the global map, so both are unbound in those two modes: the commands stay on
 `S-left/right/up/down` in Org and on `C-c C--`, `C-c C-=` and `C-c C-x u/d/l/r`
 in Markdown. Every other mode keeps its own `C-c <arrow>` bindings.
+
+
+Who reports diagnostics
+-----------------------
+
+Eglot turns on Flymake in every buffer it manages and Flycheck is global, so on a
+buffer with a server both engines report: two fringe marker sets and two error
+lists, of which `M-g f`, `M-g F` and `C-c f` read only the Flycheck one. One of
+the two is therefore turned off per language instead.
+
+- Ruby keeps Flycheck. RuboCop is the Ruby linter of record, and the private
+  module formats with it.
+- Python hands diagnostics to the server. Flycheck's only Python checker here is
+  `py_compile`, which reports syntax and nothing else.
+
+Each choice is one function call in the language module, and `rl-lsp.el` holds
+both options with the reasoning. A buffer with no server is not managed by Eglot,
+so it keeps Flycheck either way, and the choice only ever gives up an engine that
+is not running. Where the server reports, `C-c l d` is the error list (`M-g f`
+is Flycheck's).
 
 
 What is not here, and why

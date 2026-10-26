@@ -28,8 +28,14 @@
   :custom
   (ruby-insert-encoding-magic-comment nil)
   :config
-  (add-hook 'ruby-mode-hook #'eglot-ensure)
-  (add-hook 'ruby-ts-mode-hook #'eglot-ensure))
+  ;; Diagnostics: Flycheck keeps them.  `rl-eglot-keep-flycheck' is one of the
+  ;; two options listed in rl-lsp.el, chosen here because RuboCop -- which the
+  ;; private module installs, with `rubocopfmt' doing the formatting with it --
+  ;; is the Ruby linter of record.  `eglot-ensure' connects later, on
+  ;; `post-command-hook', so the order of these two lines does not matter.
+  (dolist (hook '(ruby-mode-hook ruby-ts-mode-hook))
+    (add-hook hook #'rl-eglot-keep-flycheck)
+    (add-hook hook #'eglot-ensure)))
 
 (use-package inf-ruby
   :after ruby-mode
