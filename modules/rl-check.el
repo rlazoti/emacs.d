@@ -14,6 +14,15 @@
 ;;; Code:
 
 (use-package flycheck
+  ;; Loading Flycheck is the most expensive single thing in this configuration
+  ;; (400 ms of the 2.4 s: flycheck.el itself, plus dash, f, spinner and the
+  ;; fringe bitmaps it defines on a display), and at startup there is nothing for
+  ;; it to check.  `global-flycheck-mode' is a globalized minor mode whose
+  ;; per-buffer predicate only turns Flycheck on where a checker exists, so
+  ;; adding `flycheck-mode' to the three families that have checkers -- the same
+  ;; three `stripspace' and `indent-bars' use in rl-ui.el -- reaches the same
+  ;; buffers, one step later: the first programming buffer, instead of the first
+  ;; second of every session.
   :custom
   (flycheck-idle-change-delay 1.0)
   (flycheck-display-errors-delay 0.25)
@@ -23,10 +32,13 @@
   :config
   ;; Check on save and on mode enable, not on every newline.
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  :init (global-flycheck-mode))
+  :hook ((prog-mode text-mode conf-mode) . flycheck-mode))
 
+;;; `:commands', not `:after flycheck': with `:after' the command exists only
+;;; once Flycheck has loaded, which it now may not have.  The autoload does the
+;;; right thing either way, because `consult-flycheck' requires Flycheck itself.
 (use-package consult-flycheck
-  :after flycheck
+  :commands (consult-flycheck)
   :bind ("M-g F" . consult-flycheck))
 
 ;;; The old hydra menu, rewritten with `transient', which is built into Emacs.

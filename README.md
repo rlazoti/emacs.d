@@ -21,7 +21,8 @@ The first start installs the packages that the modules declare, so it takes a
 while and prints progress in the echo area. Nothing else is needed.
 
 To install without starting Emacs, then get the byte-compiled modules before
-the first real start (startup is 2.0 s compiled, 7-12 s from source):
+the first real start (1.90 s compiled, 1.99 s from source; see "Startup" at the
+end of this file):
 
     cd ~/.emacs.d
     make install-deps
@@ -270,6 +271,9 @@ Behaviour that changed on purpose:
   (`global-auto-revert-mode`, already set by the base configuration).
 - Line numbers, indent guides and hl-line are on in every buffer except Org,
   Magit, Dired, Treemacs, eshell and terminal buffers.
+- Flycheck checks the first programming buffer rather than the first second of
+  the session; Blamer appears half a second after the frame rather than during
+  it. Both are in the table under "Where the time went".
 
 
 Maintenance
@@ -301,14 +305,44 @@ exist (`wgrep-change-on-exit`, `magit-clone-set-remote-HEAD`,
 `corfu-echo-documentation`, `eshell-continuation`,
 `mac-emulate-three-button-mouse`).
 
-Startup, measured on this machine (Emacs 31.1, ~60 packages):
+Startup, measured on this machine (Emacs 31.1, ~60 packages, `make startup`,
+which is a real frame in a pseudo terminal):
 
-    byte-compiled modules     2.0 s
-    source only              7-12 s
+    now, byte-compiled modules     1.90 s
+    now, source only               1.99 s
+    before the deferrals below     3.15 s compiled, 3.16 s from source
+    batch load of both init files  1.11 s
 
-So run `make compile` after a fresh checkout, and again after touching modules.
+Two things in those numbers are worth knowing. Byte-compiling the modules is
+worth about 100 ms, not the 5x this file used to claim: what was expensive was
+never the 21 kB of my Elisp, it was the packages that loading it pulled in — so
+`make compile` stays worth running after a checkout, and the earlier "7-12 s
+from source" was measuring something else (it does not reproduce). And the big
+win is the second line of the bottom pair: fewer packages on the critical path.
+
 Native compilation of the modules (`batch-native-compile`) made no measurable
-difference at 21 kB of Elisp, so the Makefile does not do it.
+difference, so the Makefile does not do it.
+
+### Where the time went, and what moved
+
+Attribution was done by wrapping the `require` calls of `post-init.el` in
+`float-time` and starting a real frame once — the four heaviest modules were
+`rl-git` 421 ms, `rl-check` 419 ms, `rl-web` 323 ms, `rl-markdown` 311 ms of a
+2.4 s init. Deferring what has an autoload got 1.28 s back:
+
+| Change | Cost at startup | Why it is safe |
+|--------|-----------------|----------------|
+| `blamer` starts from a 0.5 s idle timer | 350 ms | blamer.el pulls Magit in; the globalized minor mode covers every buffer whenever it is turned on, and Blamer waits `blamer-idle-time` (2 s) before drawing anything |
+| `flycheck` on `prog`/`text`/`conf` hooks instead of `global-flycheck-mode` at init | ~350 ms | its own per-buffer predicate only ever enabled it where a checker exists; same three mode families `stripspace` and `indent-bars` use |
+| `ediff`, `css-mode`, `mermaid-mode` marked `:defer t` | ~350 ms together | each only carries `:custom`/`face` settings that nothing reads before the mode runs, and all three are autoloaded by `package.el` |
+
+The measurement, not the table, is the part to keep: a first pass "proved"
+`exec-path-from-shell` cost 1.37 s, which turned out to be a broken patch that
+made init exit early (it is 150 ms), and timing every `require` with advice more
+than doubled the init it was measuring. Two Emacs facts make the rest of it
+workable: `--eval` on the command line runs *after* init, so that is where
+measurement code goes, and a run that never reaches the command loop runs no
+idle timers at all, so a timer-driven change cannot be verified headlessly.
 
 Two Emacs 31 details that cost time if you do not know them:
 

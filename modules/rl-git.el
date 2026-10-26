@@ -32,6 +32,7 @@
   (setq vc-handled-backends '(Git)))
 
 (use-package blamer
+  :commands (global-blamer-mode blamer-mode blamer-show-commit-info)
   :custom
   (blamer-idle-time 2)
   (blamer-min-offset 70)
@@ -42,8 +43,23 @@
                    :height 140 :italic t)))
   :config
   (setq blamer-bindings
-        '(("<mouse-1>" . rl-blamer-show-commit-diff)))
+        '(("<mouse-1>" . rl-blamer-show-commit-diff))))
+
+;;; Starting Blamer without paying for it at startup
+;; `global-blamer-mode' is a globalized minor mode: turning it on once covers
+;; every buffer, present and future, so it does not have to happen during init.
+;; It is worth 350 ms of the 2.4 s this configuration takes, because blamer.el
+;; pulls Magit in to read a commit.  An idle timer keeps the behaviour identical
+;; where it is observable at all: Blamer itself waits `blamer-idle-time' (2 s)
+;; before drawing anything, so loading it in the first idle moment after startup
+;; cannot be seen.  A timer does not run in batch, which is also why
+;; `make check-load' cannot catch a mistake here -- the commands being
+;; autoloaded are what prove it still loads.
+(defun rl-blamer-start ()
+  "Load Blamer and turn it on for every buffer."
   (global-blamer-mode 1))
+
+(run-with-idle-timer 0.5 nil #'rl-blamer-start)
 
 (defun rl-blamer-show-commit-diff (commit-info)
   "Show the diff of the commit COMMIT-INFO in Magit."
@@ -64,6 +80,7 @@
 
 (use-package ediff
   :ensure nil
+  :defer t                       ; nothing here is read before Ediff runs
   :custom
   ;; Put the Ediff windows and the frame on the same level (base sets the same
   ;; value; kept here so the intent survives an upstream change).

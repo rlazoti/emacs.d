@@ -36,7 +36,7 @@
   (markdown-asymmetric-header t)
   :hook (markdown-mode . superword-mode)) ; words are camelCase in docs too
 
-(use-package mermaid-mode)
+(use-package mermaid-mode :defer t)          ; a mode you visit, not a default
 
 (provide 'rl-markdown)
 ;;; rl-markdown.el ends here

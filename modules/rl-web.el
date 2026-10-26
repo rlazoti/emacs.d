@@ -38,6 +38,7 @@
 
 (use-package css-mode
   :ensure nil
+  :defer t                          ; `css-indent-offset' is read in .css buffers
   :custom (css-indent-offset 2))
 
 (use-package less-css-mode
