@@ -42,6 +42,17 @@ compile:
 clean-elc:
 	rm -f modules/*.elc modules-private/*.elc
 
+# Make the byte-code that package.el installed newer than the source beside it.
+# A tarball can unpack with the .el a few milliseconds newer than the .elc, and
+# `load' reads that as "the byte-code is stale": it uses the source and compiles
+# it again on every load, printing warnings about third-party code each time.
+# Nothing is recompiled here, only timestamps, so the native-compilation cache
+# stays valid and upstream sources are untouched.  `make doctor' counts them.
+elpa-elc:
+	$(EMACS) --init-directory "$(CURDIR)" -Q --batch \
+		--load "$(CURDIR)/early-init.el" --load "$(CURDIR)/init.el" \
+		--eval '(rl-doctor-fix-byte-code)' --kill
+
 # The packages the modules declare.  package-deps.el configures package.el
 # itself because --batch implies -q in Emacs 31.
 list-deps:
@@ -49,6 +60,7 @@ list-deps:
 
 install-deps:
 	$(EMACS) -Q --batch -l package-deps.el -- --install
+	$(MAKE) elpa-elc
 
 # Start Emacs with this configuration, without touching ~/.emacs.d.
 run:
@@ -85,4 +97,4 @@ doctor:
 		--eval '(mapc (lambda (line) (princ (concat line "\n"))) (rl-doctor-report))' \
 		--kill
 
-.PHONY: check-syntax check-load validate compile clean-elc list-deps install-deps run run-debug startup startup-load grammars doctor
+.PHONY: check-syntax check-load validate compile clean-elc elpa-elc list-deps install-deps run run-debug startup startup-load grammars doctor

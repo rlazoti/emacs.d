@@ -134,7 +134,11 @@ After install
    now, which install won when two share a name (an rbenv shim is not a Homebrew
    binary), the command that adds the missing one, and whether that mode starts
    the server on its own. `aspell`, `rg` and the other non-server absences are in
-   the same report.
+   the same report, along with three things a buffer cannot show you: packages
+   installed that nothing wants (a deleted `use-package` never uninstalls, so
+   nine are here inert), byte-code older than its source, and modes that are
+   configured and never turned on — `doom-modeline` is deferred behind
+   `:after nerd-icons`, nothing loads `nerd-icons`, and no error says so.
 
 4. Optional, if you want them:
 
@@ -284,8 +288,9 @@ Maintenance
     make validate       # check every :custom / :custom-face name really exists
     make list-deps      # the packages the modules declare
     make install-deps   # install them without starting Emacs
-    make compile        # byte-compile modules/ (big effect on startup, see below)
-    make doctor         # what is missing: servers, grammars, programs, .elc files
+    make compile        # byte-compile modules/ (for its warnings, not speed)
+    make elpa-elc       # make package byte-code newer than its source again
+    make doctor         # what is missing: servers, grammars, programs, packages
     make startup        # time a real start, 3 runs
     make startup-load   # time the same Elisp in batch, no GUI frame
     make grammars       # compile the tree-sitter grammars that are missing
@@ -305,20 +310,39 @@ exist (`wgrep-change-on-exit`, `magit-clone-set-remote-HEAD`,
 `corfu-echo-documentation`, `eshell-continuation`,
 `mac-emulate-three-button-mouse`).
 
-Startup, measured on this machine (Emacs 31.1, ~60 packages, `make startup`,
-which is a real frame in a pseudo terminal):
+Startup, measured on this machine (Emacs 31.1, 83 packages installed, `make
+startup`, which is a real frame in a pseudo terminal):
 
-    now, byte-compiled modules     1.90 s
-    now, source only               1.99 s
-    before the deferrals below     3.15 s compiled, 3.16 s from source
-    batch load of both init files  1.11 s
+    now, byte-compiled modules        1.67 s
+    now, from source (no .elc)        1.68 s
+    before `make elpa-elc' (below)    1.90 s
+    before the deferrals (below)      3.15 s
+    batch load of both init files     1.00 s
 
-Two things in those numbers are worth knowing. Byte-compiling the modules is
-worth about 100 ms, not the 5x this file used to claim: what was expensive was
-never the 21 kB of my Elisp, it was the packages that loading it pulled in — so
-`make compile` stays worth running after a checkout, and the earlier "7-12 s
-from source" was measuring something else (it does not reproduce). And the big
-win is the second line of the bottom pair: fewer packages on the critical path.
+Byte-compiling *my* modules is the top pair: 1.674 s against 1.679 s over five
+alternating runs, indistinguishable, and not the 5x this file used to claim.
+What was expensive was never the 21 kB of my Elisp, it was the packages loading
+it pulled in — so `make compile` stays worth running after a checkout for the
+warnings it produces, not for speed, and the earlier "7-12 s from source" was
+measuring something else (it does not reproduce).
+
+The 1.90 s to 1.67 s step is `make elpa-elc`, worth explaining because it was
+invisible from inside Emacs. `package.el` unpacks a tarball whose `.el` and
+`.elc` were written in the same second, and here 108 of 316 libraries came out
+with the source a few milliseconds *newer* than the byte-code beside it. `load`
+reads a newer source as "the byte-code is stale": it uses the source instead,
+compiles it, and prints whatever the compiler says about code nobody here owns.
+That is where
+
+    var/elpa/blamer-20251001.620/blamer.el: Warning: `when-let' is an obsolete
+    macro (as of 31.1); use `when-let*' or `and-let*' instead.
+
+came from, on every start, for packages that were fine. `vertico.el` and
+`corfu-popupinfo.el` were two of the libraries loaded at startup this way.
+`make doctor` counts them, and `make elpa-elc` (or `M-x rl-doctor-fix-byte-code`)
+makes the timestamps agree — it recompiles nothing, so the native-compilation
+cache stays valid and upstream's source is not touched. Installing or upgrading
+packages puts the timestamps out of order again, so `make install-deps` runs it.
 
 Native compilation of the modules (`batch-native-compile`) made no measurable
 difference, so the Makefile does not do it.
