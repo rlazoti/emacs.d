@@ -112,12 +112,28 @@ After install
    `a.html` stays in `web-mode` and `a.scss` in `scss-mode` on purpose: neither
    has a grammar here.
 
-3. Language servers, installed outside Emacs:
+3. Language servers. Emacs 31 has Eglot and no server: Eglot starts a program
+   that Emacs does not install and does not download. Two languages start a
+   server by themselves here — Ruby and Python, the modes whose hooks carry
+   `eglot-ensure` (see `modules/rl-lsp.el`) — so those are the two worth
+   installing first:
 
-       pyright          pip install pyright        (Python, via Eglot)
-       ruby-lsp         gem install ruby-lsp       (Ruby)
-       aspell           brew install aspell        (spell checking, present)
-       rg               present, used by deadgrep and dumb-jump
+       ruby-lsp    gem install ruby-lsp      (Ruby; `rbenv rehash' afterwards)
+       pyright     pip install pyright       (Python; needs node, which is here)
+
+   Every other language works with its plain major mode until you type `M-x
+   eglot` in a project, and needs its server installed the same way:
+   `typescript-language-server` for js/ts/tsx, `vscode-langservers-extracted`
+   for json and css, `yaml-language-server`, `bash-language-server`, `tombi`
+   for toml, `gopls`, `rust-analyzer`, `clangd`.
+
+       make doctor
+
+   prints one line per language: what `M-x eglot` would find on the PATH right
+   now, which install won when two share a name (an rbenv shim is not a Homebrew
+   binary), the command that adds the missing one, and whether that mode starts
+   the server on its own. `aspell`, `rg` and the other non-server absences are in
+   the same report.
 
 4. Optional, if you want them:
 
@@ -244,7 +260,7 @@ Maintenance
     make list-deps      # the packages the modules declare
     make install-deps   # install them without starting Emacs
     make compile        # byte-compile modules/ (big effect on startup, see below)
-    make doctor         # what is missing: grammars, external programs, .elc files
+    make doctor         # what is missing: servers, grammars, programs, .elc files
     make startup        # time a real start, 3 runs
     make startup-load   # time the same Elisp in batch, no GUI frame
     make grammars       # compile the tree-sitter grammars that are missing
