@@ -255,6 +255,15 @@ so it keeps Flycheck either way, and the choice only ever gives up an engine tha
 is not running. Where the server reports, `C-c l d` is the error list (`M-g f`
 is Flycheck's).
 
+The other fringe question is independent of that and has no conflict in it:
+`diff-hl` marks the lines `git diff` would show in the **left** fringe
+(`diff-hl-side`), where nothing else lives, while both diagnostics engines use the
+right one. It is on in `prog-mode` and `text-mode` buffers, skipped in data files
+whose diffs are usually somebody else's (`json-ts-mode`, `yaml-ts-mode`, TOML), and
+it updates on save rather than while typing. `M-x diff-hl-revert-hunk` undoes one
+hunk at a time from the fringe, which is the reason to have the marks beyond
+glancing at them.
+
 
 What is not here, and why
 -------------------------
@@ -271,7 +280,8 @@ version:
 | hydra, major-mode-hydra, pretty-hydra, lv | `transient` is built in and Magit needs it anyway |
 | all-the-icons, treemacs-all-the-icons | nerd-icons |
 | nyan-mode, dimmer, centaur-tabs, mini-frame, popwin, fiplr, counsel-dash, counsel-css | candy, unmaintained, or Ivy only |
-| git-gutter-fringe, fringe-helper, magit-delta | blamer and Magit cover it; the `delta` binary is not installed |
+| magit-delta | the `delta` binary is not installed, and the face hacks were fragile across Magit upgrades |
+| git-gutter-fringe, fringe-helper | replaced by `diff-hl` a few weeks later: the reason recorded here (blamer and Magit cover it) answered a different question, see `rl-git.el` |
 | undo-tree | frozen at 0.8.2; Emacs 28+ has non-linear undo with larger limits |
 | pyvenv, pyvenv-auto, pyenv-mode, pythonic, robe | unmaintained and absent from the current package archives |
 | json-mode | `.json` goes through the built-in `js-json-mode`, which Emacs 31 remaps to `json-ts-mode` once the grammar is installed |
@@ -329,7 +339,7 @@ exist (`wgrep-change-on-exit`, `magit-clone-set-remote-HEAD`,
 `corfu-echo-documentation`, `eshell-continuation`,
 `mac-emulate-three-button-mouse`).
 
-Startup, measured on this machine (Emacs 31.1, 83 packages installed, `make
+Startup, measured on this machine (Emacs 31.1, 84 packages installed, `make
 startup`, which is a real frame in a pseudo terminal):
 
     now, byte-compiled modules        1.81 s

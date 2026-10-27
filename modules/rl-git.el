@@ -8,8 +8,12 @@
 ;;   the `seq-difference' hook workaround were fragile across Magit upgrades.
 ;;   Magit's own diff faces are good enough.  If you want delta: brew install
 ;;   git-delta, then add the `magit-delta' package back.
-;; - git-gutter-fringe (and fringe-helper): blamer already shows per-line blame
-;;   in the margin, and Magit shows the hunks.  Two systems were enough.
+;; - git-gutter-fringe (and fringe-helper), briefly.  The stated reason was that
+;;   Blamer shows per-line blame in the margin and Magit shows the hunks, so two
+;;   systems were enough -- but that reasoning missed the question the marks answer
+;;   and neither of those two does: "which lines am I about to commit".  Changed
+;;   lines are marked again below, with `diff-hl', because it needs no polling
+;;   timer, no fringe-helper, and knows about untracked files.
 ;; - forge: it was commented out in the old config and needs a token.
 ;;
 ;; The blamer callback that called `browse-at-remote--commit-url' (a private
@@ -86,6 +90,65 @@
   ;; value; kept here so the intent survives an upstream change).
   (ediff-window-setup-function #'ediff-setup-windows-plain)
   (ediff-split-window-function #'split-window-horizontally))
+
+;;; Which lines does git think are different?
+;; Fringe markers for the hunks `git diff' would show.  The port dropped this with
+;; the argument that Blamer and Magit already cover it, and that argument was
+;; wrong: Blamer answers "who last touched this line", Magit answers "what is
+;; different about the repository", and neither answers "which lines am I about to
+;; commit" while the file is being typed in.  The old setup used
+;; `git-gutter-fringe' on `prog-mode', left fringe, refreshed on a 3 second timer.
+;;
+;; prog-mode and text-mode: code, Org and Markdown get marks, `package.json' and a
+;; `.toml' do not, because those files are often dirty for reasons unrelated to the
+;; edit at point.  `diff-hl-mode' does nothing in a buffer with no working tree, so
+;; the hook costs nothing in a scratch buffer or in a file outside a repository.
+;;
+;; Marked on save, not while typing: `diff-hl-flydiff-mode' tracks the buffer as it
+;; changes, which is one `git diff' per idle pause and worth measuring before
+;; keeping.
+;;
+;; Nothing has to be wired up for Magit: since 1.11 `diff-hl-mode' installs its own
+;; buffer-local `magit-revert-buffer-hook' and `magit-not-reverted-hook' pointing at
+;; `diff-hl-update', which is what keeps the marks honest after a commit or a revert.
+;; The `diff-hl-magit-post-refresh' hook the older manuals tell you to add is an
+;; obsolete alias now and `diff-hl-magit.el' no longer ships -- checked against
+;; diff-hl 20261001.135, because this configuration was about to require it.
+
+;;;###autoload
+(defvar rl-diff-hl-skipped-modes
+  '(json-mode json-ts-mode js-json-mode toml-mode toml-ts-mode yaml-mode yaml-ts-mode)
+  "Data-file modes that get no marks, although a hook on the two families would
+give them some: `json-ts-mode' derives from `prog-mode' and `yaml-ts-mode' from
+`text-mode'.  Those files are usually dirty because of a lockfile, a formatter or
+a dependency bump rather than because of the edit at point, and a mark that is
+always there stops being read.")
+
+;; The minor mode itself, which the hook on the form below asks for.  Defined
+;; before the form on purpose: shown an undefined name, `use-package' emits an
+;; `autoload' for it pointing at the package, and this defun then quietly replaces
+;; that -- harmless, and exactly the sort of thing that reads as magic a month
+;; later.  Outside a working tree `diff-hl-mode' does nothing, so the hook costs
+;; nothing in a scratch buffer or in a file that is not in a repository.
+(defun rl-diff-hl-mode ()
+  "Turn on `diff-hl-mode' here, unless this is a data file.
+Hooked on `prog-mode-hook' and `text-mode-hook'; the two families alone are not
+the whole answer, see `rl-diff-hl-skipped-modes'."
+  (unless (apply #'derived-mode-p rl-diff-hl-skipped-modes)
+    (diff-hl-mode 1)))
+
+(use-package diff-hl
+  :hook ((prog-mode text-mode) . rl-diff-hl-mode)
+  :custom
+  ;; Left fringe: where the old marks were, and the free fringe here, since
+  ;; `flycheck-indication-mode' puts diagnostics on the right (see `rl-check.el').
+  ;; Two systems that both want the same pixel read as noise.  `left' is also
+  ;; diff-hl's own default; it is named here so the arrangement stays deliberate.
+  (diff-hl-side 'left)
+  ;; On a text terminal the marks move to a one-column margin instead of disappearing
+  ;; with the fringe.  diff-hl's default again, and worth knowing when a TTY frame
+  ;; looks different for no apparent reason.
+  (diff-hl-fallback-to-margin t))
 
 (provide 'rl-git)
 ;;; rl-git.el ends here
