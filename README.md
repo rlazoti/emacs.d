@@ -179,6 +179,7 @@ default.
 | `C-l`         | go to a line, with preview (not `recenter`)     |
 | `C-<up>`      | scroll one line down, point stays               |
 | `C-<down>`    | scroll one line up, point stays                 |
+| `C-c w l`     | wrap this buffer's long lines, or scroll again   |
 | `C-c left`    | move to the window on the left (`windmove`)     |
 | `C-c right`   | window right                                    |
 | `C-c up`      | window up                                       |
@@ -228,6 +229,12 @@ default.
 | `C-c l` `C-c c` `C-c g` | org store-link, capture, agenda         |
 
 Private modules add their own chords; `C-h f <command>` finds them.
+
+Long lines wrap everywhere by default: `truncate-lines` is nil in `init.el`,
+and `word-wrap t` makes the break land on whitespace. `C-c w l` flips it for
+one buffer — a minified file, a one-line JSON blob or a log usually reads
+better scrolled than folded. The same key also overrides the buffers that set
+truncation on themselves (`ibuffer`, `occur`, anything from `tabulated-list`).
 
 `C-c left/right/up/down` are the window chords, and `markdown-mode` and
 `org-mode` also bind them (subtree edits, structural shifts). A mode map beats

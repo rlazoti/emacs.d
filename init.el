@@ -445,8 +445,12 @@ This should be called after changing `auto-save-list-file-prefix'."
  ;; middle of a word.
  word-wrap t
 
- ;; Disable wrapping by default due to its performance cost.
- truncate-lines t
+ ;; Wrap long lines instead of scrolling sideways.  `word-wrap' above says
+ ;; where a wrapped line breaks; this says whether a line wraps at all, and
+ ;; nil is Emacs' own default.  The cost is real in a buffer with a handful
+ ;; of very long lines (a minified file, one-line JSON, a log), and
+ ;; `rl-toggle-line-truncation' on `C-c w l' pays it per buffer.
+ truncate-lines nil
 
  ;; Configure automatic indentation to be triggered exclusively by newline and
  ;; DEL (backspace) characters.
@@ -464,6 +468,8 @@ This should be called after changing `auto-save-list-file-prefix'."
 (setq
  ;; If enabled and `truncate-lines' is nil, soft wrapping will not occur when
  ;; the window is narrower than `truncate-partial-width-windows' characters.
+ ;; Off, so that a narrow side-by-side window wraps instead of going back to
+ ;; scrolling -- which is the case wrapping is for.
  truncate-partial-width-windows nil
 
  ;; Enable indentation and completion using the TAB key

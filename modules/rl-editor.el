@@ -32,14 +32,15 @@
   '(setq default-input-method "portuguese-prefix"))
 
 ;;; Indentation and whitespace behaviour
-;;; Indentation and whitespace behaviour
 ;; Nothing sets `indent-line-function' globally: each major mode chooses its
 ;; own.  The old config assigned the number 2 to it, which is invalid.
+;; `indent-tabs-mode', `tab-always-indent', `word-wrap' and `fill-column' are
+;; already set by init.el -- `word-wrap' included, which reads like it turns
+;; wrapping on and does not (see `truncate-lines' in init.el).
 (setq-default
  indent-tabs-mode nil
  tab-width 2
- tab-always-indent 'complete
- word-wrap t)
+ tab-always-indent 'complete)
 (setq sentence-end-double-space nil
       fill-column 80)
 

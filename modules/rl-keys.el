@@ -38,6 +38,9 @@
    ("C-<up>"   . rl-scroll-down-keep-cursor)
    ("C-<down>" . rl-scroll-up-keep-cursor)
 
+   ;; Long lines in this buffer: wrap them, or go back to scrolling.
+   ("C-c w l" . rl-toggle-line-truncation)
+
    ;; Text scale.  `global-text-scale-adjust' would grab C-x C-+ as well.
    ("C-+" . text-scale-increase)
    ("C--" . text-scale-decrease)

@@ -7,7 +7,8 @@
 ;; `confirm-nonexistent-file-or-buffer', `ring-bell-function', `visible-bell',
 ;; `split-width-threshold', `split-height-threshold', the scroll variables,
 ;; `hscroll-*', `mouse-yank-at-point', `require-final-newline',
-;; `indent-tabs-mode', `tab-width', `word-wrap', `cursor-in-non-selected-windows',
+;; `indent-tabs-mode', `tab-width', `word-wrap', `truncate-lines',
+;; `cursor-in-non-selected-windows',
 ;; `highlight-nonselected-windows', `next-line-add-newlines', the undo limits,
 ;; `undo-limit', `read-process-output-max', `xref-show-xrefs-function',
 ;; `save-interprogram-paste-before-kill', `vc-follow-symlinks',
@@ -124,6 +125,22 @@
   "Scroll the text one line up without moving point."
   (interactive)
   (scroll-up 1))
+
+(defun rl-toggle-line-truncation ()
+  "Wrap the long lines of this buffer, or truncate them and scroll sideways.
+
+`truncate-lines' is a buffer-local variable, so this changes one buffer
+and the default in init.el stays where it is.  Where `visual-line-mode'
+is on (Org mode) that mode is switched off instead: it also remaps
+`move-beginning-of-line' and friends, and those would end up disagreeing
+with what the window shows.  Modes that force truncation themselves --
+`tabulated-list-mode', and with it `ibuffer' and `occur' -- ignore the
+default, so this command is how you wrap one of those."
+  (interactive)
+  (if visual-line-mode
+      (visual-line-mode 0)
+    (setq-local truncate-lines (not truncate-lines))
+    (message "Long lines: %s" (if truncate-lines "truncated" "wrapped"))))
 
 (provide 'rl-core)
 ;;; rl-core.el ends here
