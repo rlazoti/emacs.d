@@ -108,12 +108,16 @@
 ;; changes, which is one `git diff' per idle pause and worth measuring before
 ;; keeping.
 ;;
-;; Nothing has to be wired up for Magit: since 1.11 `diff-hl-mode' installs its own
-;; buffer-local `magit-revert-buffer-hook' and `magit-not-reverted-hook' pointing at
-;; `diff-hl-update', which is what keeps the marks honest after a commit or a revert.
-;; The `diff-hl-magit-post-refresh' hook the older manuals tell you to add is an
-;; obsolete alias now and `diff-hl-magit.el' no longer ships -- checked against
-;; diff-hl 20261001.135, because this configuration was about to require it.
+;; One thing does have to be wired up for Magit, and only one:
+;; `diff-hl-magit-post-refresh' walks the repository's buffers and re-marks the ones
+;; nobody edited by hand, and nothing in diff-hl installs it, so without it a commit
+;; or a stage done in Magit leaves every open buffer marking what has just been
+;; committed.  Since 1.11 the package adds the revert case itself, through
+;; buffer-local `magit-revert-buffer-hook' and `magit-not-reverted-hook'.  It is
+;; `diff-hl-magit-pre-refresh' that is an obsolete alias, and `diff-hl-magit.el'
+;; that no longer ships as its own file -- both checked against diff-hl 20261001.135,
+;; where the post-refresh function turned out to be live after all, and the comment
+;; here claiming otherwise was wrong.
 
 ;;;###autoload
 (defvar rl-diff-hl-skipped-modes
@@ -148,7 +152,16 @@ the whole answer, see `rl-diff-hl-skipped-modes'."
   ;; On a text terminal the marks move to a one-column margin instead of disappearing
   ;; with the fringe.  diff-hl's default again, and worth knowing when a TTY frame
   ;; looks different for no apparent reason.
-  (diff-hl-fallback-to-margin t))
+  (diff-hl-fallback-to-margin t)
+  :config
+  (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
+  ;; Nothing else is bound, so the commands are `M-x' for now: `diff-hl-revert-hunk'
+  ;; undoes the hunk at point, `diff-hl-mark-hunk' regionifies it, and
+  ;; `diff-hl-next-hunk' and `diff-hl-previous-hunk' walk them.  `diff-hl-command-map'
+  ;; bundles those on `n', `[', `]' and `*' and wants one global key to hang off --
+  ;; `C-c g' is taken by `git-link' at `C-c g l' and `C-x g' by Magit, so it is left
+  ;; unbound rather than given a key by surprise.
+  )
 
 (provide 'rl-git)
 ;;; rl-git.el ends here
