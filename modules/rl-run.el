@@ -11,6 +11,15 @@
            (or (display-graphic-p) (daemonp)))
   :demand t
   :custom
+  ;; Measured here: the package default (`-l -i', an interactive login shell)
+  ;; costs 119 ms of every GUI start and reads ~/.zprofile and ~/.zshrc; nil
+  ;; costs 10 ms and reads only ~/.zshenv.  Nil is the choice, with its
+  ;; consequence written down: the seven directories that yields do not include
+  ;; ~/.rbenv/shims, so an Emacs started from the Dock would resolve `ruby' and
+  ;; `rubocop' outside rbenv.  Starting Emacs from a terminal hides that, because
+  ;; the terminal's PATH is inherited anyway -- and it is also why `make doctor'
+  ;; cannot see the problem, since a batch run never matches the `:if' above.
+  ;; If Emacs ever gets launched from the Dock, this line becomes '("-l" "-i").
   (exec-path-from-shell-arguments nil)
   (exec-path-from-shell-variables
    '("PATH" "MANPATH" "TMPDIR" "SSH_AUTH_SOCK" "SSH_AGENT_PID"

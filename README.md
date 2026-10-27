@@ -137,8 +137,8 @@ After install
    the same report, along with three things a buffer cannot show you: packages
    installed that nothing wants (a deleted `use-package` never uninstalls, so
    nine are here inert), byte-code older than its source, and modes that are
-   configured and never turned on — `doom-modeline` is deferred behind
-   `:after nerd-icons`, nothing loads `nerd-icons`, and no error says so.
+   configured and never turned on — which is how `doom-modeline` sat for months
+   with five settings that never ran.
 
 4. Optional, if you want them:
 
@@ -313,21 +313,25 @@ exist (`wgrep-change-on-exit`, `magit-clone-set-remote-HEAD`,
 Startup, measured on this machine (Emacs 31.1, 83 packages installed, `make
 startup`, which is a real frame in a pseudo terminal):
 
-    now, byte-compiled modules        1.67 s
-    now, from source (no .elc)        1.68 s
+    now, byte-compiled modules        1.81 s
+    now, from source (no .elc)        1.77 s
+    without the mode line (below)     1.67 s
     before `make elpa-elc' (below)    1.90 s
     before the deferrals (below)      3.15 s
-    batch load of both init files     1.00 s
+    batch load of both init files     1.05 s
 
-Byte-compiling *my* modules is the top pair: 1.674 s against 1.679 s over five
-alternating runs, indistinguishable, and not the 5x this file used to claim.
-What was expensive was never the 21 kB of my Elisp, it was the packages loading
-it pulled in — so `make compile` stays worth running after a checkout for the
-warnings it produces, not for speed, and the earlier "7-12 s from source" was
-measuring something else (it does not reproduce).
+Byte-compiling *my* modules is the top pair: 1.81 s against 1.77 s over four
+alternating pairs, and 1.674 against 1.679 before the mode line went in. Source
+was marginally quicker both times and the ordering does not hold from run to run,
+so this is noise, and not the 5x this file used to claim. What was expensive was
+never the 21 kB of my Elisp, it was the packages loading it pulled in — so
+`make compile` stays worth running after a checkout for the warnings it produces,
+not for speed, and the earlier "7-12 s from source" was measuring something else
+(it does not reproduce).
 
-The 1.90 s to 1.67 s step is `make elpa-elc`, worth explaining because it was
-invisible from inside Emacs. `package.el` unpacks a tarball whose `.el` and
+The 1.90 s to 1.67 s step is `make elpa-elc` — both figures with the mode line
+still dead, so the size of that win is unchanged by it. Worth explaining because
+it was invisible from inside Emacs. `package.el` unpacks a tarball whose `.el` and
 `.elc` were written in the same second, and here 108 of 316 libraries came out
 with the source a few milliseconds *newer* than the byte-code beside it. `load`
 reads a newer source as "the byte-code is stale": it uses the source instead,
@@ -346,6 +350,21 @@ packages puts the timestamps out of order again, so `make install-deps` runs it.
 
 Native compilation of the modules (`batch-native-compile`) made no measurable
 difference, so the Makefile does not do it.
+
+### The mode line is a choice, and it costs 155 ms
+
+`doom-modeline` is 155 ms of the 1.81 s, all of it `nerd-icons`: the package and
+enabling the mode together measured zero. It is worth naming because it was
+invisible the other way round. The form used to say `:after nerd-icons`, which
+defers everything in the form including `:init`; nothing loaded `nerd-icons`, so
+the mode never started and the five `:custom` settings under it did nothing, with
+no error to say so. It now says `:demand t` with the mode enabled in `:config`
+(which is also the order `use-package` expands to: `:custom` before the
+`require`), and `make doctor` reports whether `doom-modeline-mode` is on, so the
+failure mode stays visible. Its icons need a nerd font, already here as
+`~/Library/Fonts/NFM.ttf`; `M-x nerd-icons-install-fonts` is the command if a
+glyph ever shows as a box. If you would rather have Emacs's plain mode line,
+deleting that form is 155 ms and the numbers above are the whole argument.
 
 ### Where the time went, and what moved
 

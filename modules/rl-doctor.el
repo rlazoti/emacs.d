@@ -310,7 +310,7 @@ packages this config asks for, and dash, f, s and ht are not leftovers."
         (format "  doom-modeline-mode:         %s%s"
                 (if (bound-and-true-p doom-modeline-mode) "on" "OFF")
                 (if (featurep 'doom-modeline) ""
-                  " -- its form is deferred behind `:after nerd-icons' and nothing loads nerd-icons"))
+                  " -- its form has `:demand t', so OFF means it failed to load"))
         (format "  global-blamer-mode:         %s%s"
                 (if (bound-and-true-p global-blamer-mode) "on" "not started")
                 (if (featurep 'blamer) ""
@@ -319,7 +319,19 @@ packages this config asks for, and dash, f, s and ht are not leftovers."
                 (if (featurep 'exec-path-from-shell)
                     (format "ran, %d variables (one shell per GUI start)"
                             (length (bound-and-true-p exec-path-from-shell-variables)))
-                  "skipped (needs macOS and a window system or daemon)"))))
+                  "skipped (needs macOS and a window system or daemon)"))
+        ;; Worth one line because the cheap shell call above is what it is cheap
+        ;; by: the directories it reads come from ~/.zshenv only, so a Dock-
+        ;; launched Emacs can resolve `ruby' outside rbenv and nothing else here
+        ;; would say so.  A batch run inherits the terminal's PATH and so always
+        ;; sees the shim -- which is also why this line is a GUI-only diagnostic.
+        (format "  ruby resolves to:           %s%s"
+                (or (executable-find "ruby") "not found")
+                (let ((found (executable-find "ruby")))
+                  (cond
+                   ((null found) "")
+                   ((file-in-directory-p found (expand-file-name "~/.rbenv/shims")) "")
+                   (t " -- not the rbenv shim; see the `:if' in modules/rl-run.el"))))))
 
 ;;; The report
 

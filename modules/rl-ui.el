@@ -23,14 +23,27 @@
   :init (minions-mode 1))
 
 (use-package doom-modeline
-  :after nerd-icons
+  ;; Loaded at startup on purpose, and measured: 155 ms, all of it nerd-icons
+  ;; (`doom-modeline' itself and enabling it are indistinguishable from zero).
+  ;; This form used to say `:after nerd-icons', which defers everything in it --
+  ;; `:init' included -- until nerd-icons loads, and nothing else loaded it, so
+  ;; the mode never started and the five settings below did nothing without any
+  ;; error saying so (`make doctor' reports that class of thing now).
+  ;;
+  ;; `:demand t' is what keeps it honest: `:custom' runs before the `require',
+  ;; so the mode line is built once with these values, and if anything ever
+  ;; defers this form again the `:demand' is the thing that will say so.
+  :demand t
   :custom
   (doom-modeline-height 14)
   (doom-modeline-major-mode-icon nil)
   (doom-modeline-minor-modes t)
   (doom-modeline-buffer-file-name-style 'truncate-upto-project)
   (doom-modeline-icon t)
-  :init (doom-modeline-mode 1))
+  :config
+  ;; `doom-modeline-mode' is an autoloaded minor mode, so it can also be called
+  ;; from `:init'; `:config' is here because the options above are what it reads.
+  (doom-modeline-mode 1))
 
 ;;; Minor mode help
 (use-package which-key
