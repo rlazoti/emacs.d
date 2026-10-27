@@ -62,7 +62,17 @@
   (treemacs-deferred-git-apply-delay 0.5)
   (treemacs-read-string-input 'from-child-frame)
   :config
-  (treemacs-follow-mode -1)
+  ;; Follow mode: treemacs selects the line of the file being edited, in the
+  ;; treemacs window, as point moves elsewhere.  It is turned on by treemacs
+  ;; itself (`treemacs-only-during-init' in treemacs-follow-mode.el) and this
+  ;; configuration used to switch it straight back off again here, which is the
+  ;; only reason it was ever absent.
+  ;;
+  ;; `treemacs-follow-after-init' above decides nothing once this is on: the test
+  ;; in treemacs-core-utils.el is an `or' of the two.  The other follow mode, `M-x
+  ;; treemacs-project-follow-mode', follows the *project* of the current file and
+  ;; switches this one off when enabled, so choose one or the other.
+  (treemacs-follow-mode 1)
   (treemacs-filewatch-mode 1)
   (treemacs-fringe-indicator-mode 'always)
   ;; `deferred' needs git; `extended' needs git and python.  Pick the best
