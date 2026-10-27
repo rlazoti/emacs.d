@@ -21,16 +21,35 @@ The first start installs the packages that the modules declare, so it takes a
 while and prints progress in the echo area. Nothing else is needed.
 
 To install without starting Emacs, then get the byte-compiled modules before
-the first real start (1.90 s compiled, 1.99 s from source; see "Startup" at the
+the first real start (1.81 s compiled, 1.77 s from source; see "Startup" at the
 end of this file):
 
     cd ~/.emacs.d
     make install-deps
     make compile
 
-To try it without replacing the current config:
+To try it beside a config you are not ready to replace, point Emacs at the
+checkout. `var/' is inside the configuration directory, so the packages that
+checkout installs stay there too, including its `recentf', bookmarks and undo
+history:
 
-    emacs --init-directory ~/Projects/emacs.d-new
+    git clone <your-fork-url> -b <branch> ~/Projects/emacs.d-new
+    cd ~/Projects/emacs.d-new
+    make install-deps
+    make compile
+    make doctor                     # what this machine is missing, and why it matters
+    emacs --init-directory ~/Projects/emacs.d-new     # or: make run
+
+Three things a checkout does not have, on purpose, and the config runs without
+them: `custom.el` (whatever `M-x customize` has written), `modules-private.el`
+and `modules-private/*.el` (identity, machine paths, employer tooling), and
+`var/` (everything generated). The private layer is where your name and email
+address live, so until it exists Magit guesses them from the system. `make
+doctor` is the first command worth running on a new machine: it lists the
+external programs, language servers and tree-sitter grammars this configuration
+expects, each with what breaks without it, and it is the only place the language
+servers are reported, because nothing inside Emacs notices their absence
+otherwise.
 
 
 Layout
