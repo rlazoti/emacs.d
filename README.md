@@ -376,7 +376,7 @@ exist (`wgrep-change-on-exit`, `magit-clone-set-remote-HEAD`,
 `corfu-echo-documentation`, `eshell-continuation`,
 `mac-emulate-three-button-mouse`).
 
-Startup, measured on this machine (Emacs 31.1, 84 packages installed, `make
+Startup, measured on this machine (Emacs 31.1, 83 packages installed, `make
 startup`, which is a real frame in a pseudo terminal):
 
     now, byte-compiled modules        1.81 s
