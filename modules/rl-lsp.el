@@ -8,9 +8,19 @@
 ;; Features that go away with lsp-mode and are not replaced:
 ;; - the C-c l prefix menu of lsp-mode (replaced by the few bindings below)
 ;; - lsp-ui sideline and doc popup (replaced by Eldoc in the echo area)
-;; - lsp-treemacs (call hierarchy and symbol trees)
+;; - lsp-treemacs' symbol tree (replaced by `consult-eglot-symbols', M-s v) and
+;;   its call-hierarchy pane (replaced by `eglot-show-call-hierarchy', C-c l h:
+;;   Emacs 31 has it, it is just not on a key by default)
 ;; - dap-mode debugging.  If you need a debugger again, install `dap-mode';
 ;;   it is independent of Eglot and drives the same Debug Adapter Protocol.
+;;
+;; References have no Eglot command: `eglot-find-references' does not exist.
+;; References come from `xref-find-references' (M-?), which is why `C-c l R'
+;; below points at xref and not at Eglot.  One consequence is worth knowing:
+;; xref asks a single backend -- the first in `xref-backend-functions' that
+;; activates -- and in an Eglot-managed buffer that is the server, then
+;; dumb-jump, then etags.  An empty answer from the server is therefore an empty
+;; answer, with no fall back to the ripgrep search that would find the name.
 ;;
 ;; A language module (rl-lang-ruby, rl-lang-python, ...) is the place that
 ;; adds the buffer-local hook that starts Eglot.
@@ -39,7 +49,8 @@
   :ensure nil
   :commands (eglot-ensure eglot eglot-shutdown eglot-rename eglot-format-buffer
                           eglot-code-actions eglot-find-declaration
-                          eglot-find-implementation eglot-find-typeDefinition)
+                          eglot-find-implementation eglot-find-typeDefinition
+                          eglot-show-call-hierarchy)
   :bind (:map eglot-mode-map
               ("C-c l r" . eglot-rename)
               ("C-c l f" . eglot-format-buffer)
@@ -47,6 +58,8 @@
               ("C-c l j" . eglot-find-declaration)
               ("C-c l i" . eglot-find-implementation)
               ("C-c l t" . eglot-find-typeDefinition)
+              ("C-c l h" . eglot-show-call-hierarchy)
+              ("C-c l R" . xref-find-references)
               ("C-c l x" . eglot-execute-command)
               ("C-c l d" . flymake-show-buffer-diagnostics)
               ("C-c l D" . eglot-shutdown))

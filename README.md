@@ -249,7 +249,10 @@ default.
 | `C-c l f`     | format buffer (Eglot)                           |
 | `C-c l a`     | code actions (Eglot)                            |
 | `C-c l j`     | find declaration (Eglot)                        |
+| `C-c l h`     | call hierarchy (Eglot)                          |
+| `C-c l R`     | references to the thing at point (`M-?`)        |
 | `C-c l d`     | diagnostics reported by the server (Flymake)    |
+| `M-.` / `M-?` | xref definitions / references (built in)        |
 | `M-s v`       | search workspace symbols (consult-eglot)        |
 | `F5` / `F6`   | Treemacs refresh / show current project         |
 | `F7` / `F8`   | run region / run file (quickrun)                |
@@ -269,6 +272,25 @@ truncation on themselves (`ibuffer`, `occur`, anything from `tabulated-list`).
 the global map, so both are unbound in those two modes: the commands stay on
 `S-left/right/up/down` in Org and on `C-c C--`, `C-c C-=` and `C-c C-x u/d/l/r`
 in Markdown. Every other mode keeps its own `C-c <arrow>` bindings.
+
+
+Who answers a reference request
+------------------------------
+
+Eglot has no references command — `eglot-find-references` does not exist — and
+the built-in `M-?` (`xref-find-references`) is the command, which is what
+`C-c l R` repeats inside an Eglot buffer. `xref-find-backend` runs
+`xref-backend-functions` until one backend activates, asks that one, and stops.
+In an Eglot-managed buffer the order is Eglot, then dumb-jump, then etags, so an
+empty answer from a server is an empty answer: it does not fall through to the
+ripgrep search that would have found the name. `M-s r` (consult-ripgrep) and
+`C-S-s` (deadgrep) are the way to check the server against the text.
+
+Ruby is where this shows, because Ruby LSP implements `textDocument/references`
+for constants. Classes and modules work; methods, instance variables and local
+variables are listed as not implemented, and the 2026 rewrite of the request
+onto Rubydex still calls method-reference receivers missing. A method name under
+`M-?` in a Rails file is therefore a grep question, not a server question.
 
 
 Who reports diagnostics
