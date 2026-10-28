@@ -46,6 +46,12 @@ one level up, which is why `minimal-emacs-user-directory' is asked for first.")
   (expand-file-name "modules" rl-doctor-config-root)
   "Where the public modules live, used to report byte-compilation status.")
 
+(defconst rl-doctor-private-modules-dir
+  (expand-file-name "modules-private" rl-doctor-config-root)
+  "Where the private modules live.
+Git ignores that directory, so a fresh checkout has an empty one and a hand-made
+one may not exist at all.")
+
 (defconst rl-doctor-programs
   '(("git"           . "Magit, project detection, treemacs git markers, consult-git-grep")
     ("rg"            . "deadgrep and consult-ripgrep")
@@ -163,8 +169,15 @@ a .el buffer.")
 ;; into a compile.
 
 (defun rl-doctor-config-files ()
-  "Config files that can contain a `use-package' form."
+  "Config files that can contain a `use-package' form.
+Both layers count.  `package.el' does not care which one names a package, so a
+package wanted only by a private module (rbenv, rubocop, yari) is not an orphan
+-- and every dependency of such a package is not one either.  Listing only
+`modules/' reported five private packages and two of their dependencies as
+inert."
   (append (directory-files rl-doctor-modules-dir t "\\.el\\'")
+          (when (file-directory-p rl-doctor-private-modules-dir)
+            (directory-files rl-doctor-private-modules-dir t "\\.el\\'"))
           (mapcar (lambda (file) (expand-file-name file rl-doctor-config-root))
                   '("init.el" "post-init.el" "pre-init.el"
                     "post-early-init.el" "modules-private.el"))))
