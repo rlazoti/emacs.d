@@ -1,7 +1,10 @@
 # Config audit — 2026-10-14
 
 Scan of `~/.emacs.d` (branch `main`, last commit 2026-02-08, working tree dirty).
-This file is a working document for the rewrite. Delete it when the migration is done.
+The rewrite shipped on 2026-10-27, so this is no longer a working document. It
+stays as the record behind the "What is not here, and why" table in README.md,
+and section 7 is the only place that lists what the new config's own checks
+found. The old history is on the `archive/main-2026-02-12` branch.
 
 ## 1. Measured facts
 

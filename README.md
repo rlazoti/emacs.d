@@ -77,6 +77,16 @@ history and the Treemacs state all land in `var/`. The repository root stays
 clean.
 
 
+History
+-------
+
+`main` is the branch to clone. Its history starts at the 2026-10-14 rewrite, so
+`git log` stops there and shares nothing with the history of the configuration
+it replaced. That one is kept on `archive/main-2026-02-12`, and
+`master` and `old_version` are older snapshots. Nothing merges from any of them;
+`AUDIT.md` is the bridge.
+
+
 Public and private
 ------------------
 
@@ -154,8 +164,9 @@ After install
    binary), the command that adds the missing one, and whether that mode starts
    the server on its own. `aspell`, `rg` and the other non-server absences are in
    the same report, along with three things a buffer cannot show you: packages
-   installed that nothing wants (a deleted `use-package` never uninstalls, so
-   nine are here inert), byte-code older than its source, and modes that are
+   installed that nothing wants (both module layers count as callers, and a
+   deleted `use-package` never uninstalls, so two are here inert), byte-code
+   older than its source, and modes that are
    configured and never turned on — which is how `doom-modeline` sat for months
    with five settings that never ran.
 
@@ -339,7 +350,7 @@ order of `transient-define-prefix` was wrong, and the only evidence was a
 warning nobody read.
 
 `validate` exists because a `setq` of a name no package defines is legal Elisp
-and does nothing. It checks 163 option names, and found nine that no longer
+and does nothing. It checks 165 option names, and found nine that no longer
 exist (`wgrep-change-on-exit`, `magit-clone-set-remote-HEAD`,
 `undo-fu-session-compatible-modes`, `which-key-min-display-columns`,
 `marginalia-annotator-registry`, `corfu-preview-action`,
