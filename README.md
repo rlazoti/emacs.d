@@ -165,8 +165,8 @@ After install
    the server on its own. `aspell`, `rg` and the other non-server absences are in
    the same report, along with three things a buffer cannot show you: packages
    installed that nothing wants (both module layers count as callers, and a
-   deleted `use-package` never uninstalls, so two are here inert), byte-code
-   older than its source, and modes that are
+   deleted `use-package` never uninstalls, so a leftover survives every
+   upgrade), byte-code older than its source, and modes that are
    configured and never turned on — which is how `doom-modeline` sat for months
    with five settings that never ran.
 
@@ -283,6 +283,24 @@ hunk at a time from the fringe, which is the reason to have the marks beyond
 glancing at them.
 
 
+Spell checking
+--------------
+
+`rl-check.el` checks comments and strings in code, and whole buffers in prose
+modes (`org`, `message`, `markdown`, `git-commit` and the rest of the
+`text-mode` family). Terminal, listing and command-output buffers — `term`,
+`shell`, `eshell`, `compilation`, `help`, `dired` — are not `text-mode`
+descendants, so nothing checks them. `M-$` corrects the word at point through
+the completion UI, which is what `flyspell-correct` is for; it needs no
+interface package of its own.
+
+The program is resolved once, at load: `aspell`, then `hunspell`. If neither is
+on the PATH no hook turns anything on, because `ispell` starts its process on
+the first word it checks and an unguarded hook would fail in whatever buffer you
+were typing in. `brew install aspell` is the install, and `make doctor` names
+the absence.
+
+
 What is not here, and why
 -------------------------
 
@@ -309,6 +327,7 @@ version:
 | golang, terraform CLI, docker client modules | `go`, `gopls`, `terraform` and `docker` are not installed |
 | the org agenda, capture templates and org-wild-notifier | `~/Projects/docs/second-brain/Tasks` no longer exists |
 | 25 lines of hand written ligature rules | see `modules/rl-font.el` |
+| `json-snatcher`, and every package the old config selected | a deleted `use-package` never uninstalls, so they survived the rewrite; `make doctor` names them and `M-x package-delete` removes them |
 
 Behaviour that changed on purpose:
 
