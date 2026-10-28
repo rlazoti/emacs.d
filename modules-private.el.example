@@ -1,0 +1,44 @@
+;;; modules-private.el.example --- Template for the private loader -*- no-byte-compile: t; lexical-binding: t; -*-
+;;; Commentary:
+;; An example, not a loaded file.  Everything below is commented, because an
+;; example that loads is an example that runs on somebody else's machine.  To
+;; start the private layer:
+;;
+;;     cd ~/.emacs.d
+;;     cp modules-private.el.example modules-private.el
+;;
+;; `post-init.el' loads `modules-private.el' last when it exists and skips it
+;; silently when it does not, so a fresh checkout of this repository runs
+;; without it and Magit guesses the name and address from the system.
+;;
+;; Put here: full names, e-mail addresses, absolute paths outside this
+;; repository, employer projects and tooling, downloaded CLI paths, and anything
+;; carrying a secret.  Anything that is true on any machine belongs in
+;; modules/, not here.
+;;
+;; `modules-private/' and `modules-private.el' are both ignored by git (see
+;; .gitignore), so this file is the only private-layer thing that is tracked.
+
+;;; Code:
+
+;; One line per private module.  The third argument of `require' means "do not
+;; error", so the list may name a module this machine does not have.  Order
+;; matters only where one module overrides another.
+;;
+;; (dolist (module '(rl-identity
+;;                   rl-ruby-work))
+;;   (require module nil t))
+
+;; A private module is an ordinary Elisp file in `modules-private/':
+;;
+;;     cp modules-private/rl-identity.el.example modules-private/rl-identity.el
+;;
+;; It may set anything a public module sets, including overriding it, because
+;; this loader runs after every `use-package' form in `post-init.el'.  Prefer
+;; `setq' of a public default over editing the public file; the private file is
+;; where the fact about this machine lives, and the public file stays portable.
+
+;; Not needed -- the file is loaded by path, not by feature -- but harmless:
+;; (provide 'modules-private)
+
+;;; modules-private.el.example ends here

@@ -15,9 +15,15 @@
 
 # The private layer: identity, machine paths, employer tooling.  The contents
 # are ignored, not the directory itself, because git cannot re-include a file
-# inside a directory it has already excluded: that is what keeps the .gitkeep.
+# inside a directory it has already excluded: that is what keeps the .gitkeep
+# and the examples below.
 /modules-private/*
 !/modules-private/.gitkeep
+# The one tracked thing inside the directory: a shape to copy, ending in
+# `.example' so check-syntax, validate and `make doctor' skip it -- all three
+# glob `*.el', and the doctor reads raw text, where a commented
+# (use-package ...) still counts as a caller.
+!/modules-private/*.el.example
 /modules-private.el
 
 # tree-sitter grammars (binary .so files, installed by M-x rl-treesit-install-missing)

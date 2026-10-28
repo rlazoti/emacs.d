@@ -1,0 +1,32 @@
+;;; rl-identity.el.example --- Template for the machine's identity -*- lexical-binding: t; -*-
+;;; Commentary:
+;; An example, not a loaded file: every line of code here is commented.  To use
+;; it:
+;;
+;;     cd ~/.emacs.d
+;;     cp modules-private/rl-identity.el.example modules-private/rl-identity.el
+;;
+;; then uncomment the two lines below and name `rl-identity' in the `dolist' of
+;; modules-private.el (see modules-private.el.example).
+;;
+;; This is the smallest private module worth having.  Two options carry the fact
+;; that this machine is yours, and both are wrong in a public repository: the
+;; committer of every Magit commit, the `from' address of every message
+;; composed in Emacs, and `M-x about-emacs' read them.
+;;
+;; Without this file Magit asks `git' and gets whatever ~/.gitconfig says, which
+;; is why the README says a checkout runs but guesses.
+
+;;; Code:
+
+;; (setq user-full-name "Your Name"
+;;       user-mail-address "you@example.com")
+
+;; Keep the file to facts about the person and the machine.  Tooling that
+;; happens to be installed for one employer belongs in its own private module,
+;; named for the language rather than the job: `rl-ruby-work.el', not
+;; `rl-work.el'.
+
+;; (provide 'rl-identity)
+
+;;; rl-identity.el.example ends here

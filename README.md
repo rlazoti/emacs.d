@@ -51,6 +51,20 @@ expects, each with what breaks without it, and it is the only place the language
 servers are reported, because nothing inside Emacs notices their absence
 otherwise.
 
+Two tracked examples show what the private layer looks like. Nothing loads them
+and no check reads them, because a file ending in `.el.example` matches none of
+the three `*.el` globs in `check-syntax.el`, `validate-config.el` and
+`rl-doctor.el`:
+
+    cp modules-private.el.example modules-private.el
+    cp modules-private/rl-identity.el.example modules-private/rl-identity.el
+
+Uncomment what you copied, then name `rl-identity` in the `dolist` of the
+loader. `make doctor` keeps the result honest: its `private layer:` line says
+absent, or loaded with a module count, or how many files sit in
+`modules-private/` that nothing requires. That last case is what a half-copied
+loader leaves behind, and nothing else reports it.
+
 
 Layout
 ------
@@ -103,8 +117,11 @@ Ruby editing, and the private `rl-ruby-work.el` adds rbenv, RuboCop, Rails and
 Yari.
 
 Never move a private file into `modules/`. `.gitignore` ignores
-`/modules-private/` and `/modules-private.el` (with `!.gitkeep` so the empty
-directory survives).
+`/modules-private/*` and `/modules-private.el`, with two exceptions so a new
+machine does not start from an empty directory: `!.gitkeep` and
+`!/modules-private/*.el.example`. A `.el.example` file is documentation — every
+line of code in it is commented, and the three checks skip it — so copying one
+is how a private module starts, and renaming the copy is what makes it load.
 
 
 After install

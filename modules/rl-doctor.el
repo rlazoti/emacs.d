@@ -313,6 +313,39 @@ packages this config asks for, and dash, f, s and ht are not leftovers."
 ;; no error says so.  This section is for the settings that are set, correct, and
 ;; have no effect.
 
+;;; The private layer, which a fresh checkout does not have
+;; `post-init.el' loads `modules-private.el' last and skips it silently when it is
+;; absent, so "no private layer yet" and "my private modules stopped loading" look
+;; the same from inside Emacs.  The second is the case worth a line of its own:
+;; files in `modules-private/' that nothing requires, which is what a half-copied
+;; loader leaves behind.
+
+(defun rl-doctor-private-layer-line (&optional root)
+  "Describe the state of the private layer, as one report line.
+ROOT defaults to the configuration directory, so both branches can be run
+against a scratch directory instead of moving a real file."
+  (let* ((root (or root rl-doctor-config-root))
+         (loader (expand-file-name "modules-private.el" root))
+         (dir (expand-file-name "modules-private" root))
+         ;; `\\.el\\'' cannot match the tracked `*.el.example' files.
+         (modules (when (file-directory-p dir)
+                    (directory-files dir t "\\.el\\'")))
+         (count (length modules)))
+    (format "  private layer:              %s"
+            (cond
+             ((and (file-exists-p loader) (> count 0))
+              (format "modules-private.el, %d private %s"
+                      count (if (= count 1) "module" "modules")))
+             ((file-exists-p loader)
+              "modules-private.el, and nothing in modules-private/ to require")
+             (modules
+              (format "%d file%s in modules-private/ that nothing requires: %s"
+                      count (if (= count 1) "" "s")
+                      (mapconcat #'file-name-nondirectory
+                                 (seq-take modules 4) ", ")))
+             (t
+              "absent; cp modules-private.el.example modules-private.el")))))
+
 (defun rl-doctor-config-lines ()
   "Report configured state that a buffer cannot show you."
   (list "Configured, and whether it took effect:"
@@ -328,6 +361,7 @@ packages this config asks for, and dash, f, s and ht are not leftovers."
                 (if (bound-and-true-p global-blamer-mode) "on" "not started")
                 (if (featurep 'blamer) ""
                   " -- deferred to a 0.5 s idle timer, which does not run in batch"))
+        (rl-doctor-private-layer-line)
         (format "  exec-path-from-shell:       %s"
                 (if (featurep 'exec-path-from-shell)
                     (format "ran, %d variables (one shell per GUI start)"
