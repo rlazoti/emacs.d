@@ -142,11 +142,19 @@ After install
    (and which `treesit-auto-install-grammar` is set to `nil`, so visiting a
    file never starts a download).
 
-   The 13 languages are bash, css, dockerfile, go, javascript, json, python,
-   ruby, rust, toml, tsx, typescript and yaml. With the grammars present,
-   Emacs selects the TS mode by itself through `treesit-enabled-modes`; a
-   language whose grammar is missing quietly keeps its classic mode. Emacs 30
-   solved this with `treesit-auto`, which Emacs 31 removed — do not add it back.
+   The 17 languages are bash, c, cmake, cpp, css, dockerfile, doxygen, go,
+   javascript, json, python, ruby, rust, toml, tsx, typescript and yaml. With
+   the grammars present, Emacs selects the TS mode by itself through
+   `treesit-enabled-modes`; a language whose grammar is missing quietly keeps
+   its classic mode. Emacs 30 solved this with `treesit-auto`, which Emacs 31
+   removed — do not add it back.
+
+   Four of the recipes (`c`, `cpp`, `cmake`, `doxygen`) are written in
+   `rl-treesit.el` even though `c-ts-mode.el` and `cmake-ts-mode.el` add their
+   own to the same variable: those two files are autoloaded, so a cold
+   `make grammars` would find no recipe for them. Their commit hashes go in the
+   `:commit` slot, not the positional revision slot, because that slot is passed
+   to `git clone -b` and a clone cannot select a commit by hash.
 
    What that buys you, measured by visiting one file of each kind:
 
@@ -154,25 +162,35 @@ After install
        a.py → python-ts-mode    a.ts → typescript-ts-mode
        a.yml → yaml-ts-mode     a.json → json-ts-mode    a.css → css-ts-mode
        a.toml → toml-ts-mode    a.go → go-ts-mode        a.rs → rust-ts-mode
-       Dockerfile → dockerfile-ts-mode
+       a.c → c-ts-mode          a.cpp → c++-ts-mode      .clangd → yaml-ts-mode
+       CMakeLists.txt → cmake-ts-mode
+
+   (measured 2026-11-02, along with the four lines above it; `b.h` with a `class`
+   in it is `c++-ts-mode` because the choice for a header is made from its text).
 
    `a.html` stays in `web-mode` and `a.scss` in `scss-mode` on purpose: neither
    has a grammar here.
 
 3. Language servers. Emacs 31 has Eglot and no server: Eglot starts a program
-   that Emacs does not install and does not download. Two languages start a
-   server by themselves here — Ruby and Python, the modes whose hooks carry
-   `eglot-ensure` (see `modules/rl-lsp.el`) — so those are the two worth
-   installing first:
+   that Emacs does not install and does not download. Four modes start a server
+   by themselves here — `ruby-ts-mode`, `python-ts-mode`, `c-ts-mode` and
+   `c++-ts-mode`, the hooks that carry `eglot-ensure` (see `modules/rl-lsp.el`)
+   — so those are the ones worth installing first:
 
        ruby-lsp    gem install ruby-lsp      (Ruby; `rbenv rehash' afterwards)
        pyright     pip install pyright       (Python; needs node, which is here)
+       clangd      already here: /usr/bin/clangd, from the Xcode Command Line
+                   Tools. It reads the project's compile_commands.json and
+                   invents flags when there is none, so a C++ project needs
+                   CMAKE_EXPORT_COMPILE_COMMANDS (see `rl-lang-cpp.el`)
 
    Every other language works with its plain major mode until you type `M-x
    eglot` in a project, and needs its server installed the same way:
    `typescript-language-server` for js/ts/tsx, `vscode-langservers-extracted`
    for json and css, `yaml-language-server`, `bash-language-server`, `tombi`
-   for toml, `gopls`, `rust-analyzer`, `clangd`.
+   for toml, `gopls`, `rust-analyzer`. CMake files are the one exception worth
+   knowing: `cmake-ts-mode` is a mode here but no CMake server is installed, and
+   none is wanted — the language servers add little to a build file.
 
        make doctor
 
@@ -247,6 +265,7 @@ default.
 | `C-c g l`     | `git-link` (copy the remote URL of this code)   |
 | `C-c l r`     | rename symbol (Eglot)                           |
 | `C-c l f`     | format buffer (Eglot)                           |
+| `C-c l F`     | format the region with clang-format (C and C++) |
 | `C-c l a`     | code actions (Eglot)                            |
 | `C-c l j`     | find declaration (Eglot)                        |
 | `C-c l h`     | call hierarchy (Eglot)                          |
@@ -305,6 +324,12 @@ the two is therefore turned off per language instead.
   module formats with it.
 - Python hands diagnostics to the server. Flycheck's only Python checker here is
   `py_compile`, which reports syntax and nothing else.
+- C and C++ hand them to clangd. Flycheck's C/C++ checker is a
+  `clang++ -fsyntax-only` whose include paths are set by hand, and the include
+  paths of a CMake project live in CMake; clangd reads the same
+  `compile_commands.json` the build reads. The linting that CI really runs is
+  `clang-tidy` over the whole tree, which is a build step and not a fringe
+  marker.
 
 Each choice is one function call in the language module, and `rl-lsp.el` holds
 both options with the reasoning. A buffer with no server is not managed by Eglot,
@@ -408,14 +433,14 @@ order of `transient-define-prefix` was wrong, and the only evidence was a
 warning nobody read.
 
 `validate` exists because a `setq` of a name no package defines is legal Elisp
-and does nothing. It checks 165 option names, and found nine that no longer
+and does nothing. It checks 168 option names, and found nine that no longer
 exist (`wgrep-change-on-exit`, `magit-clone-set-remote-HEAD`,
 `undo-fu-session-compatible-modes`, `which-key-min-display-columns`,
 `marginalia-annotator-registry`, `corfu-preview-action`,
 `corfu-echo-documentation`, `eshell-continuation`,
 `mac-emulate-three-button-mouse`).
 
-Startup, measured on this machine (Emacs 31.1, 83 packages installed, `make
+Startup, measured on this machine (Emacs 31.1, 84 packages installed, `make
 startup`, which is a real frame in a pseudo terminal):
 
     now, byte-compiled modules        1.81 s
@@ -424,6 +449,14 @@ startup`, which is a real frame in a pseudo terminal):
     before `make elpa-elc' (below)    1.90 s
     before the deferrals (below)      3.15 s
     batch load of both init files     1.05 s
+
+Re-run on 2026-11-02 with the C and C++ support added: 1.93 s, 1.94 s, 1.95 s
+(three runs, and nine before that, spread 1.92–2.07). Two controls say the
+addition is not what moved: loading an empty stub in place of `rl-lang-cpp.el`
+measures 1.93–1.98 s, and moving `var/tree-sitter/` out of the way measures
+1.93–1.96 s. So the 0.14 s is this machine on this day, not the 84th package or
+the four new grammars — the module defers all three of its packages and costs
+nothing until a C++ file is visited.
 
 Byte-compiling *my* modules is the top pair: 1.81 s against 1.77 s over four
 alternating pairs, and 1.674 against 1.679 before the mode line went in. Source

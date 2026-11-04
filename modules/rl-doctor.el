@@ -34,6 +34,8 @@
 (require 'seq)
 
 (declare-function eglot--lookup-mode "eglot")
+(declare-function rl-cpp-find-program "rl-lang-cpp")
+(declare-function rl-cpp-clang-format-version "rl-lang-cpp")
 
 (defconst rl-doctor-config-root
   (or (bound-and-true-p minimal-emacs-user-directory)
@@ -61,6 +63,7 @@ one may not exist at all.")
     ("rbenv"         . "the Ruby PATH used by flycheck and eglot")
     ("rubocop"       . "flycheck's Ruby checker")
     ("node"          . "the runtime of every npm language server")
+    ("cmake"         . "CMake's own cmake-mode fallback and cmake-help (rl-lang-cpp.el)")
     ("multimarkdown" . "markdown-mode's document converter")
     ("pandoc"        . "document conversion between markdown and other formats"))
   "External programs the config uses, with what breaks without them.")
@@ -106,7 +109,9 @@ one may not exist at all.")
     (dockerfile-ts-mode . "npm install -g dockerfile-language-server-nodejs")
     (go-ts-mode . "go install golang.org/x/tools/gopls@latest")
     (rust-ts-mode . "rustup component add rust-analyzer")
-    (c-ts-mode . "clangd, from the Xcode Command Line Tools"))
+    (c-ts-mode . "clangd, from the Xcode Command Line Tools")
+    (c++-ts-mode . "clangd, from the Xcode Command Line Tools")
+    (cmake-ts-mode . "pip install neocmakelsp, or brew install cmake-language-server"))
   "Major modes to report a language server for, and how to install it.
 One entry per server, keyed by the mode this configuration actually uses.
 The program Eglot would run is looked up, not stored here.
@@ -378,7 +383,22 @@ against a scratch directory instead of moving a real file."
                   (cond
                    ((null found) "")
                    ((file-in-directory-p found (expand-file-name "~/.rbenv/shims")) "")
-                   (t " -- not the rbenv shim; see the `:if' in modules/rl-run.el"))))))
+                   (t " -- not the rbenv shim; see the `:if' in modules/rl-run.el"))))
+        ;; Worth a line of its own because the formatter is the one tool of this
+        ;; toolchain that is not on the PATH -- `rl-cpp-find-program' looks in
+        ;; Homebrew's LLVM bin for it -- and because the version number is the
+        ;; point: the projects' CI gates on one clang-format, the editor has to
+        ;; run that same one.  The `--version' call is one process spawn per
+        ;; report, next to the shell the PATH fix already runs.
+        (format "  clang-format:               %s"
+                (cond
+                 ((not (fboundp 'rl-cpp-find-program)) "rl-lang-cpp.el is not loaded")
+                 ((null (rl-cpp-find-program "clang-format"))
+                  "not found; C-c l f through clangd is the only formatter")
+                 (t
+                  (let ((exe (rl-cpp-find-program "clang-format")))
+                    (format "%s (%s)" exe
+                            (or (rl-cpp-clang-format-version exe) "version unknown"))))))))
 
 ;;; The report
 

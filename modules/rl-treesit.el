@@ -57,10 +57,34 @@
 ;;;   (LANG . (URL REVISION SOURCE-DIR CC C++ COMMIT))
 ;;; SOURCE-DIR is the directory that contains parser.c.  Emacs 31 ships this
 ;;; list empty, so every recipe is written here.
+;; The four C-family recipes are written here even though `c-ts-mode.el' and
+;; `cmake-ts-mode.el' add their own to this very variable: those files are
+;; autoloaded, so on a cold start -- which is when `rl-treesit-install-missing'
+;; runs -- their entries are not there yet and the installer would report "no
+;; recipe".  The commits are the ones those two files ask for, because the
+;; queries that drive indentation and Imenu are compiled into them against
+;; exactly those grammars; a newer grammar can parse a file the queries no
+;; longer match.
+;;
+;; `:commit' and not the positional REVISION: that slot is a branch or tag name
+;; handed to `git clone -b', and a clone cannot check out a commit it was never
+;; told about, so putting a hash there fails with "Remote branch <sha> not found
+;; in upstream origin".  `:commit' takes the other branch of the installer, a
+;; blobless clone followed by a checkout.
 (setq treesit-language-source-alist
       '((bash       . ("https://github.com/tree-sitter/tree-sitter-bash"))
+        (c          . ("https://github.com/tree-sitter/tree-sitter-c"
+                       :commit "3aa2995549d5d8b26928e8d3fa2770fd4327414e"))
+        (cmake      . ("https://github.com/uyha/tree-sitter-cmake"
+                       :commit "e409ae33f00e04cde30f2bcffb979caf1a33562a"))
+        (cpp        . ("https://github.com/tree-sitter/tree-sitter-cpp"
+                       :commit "f41b4f66a42100be405f96bdc4ebc4a61095d3e8"))
         (css        . ("https://github.com/tree-sitter/tree-sitter-css" nil "src"))
         (dockerfile . ("https://github.com/camdencheek/tree-sitter-dockerfile" nil "src"))
+        ;; Doc-comment highlighting in C and C++; optional, the classic mode is
+        ;; used without it and only the comments look plainer.
+        (doxygen    . ("https://github.com/tree-sitter-grammars/tree-sitter-doxygen"
+                       :commit "1e28054cb5be80d5febac082706225e42eff14e6"))
         (go         . ("https://github.com/tree-sitter/tree-sitter-go"))
         (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript"))
         (json       . ("https://github.com/tree-sitter/tree-sitter-json"))
@@ -83,7 +107,8 @@
   :prefix "rl-treesit-")
 
 (defcustom rl-treesit-languages
-  '(bash css dockerfile go javascript json python ruby rust toml tsx typescript yaml)
+  '(bash c cmake cpp css dockerfile doxygen go javascript json python ruby rust
+    toml tsx typescript yaml)
   "Languages this configuration installs grammars for.
 Every entry needs a recipe in `treesit-language-source-alist'.  A language that
 is not listed still works: its classic mode is used."

@@ -37,6 +37,7 @@
 (require 'rl-web)
 (require 'rl-lang-ruby)
 (require 'rl-lang-python)
+(require 'rl-lang-cpp)
 (require 'rl-lang-config)
 
 ;;; Per-system modules
