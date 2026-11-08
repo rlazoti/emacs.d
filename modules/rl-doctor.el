@@ -274,11 +274,22 @@ packages this config asks for, and dash, f, s and ht are not leftovers."
               (push (symbol-name (car req)) todo))))))
     seen))
 
+(defun rl-doctor-package-status ()
+  "Return `package-alist', reading the installed descriptors first if needed.
+Both places in the report that count packages call this, so they cannot
+disagree.  The alternative -- counting the entries of `package-user-dir' --
+reads one higher than the truth here: `archives/' lives beside the packages and
+is `package.el''s cache of the archive catalogues, not a package.  What
+`package-load-all-descriptors' accepts is the honest definition, since that is
+what decides what `package.el' can see: it wants a `<name>-pkg.el' or `pkg.el'
+in the directory, and `archives/' has neither."
+  (unless package-alist
+    (package-load-all-descriptors))
+  package-alist)
+
 (defun rl-doctor-package-lines ()
   "Report installed packages, orphans, and stale byte-code, as lines."
-  (unless package-alist
-    (require 'package)
-    (package-load-all-descriptors))
+  (rl-doctor-package-status)
   (let* ((referenced (rl-doctor-referenced-packages))
          (named (seq-filter (lambda (name) (assq (intern name) package-alist))
                             referenced))
@@ -411,7 +422,7 @@ against a scratch directory instead of moving a real file."
          (lines (list
                  "" "External programs:"
                  (format "packages: %d in %s"
-                         (length (directory-files package-user-dir t "^[^.]" t))
+                         (length (rl-doctor-package-status))
                          package-user-dir)
                  (format "config:   %s" user-emacs-directory)
                  (format "Emacs %s (%s)" (emacs-version) system-type))))
