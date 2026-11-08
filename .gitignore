@@ -26,9 +26,6 @@
 !/modules-private/*.el.example
 /modules-private.el
 
-# tree-sitter grammars (binary .so files, installed by M-x rl-treesit-install-missing)
-/tree-sitter/
-
 # Compiled Elisp.
 *.elc
 
