@@ -20,10 +20,16 @@
 ;; later and use `locate-user-emacs-file' for their defaults.
 ;;
 ;; One exception, noticed rather than fixed: Emacs fixes the native-compilation
-;; cache directory before any init file runs, using the directory it was started
-;; with.  So `make compile' can leave an `eln-cache/' (a few dozen KB of
-;; trampolines) at the repository root.  It is git-ignored; nothing else is
-;; written there.
+;; cache directory before any init file runs, from the directory it was started
+;; with, so the two targets that never load this file -- `check-syntax' and
+;; `validate', both `-Q --batch' -- leave an `eln-cache/' at the repository root,
+;; where deferred native compilation still believes the configuration is
+;; `~/.emacs.d'.  Measured, because "a few dozen KB of trampolines" understated
+;; it by 15x: 23 `.eln' and 1.7 MB here, of which the trampolines are 120 KB and
+;; the rest is code such a run pulls in (bytecomp, compile, comint, rx, flyspell).
+;; Every target that does load this file writes to `var/eln-cache', which is where
+;; the 537 libraries an interactive session builds live.  Both directories are
+;; git-ignored; nothing else is generated at the root.
 
 ;;; base configuration knobs
 ;; Leave the menu bar, tool bar, scroll bar, dialogs and tooltips off.
