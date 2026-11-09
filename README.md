@@ -416,12 +416,9 @@ spirit and one more chord would only crowd the prefix.
 `C-tab` and `C-S-tab` are decodable in principle; whether iTerm2 sends them is
 settled by `C-h k` and pressing them.
 
-**Copy out.** The default `xterm-screen-extra-capabilities` omits `setSelection`,
-so `gui-set-selection` finds no OSC 52 method and `M-w` fills the kill ring and
-nothing else. `rl-terminal.el` adds `setSelection` for both `term/screen.el` and
-`term/tmux.el`; iTerm2 (`AllowClipboardAccess`) and tmux (`set-clipboard
-external`) already pass the sequence through, and the Emacs method for `screen`
-frames wraps it in a Device Control String for exactly that reason.
+**Copy out.** On macOS, `M-w` and `C-w` send text directly to the local
+pasteboard using `pbcopy`. An earlier OSC 52 setup did not work in the actual
+terminal session, so this avoids depending on tmux and terminal escape sequences.
 
 **Paste in.** Bracketed paste needed no work — Cmd-V arrives as one event and
 inserts as text. What was missing is `C-y` for something copied outside Emacs, so

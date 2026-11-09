@@ -418,16 +418,14 @@ answer is always the same, and `M-x rl-doctor' inside `et' is where the line
 earns its place.  Each of the three fails silently -- an unset function, an
 absent capability -- which is the only reason they are listed here and not
 left to `M-:'."
-  (when (and (not noninteractive) (not (display-graphic-p))
-             (tty-live-p (frame-terminal)))
+  (when (and (not noninteractive) (not (display-graphic-p)))
     (list "Text terminal (`et'):"
           (format "  module:                     %s"
                   (if (featurep 'rl-terminal) "loaded" "NOT loaded"))
           (format "  copy to macOS clipboard:    %s"
-                  (if (eq t (terminal-parameter nil 'xterm--set-selection))
-                      "OSC 52 (setSelection) armed"
-                    (format "%S -- M-w reaches the kill ring only"
-                            (or interprogram-cut-function "nothing"))))
+                  (if (eq interprogram-cut-function 'rl-terminal-clipboard-copy)
+                      (if (executable-find "pbcopy") "pbcopy" "pbcopy MISSING")
+                    (format "%S" interprogram-cut-function)))
           (format "  paste from macOS clipboard: %s"
                   (if (eq interprogram-paste-function 'rl-terminal-clipboard-paste)
                       (if (executable-find "pbpaste") "pbpaste" "pbpaste MISSING")

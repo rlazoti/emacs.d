@@ -36,7 +36,7 @@
 ;; Three checks settle anything this file ever gets wrong, in an `et' frame:
 ;;
 ;;   M-: (featurep 'xterm)                               -> t, via term/screen.el
-;;   M-: (terminal-parameter nil 'xterm--set-selection)  -> t means OSC 52 is armed
+;;   M-: interprogram-cut-function                       -> rl-terminal-clipboard-copy
 ;;   M-: (xterm-mouse-mode)                              -> t means clicks are armed
 ;;
 ;; `M-x rl-doctor' prints the last two from inside the frame that has them.
@@ -45,31 +45,18 @@
 
 ;;; Clipboard, out
 ;;
-;; The path is `interprogram-cut-function' -- default `gui-select-text', not nil,
-;; so there is no per-frame function to install -- into `gui-set-selection',
-;; which dispatches to a `gui-backend-set-selection' method specialised on
-;; `(window-system nil)' AND on `(terminal-parameter nil 'xterm--set-selection)'
-;; being t (`term/xterm.el').  That parameter is set only by
-;; `xterm--init-activate-set-selection', and `term/screen.el' calls it only when
-;; `setSelection' is in `xterm-screen-extra-capabilities', whose default is
-;; `(modifyOtherKeys)' alone.  So `M-w' did run and did reach
-;; `gui-set-selection', where no method applied: nothing was sent, and nothing
-;; said so.  `term/tmux.el' has the same default and the same fix.
-;;
-;; The method is written for exactly this stack: when the terminal was
-;; initialised by `terminal-init-screen' it wraps the OSC 52 in a Device Control
-;; String and splits long ones, because it knows it is inside screen/tmux.
-;;
-;; `getSelection' is deliberately not added along with it.  Emacs 31 refuses that
-;; path under screen outright -- the `gui-backend-get-selection' method carries
-;; `((eq (terminal-parameter nil 'terminal-initted) 'terminal-init-screen) (eql
-;; nil))' in its specialiser, citing bug#36879 -- and `pbpaste' below is local,
-;; exact and always present on macOS.  The size limit on the way out is
-;; `xterm-max-cut-length' (100000 bytes of base64, so roughly 75 KB of text).
-(with-eval-after-load 'term/screen
-  (add-to-list 'xterm-screen-extra-capabilities 'setSelection))
-(with-eval-after-load 'term/tmux
-  (add-to-list 'xterm-tmux-extra-capabilities 'setSelection))
+;; OSC 52 through tmux did not reach the clipboard in the actual `et' session.
+;; On local macOS, use the pasteboard directly, without terminal escape sequences.
+(defun rl-terminal-clipboard-copy (text)
+  "Send TEXT to the local macOS pasteboard using `pbcopy'."
+  (let ((program (executable-find "pbcopy"))
+        (coding-system-for-write 'utf-8-unix))
+    (unless program (error "Cannot copy to clipboard: pbcopy not found"))
+    (with-temp-buffer
+      (insert text)
+      (unless (equal 0 (call-process-region (point-min) (point-max)
+                                           program nil nil nil))
+        (error "Cannot copy to clipboard: pbcopy failed")))))
 
 ;;; Clipboard, in
 ;;
@@ -82,8 +69,8 @@
   "Return the macOS clipboard, or nil when it holds what Emacs last killed.
 `yank' calls `interprogram-paste-function' with no arguments before falling
 back to the kill ring, so nil means \"use the kill ring\".  Its contract asks
-for nil when the clipboard holds the text Emacs supplied last, and an OSC 52
-cut puts that text on the clipboard and in the kill ring at once, so comparing
+for nil when the clipboard holds the text Emacs supplied last, and a copy
+puts that text on the clipboard and in the kill ring at once, so comparing
 against the head of the kill ring is what keeps `C-y' straight after `M-w'
 from inserting the same text twice."
   (let ((pbpaste (executable-find "pbpaste")))
@@ -96,7 +83,9 @@ from inserting the same text twice."
                        (equal text (substring-no-properties (car kill-ring))))
             text))))))
 
-(setq interprogram-paste-function #'rl-terminal-clipboard-paste)
+(when (eq system-type 'darwin)
+  (setq interprogram-cut-function #'rl-terminal-clipboard-copy
+        interprogram-paste-function #'rl-terminal-clipboard-paste))
 
 ;;; Mouse
 ;;
