@@ -14,6 +14,14 @@
 ;; nil, so nothing was kept between sessions.
 ;;
 ;; C-z replaces `suspend-frame' (as in the old config).  Suspend is on C-x C-z.
+;;
+;; Redo has two chords.  C-S-z is the one the old config had, and a text terminal
+;; cannot send it: `xterm-function-map' has no Ctrl+Shift+letter entry, so it
+;; arrives as plain C-z, i.e. one more undo.  C-c U works in both.  It is
+;; uppercase because the convention reserves C-c plus an uppercase letter for the
+;; user, and that is what makes it free: C-c / , C-c * , C-c + and C-c = are all
+;; Org prefixes (org-sparse-tree, org-ctrl-c-star, org-table-*) and a mode map
+;; beats a global one.  See `rl-terminal.el'.
 
 ;;; Code:
 
@@ -21,6 +29,7 @@
   :commands (undo-fu-only-undo undo-fu-only-redo undo-fu-only-redo-all
                                undo-fu-disable-checkpoint)
   :bind (("C-z"     . undo-fu-only-undo)
+         ("C-c U"   . undo-fu-only-redo)
          ("C-S-z"   . undo-fu-only-redo)
          ("C-M-z"   . undo-fu-only-redo-all))
   :config

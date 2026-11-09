@@ -73,7 +73,16 @@
          ("C-<"         . mc/mark-previous-like-this)
          ("C-c C->"     . mc/mark-all-like-this)
          ("C-."         . mc/mark-next-lines)
-         ("C-,"         . mc/mark-previous-lines)))
+         ("C-,"         . mc/mark-previous-lines)
+         ;; C-c C-> cannot reach a text terminal -- C-S-. is not decodable there
+         ;; -- so this is the one mark command with no terminal route at all.
+         ;; Uppercase for the reason given in `rl-undo.el': C-c * is
+         ;; `org-ctrl-c-star' and C-c . is `org-timestamp'.  The next/previous
+         ;; pair is left alone, because C-, and C-. ARE decodable and already run
+         ;; the `*-lines' siblings of the same family, and C-c , -- free globally
+         ;; -- is the prefix `rspec-mode' and `minitest' both install in Ruby
+         ;; buffers.  See `rl-terminal.el'.
+         ("C-c A"       . mc/mark-all-like-this)))
 
 (use-package drag-stuff
   :bind (("M-<up>" . drag-stuff-up)

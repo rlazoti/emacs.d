@@ -231,7 +231,8 @@ default.
 | `C-c up`      | window up                                       |
 | `C-c down`    | window down                                     |
 | `C-z`         | undo one step (`undo-fu`)                       |
-| `C-S-z`       | redo one step                                   |
+| `C-S-z`       | redo one step (graphical frames; see below)     |
+| `C-c U`       | redo one step, in a terminal too                |
 | `C-M-z`       | redo everything back to the start               |
 | `C-x C-z`     | suspend Emacs (the default `C-z` is taken)      |
 | `C-+` / `C--` | text scale up / down                            |
@@ -244,6 +245,7 @@ default.
 | `M-up` `M-down` | move the line or region up / down              |
 | `C->` `C-<`   | multiple cursors: mark next / previous like this |
 | `C-c C->`     | multiple cursors: mark all like this            |
+| `C-c A`       | the same, from a terminal too (see below)       |
 | `M-i` `M-n` `M-p` | symbol overlay: put, next, previous         |
 | `C-;` or `S-SPC` | Embark actions on the thing at point         |
 | `M-A`         | Marginalia annotator cycle                      |
@@ -251,7 +253,8 @@ default.
 | `C-c p p`     | completions at point (Cape prefix map)          |
 | `C-x f`       | find file in project (Projectile)               |
 | `s-p`         | Projectile command map                          |
-| `C-S-s`       | deadgrep (project-wide ripgrep)                 |
+| `C-S-s`       | deadgrep (project-wide ripgrep; see below)      |
+| `C-c s`       | deadgrep, in a terminal too                     |
 | `M-s r`       | `consult-ripgrep` with preview                  |
 | `M-s g` `M-s G` | `consult-grep`, `consult-git-grep`            |
 | `M-s l`       | `consult-line` in the current buffer            |
@@ -363,6 +366,85 @@ on the PATH no hook turns anything on, because `ispell` starts its process on
 the first word it checks and an unguarded hook would fail in whatever buffer you
 were typing in. `brew install aspell` is the install, and `make doctor` names
 the absence.
+
+
+Frames without graphics (`et`)
+------------------------------
+
+`et` is `emacs -nw` in iTerm2 inside tmux, so `$TERM` is `screen-256color` and
+Emacs initialises the terminal with `term/screen.el` rather than `term/xterm.el`.
+One module, `rl-terminal.el`, loads only when the starting frame has no graphics.
+It fixes three things that fail silently, and stops trying to fix a fourth.
+
+**Ctrl+Shift on a letter is not a setting.** `term/xterm.el` holds the only
+modified-key decoder a text frame has (`xterm-function-map`) and its table is a
+fixed list: Ctrl/Meta with punctuation, plus tab, return and space. No letter with
+Shift. Looked up against the wire forms on Emacs 31.1, both the modifyOtherKeys
+form of `C-S-s` (`ESC [ 27 ; 5 ; 115 ~`) and the CSI-u form tmux forwards
+(`ESC [ 115 ; 6 u`) are prefix-only, and so are `C-S-z` and `C-S-.` — the terminal
+cannot name the event, so `C-S-s` lands as `C-s` and `C-S-z` as `C-z`. Emacs 31
+has no kitty keyboard protocol decoder, so no tmux or iTerm2 line changes that.
+The commands that were on such a chord got a second chord, bound in the module
+that owns them so both kinds of frame have them:
+
+| Command                        | Graphical | Terminal  |
+|--------------------------------|-----------|-----------|
+| `deadgrep`                     | `C-S-s`   | `C-c s`   |
+| `undo-fu-only-redo`            | `C-S-z`   | `C-c U`   |
+| `mc/mark-all-like-this`        | `C-c C->` | `C-c A`   |
+| `embark-act`                   | `S-SPC`   | `C-;`     |
+
+Two of the three new chords are uppercase letters because that is what makes them
+free:
+`C-c /` is `org-sparse-tree`, `C-c *` is `org-ctrl-c-star`, `C-c .` is
+`org-timestamp`, and `C-c ,` is the prefix `rspec-mode` and `minitest` both
+install in Ruby buffers — a mode map beats a global one, so a chord that probes
+free in `C-h k` still loses inside Org or Ruby. `C-c` plus an uppercase letter is
+the one range the convention reserves for the user, and nothing in Emacs or in the
+MELPA packages installed here binds it. `C-c s` was checked the same way and is
+clear. A terminal sends an uppercase letter after `C-c` without trouble: the Shift
+is on its own keystroke, not on the Ctrl.
+
+`C->` and `C-<` are left as they are. In a terminal they cannot be named, but
+`C-,` and `C-.` — which can — already run `mc/mark-previous-lines` and
+`mc/mark-next-lines`, siblings of the same family, so the pair is reachable in
+spirit and one more chord would only crowd the prefix.
+
+`S-SPC` is the one chord that does arrive, as `M-SPC` — which here is
+`cycle-spacing`, so Embark keeps `C-;`. `C-,`, `C-.`, `C-;`, `C-c p`, `C-c w l`,
+`C-x <left/right>`, `M-up/M-down` and the `M-s` search prefix all arrive intact.
+`C-tab` and `C-S-tab` are decodable in principle; whether iTerm2 sends them is
+settled by `C-h k` and pressing them.
+
+**Copy out.** The default `xterm-screen-extra-capabilities` omits `setSelection`,
+so `gui-set-selection` finds no OSC 52 method and `M-w` fills the kill ring and
+nothing else. `rl-terminal.el` adds `setSelection` for both `term/screen.el` and
+`term/tmux.el`; iTerm2 (`AllowClipboardAccess`) and tmux (`set-clipboard
+external`) already pass the sequence through, and the Emacs method for `screen`
+frames wraps it in a Device Control String for exactly that reason.
+
+**Paste in.** Bracketed paste needed no work — Cmd-V arrives as one event and
+inserts as text. What was missing is `C-y` for something copied outside Emacs, so
+`interprogram-paste-function` now reads `pbpaste`, returning nil when the
+clipboard holds what the kill ring already has. Reading over OSC 52 was not an
+option anyway: Emacs 31's `gui-backend-get-selection` refuses the `screen`
+terminal outright (bug#36879).
+
+**Mouse.** `xterm-mouse-mode` auto-enables when the XTVERSION query answers
+`iTerm2`, and tmux does not answer it, so the module enables it from
+`tty-setup-hook` — which also means `mouse-yank-at-point` finally does something.
+Hold Option in iTerm2 to bypass mouse reporting and reach tmux's copy-mode.
+
+**No fringe.** `flycheck-indication-mode` becomes `right-margin` (diff-hl already
+falls back to the left margin), and `indent-bars-prefer-character` draws bars as
+characters instead of background colours a 256-colour terminal has to quantise.
+
+What is left is outside Emacs's reach: glyphs come from iTerm2's font (so a mode
+line of boxes is an iTerm2 font problem, and `doom-modeline-icon` the way to
+avoid it), images do not exist, `context-menu-mode` is graphical, and `C-x 5 2`
+makes a second tmux window rather than a second window. `M-x rl-doctor` inside an
+`et` frame reports the copy, paste and mouse state of the frame it was run in;
+under `make doctor` those lines are absent, because a batch run has no terminal.
 
 
 What is not here, and why

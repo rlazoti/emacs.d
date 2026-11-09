@@ -44,6 +44,14 @@
 (when (memq system-type '(darwin darwin-macintosh))
   (require 'rl-macos))
 
+;;; Per-display module: a frame with no graphics, i.e. `et' (`emacs -nw').
+;; Decided by the frame Emacs started with, so a GUI frame started from a
+;; terminal does not load it and a terminal one always does.  Everything in it
+;; either hooks the terminal driver or sets an option a graphical frame does not
+;; use, so loading it by mistake would be visible rather than harmful.
+(unless (display-graphic-p)
+  (require 'rl-terminal))
+
 ;;; Settings changed with M-x customize go to custom.el (set by early-init.el
 ;;; to <config dir>/custom.el, which git ignores).  Loading it last means the
 ;;; customization wins over the modules above.

@@ -411,6 +411,33 @@ against a scratch directory instead of moving a real file."
                     (format "%s (%s)" exe
                             (or (rl-cpp-clang-format-version exe) "version unknown"))))))))
 
+(defun rl-doctor-terminal-lines ()
+  "Report the three things `rl-terminal.el' exists to fix, or nothing.
+Empty unless this Emacs is attached to a real terminal: under `make doctor' the
+answer is always the same, and `M-x rl-doctor' inside `et' is where the line
+earns its place.  Each of the three fails silently -- an unset function, an
+absent capability -- which is the only reason they are listed here and not
+left to `M-:'."
+  (when (and (not noninteractive) (not (display-graphic-p))
+             (tty-live-p (frame-terminal)))
+    (list "Text terminal (`et'):"
+          (format "  module:                     %s"
+                  (if (featurep 'rl-terminal) "loaded" "NOT loaded"))
+          (format "  copy to macOS clipboard:    %s"
+                  (if (eq t (terminal-parameter nil 'xterm--set-selection))
+                      "OSC 52 (setSelection) armed"
+                    (format "%S -- M-w reaches the kill ring only"
+                            (or interprogram-cut-function "nothing"))))
+          (format "  paste from macOS clipboard: %s"
+                  (if (eq interprogram-paste-function 'rl-terminal-clipboard-paste)
+                      (if (executable-find "pbpaste") "pbpaste" "pbpaste MISSING")
+                    (format "%S" (or interprogram-paste-function "nothing"))))
+          (format "  mouse:                      %s%s"
+                  (if (bound-and-true-p xterm-mouse-mode) "on" "OFF")
+                  (if (memq 'rl-terminal-mouse (symbol-value 'tty-setup-hook))
+                      ""
+                    " -- rl-terminal-mouse is not on `tty-setup-hook'")))))
+
 ;;; The report
 
 (defun rl-doctor-report ()
@@ -437,7 +464,7 @@ against a scratch directory instead of moving a real file."
     (dolist (line (rl-doctor-package-lines))
       (push line lines))
     (push "" lines)
-    (dolist (line (rl-doctor-config-lines))
+    (dolist (line (append (rl-doctor-config-lines) (rl-doctor-terminal-lines)))
       (push line lines))
     (push "" lines)
     (push "Tree-sitter:" lines)
