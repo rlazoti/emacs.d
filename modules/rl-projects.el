@@ -82,7 +82,14 @@
               treemacs-python-executable
               (executable-find treemacs-python-executable))
          (treemacs-git-mode 'deferred))
-        (t (treemacs-git-mode 'simple))))
+        (t (treemacs-git-mode 'simple)))
+
+  ;; Load the Projectile integration together with treemacs.  Both are lazy, so
+  ;; `treemacs-projectile' (`:after (treemacs projectile)' below) stayed unloaded
+  ;; until something else pulled Projectile in.  Until then treemacs asks
+  ;; project.el for the project, which answers with the git root (the whole
+  ;; World checkout) instead of the zone Projectile finds from `.projectile'.
+  (require 'treemacs-projectile))
 
 (use-package treemacs-projectile
   :after (treemacs projectile))
